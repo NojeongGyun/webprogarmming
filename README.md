@@ -23,4 +23,4 @@ HTML, CSS, JavaScript를 비롯해 프론트엔드 및 백엔드 기초를 학�
 | 2주차 | HTML 기초 태그 | [2주차 정리](./notes/week02.md) |
 | 3주차 | HTML 폼, 시맨틱 태그 | [3주차 정리](./notes/week03.md) |
 | 4주차 | CSS 선택자, 박스 모델 | [4주차 정리](./notes/week04.md) |
-| 5주차 | CSS 레이아웃 (Flex, Grid) | [5주차 정리]()
+| 5주차 | CSS 레이아웃 (Flex, Grid) | [5주차 정리](./notes/week05.md)
