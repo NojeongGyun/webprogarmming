@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Elvis 이미지 변경</title>
+<style>
+    body { 
+        background-color: linen; 
+        color: green; 
+        margin-left: 40px; 
+        margin-right: 40px; 
+    }
+    h3 { 
+        text-align: center; 
+        color: darkred; 
+    }
+    hr { 
+        height: 5px; 
+        border: solid grey; 
+        background-color: grey; 
+    }
+    span { 
+        color: blue; 
+        font-size: 20px; 
+        cursor: pointer; 
+    }
+    img {
+    width: 200px;
+    height: 250px;
+    object-fit: cover;
+    margin-bottom: 50px;
+    /* 가운데 정렬 제거 → 왼쪽 정렬 */
+    display: block;
+}
+</style>
+<script>
+function show() {
+    const img = document.getElementById("fig");
+    if(img.src.indexOf("슈렉.png") === -1) img.src = "슈렉.png";
+}
+function hide() {
+    const img = document.getElementById("fig");
+    if(img.src.indexOf("ElvisPresley.png") === -1) img.src = "ElvisPresley.png";
+}
+</script>
+</head>
+<body>
+<h3>Elvis Presley</h3>
+<hr>
+
+<!-- 이미지 고정 -->
+<img id="fig" src="ElvisPresley.png" alt="Elvis">
+
+<p>
+He was an American singer and actor. In November 1956, he made his film debut in 
+<span onmouseover="show()" onmouseout="hide()">Love Me Tender</span>. 
+He is often referred to as "<span>the King of Rock and Roll</span>".
+</p>
+
+</body>
+</html>
