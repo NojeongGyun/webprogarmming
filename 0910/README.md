@@ -7,7 +7,20 @@
 로칼로스티(자기자신 ip)(localhost)
 127.0.0.1:5500(op주소:포트번호)
 
-emmet cheat sheet
+-emmet -
+Emmet은 HTML, CSS 등의 코드 작성 속도를 빠르게 해주는 도구로써, 지정 되어 있는 문자에 형식을 더하면 완성이 됩니다. 지정 되어 있는 
+문자에는 여러개가 있는데 그 중 몇가지만 살펴 보자면 Child: >, Multiplication: *, numbering: $, Climb-up: ^, Grouping: () 가 있습니다.
+
+-emmet chlid : > -
+child는 부모/자식 관계로써 A > B라고 하면 A안에 B가 속해 있는걸 뜻합니다. 
+예시로 nav>ul>li
+<nav>
+    <ul>
+        <li></li>
+    </ul>
+</nav>
+-emmet Multiplication: *
+
 콘텐츠를 구조화 시킨 코드를 HTML태그
 <meta charset="UTF-8"> 
 github, git, emmet
