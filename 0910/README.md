@@ -10,7 +10,7 @@ ex) ```html
     <ul>
     <li></li>
     </ul>
-    </nav>  
+    </nav> ```
 부모 자식관계로 나타나 지는걸 볼 수 있습니다.
 
 - emmet Multiplication: * -
