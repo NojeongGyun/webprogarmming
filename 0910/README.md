@@ -1,29 +1,66 @@
-서버가 클라이언트가 될 수있음(서버가 다른서버에서 요청하고 받으면)
-아이피주소를 이용하여 서버접속
-도메인 주소만 이용하면 할당받은 아이피주소를 입력해줌
-내가 나한테 접근(로칼로스, 아이피주소) (클라이언트가 되어 자기자신에게 접속)
-포트번호(웹서비스 80 - 포트번호(80)이면 생략가능 / index.html생략가능)
-
-로칼로스티(자기자신 ip)(localhost)
-127.0.0.1:5500(op주소:포트번호)
-
--emmet -
-Emmet은 HTML, CSS 등의 코드 작성 속도를 빠르게 해주는 도구로써, 지정 되어 있는 문자에 형식을 더하면 완성이 됩니다. 지정 되어 있는 
-문자에는 여러개가 있는데 그 중 몇가지만 살펴 보자면 Child: >, Multiplication: *, numbering: $, Climb-up: ^, Grouping: () 가 있습니다.
+-emmet정의 -
+Emmet은 HTML, CSS 등의 코드 작성 속도를 빠르게 해주는 도구로써, 지정 되어 있는 문자에 형식을 더하면 자동으로 문장이 완성됩니다. 지정 되어 있는 
+문자에는 여러개가 있는데 그 중 몇가지만 살펴 보자면 Child: >, Multiplication: *, Sibling: +, numbering: $, Climb-up: ^, Grouping: () 가 있습니다.
 
 -emmet chlid : > -
 child는 부모/자식 관계로써 A > B라고 하면 A안에 B가 속해 있는걸 뜻합니다. 
-예시로 nav>ul>li
-<nav>
-    <ul>
-        <li></li>
-    </ul>
-</nav>
--emmet Multiplication: *
+예시로 emmet 코드를 활용하여 nav>ul>li 쓰면  
+ex) <nav> 
+    <ul> 
+    <li> </li> 
+    </ul> 
+    </nav>  
+부모 자식관계로 나타나 지는걸 볼 수 있습니다.
 
+-emmet Multiplication: * -
+ Multiplication은 곱셈으로써 A * n (n은 자연수)라고 하면 A가 n개 만들어 지는것을 뜻합니다.
+ 예시로 emmet 코드를 활용해 li * 3 쓰면 
+ ex)    <li> </il> 
+        <li> </il> 
+        <li> </il>    
+앞에 보이는 것과 같이 li가 3개가 만들어 집니다.
+
+-emmet Sibling: + -
+Sibling은 형제관계로써 같은 위치에 만들어 지는걸 뜻합니다.
+예시로 emmet 코드를 활용해 div+p+bq을 쓰면
+ex) <div></div>
+    <p></p>
+    <blockquote></blockquote>
+앞에 보이는 것과 같이 부모도 아니고, 자식도 아닌 형제관계가 만들어집니다. 
+
+-emmet Climb-up: ^ -
+Climb-up은 한 단계 부모로 올라가서 그 부모 안에 형제 추가입니다.
+예시로 nav>ul^li 쓰면
+ex) <nav> 
+    <ul> </ul> 
+    <li> </li>
+    <nav>
+nl ^ li에서 li는 nl보다 1레벨이 낮아 부모쪽으로 올라오니 li와 nl은 형제가 됩니다.
+만약에 nl^^li을 쓰게 되면 li은 nl의 부모자식관계는 아니지만, nl의 부모인 nav와 li는 형제관계가 됩니다.
+
+-emmet numbering: $ -
+numbering은 반복되는 요소 안에서 번호를 붙을수 있는 기능입니다.
+예시로 li.item$*3를 쓰면
+ex) <li class="item1"></li>
+    <li class="item2"></li>
+    <li class="item3"></li>
+자동으로 1~3까지가 출력이 됩니다.
+
+-emmet Grouping: () - 
+Grouping은 여러 개체를 하나로 묶고, 반복 작업이나 부모자식관계를 설정할때 활용됩니다.
+예시로 (div>p)*2 있으면
+ex) <div>
+    <p></p>
+    </div>
+    
+    <div>
+    <p></p>
+    </div>
+div와 p는 부모 자식관계인데 그룹으로 지정해서 두번 반복하게 설정이 되어 있습니다.
+
+-HTML 기본 구조-
 콘텐츠를 구조화 시킨 코드를 HTML태그
 <meta charset="UTF-8"> 
-github, git, emmet
 meta는 문서 전체를 설명하는 부분
 서버에서 받아서 브라우저에서 표현할때 <!DOCTYPE html> 이런식으로 기술함(HTML5 구조를 지킴)
 alt가 없으면 태그를 실행 못함
