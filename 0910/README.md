@@ -6,11 +6,13 @@ Emmet은 HTML, CSS 등의 코드 작성 속도를 빠르게 해주는 도구로�
 child는 부모/자식 관계로써 A > B라고 하면 A안에 B가 속해 있는걸 뜻합니다.                                                                            
 예시로 emmet 코드를 활용하여 nav>ul>li 쓰면                                                                                                 
 ex) ```html
-    <nav>
+<nav>
     <ul>
-    <li></li>
+        <li>Item 1</li>
+        <li>Item 2</li>
     </ul>
-    </nav> ```
+</nav>
+```
 부모 자식관계로 나타나 지는걸 볼 수 있습니다.
 
 - emmet Multiplication: * -
