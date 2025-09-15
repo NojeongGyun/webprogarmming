@@ -12,7 +12,7 @@ ex) <nav>
     </nav>  
 부모 자식관계로 나타나 지는걸 볼 수 있습니다.
 
--emmet Multiplication: * -
+- emmet Multiplication: * -
  Multiplication은 곱셈으로써 A * n (n은 자연수)라고 하면 A가 n개 만들어 지는것을 뜻합니다.
  예시로 emmet 코드를 활용해 li * 3 쓰면 
  ex)    <li> </il> 
