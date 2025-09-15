@@ -2,7 +2,7 @@
 Emmet은 HTML, CSS 등의 코드 작성 속도를 빠르게 해주는 도구로써, 지정 되어 있는 문자에 형식을 더하면 자동으로 문장이 완성됩니다. 지정 되어 있는                                         
 문자에는 여러개가 있는데 그 중 몇가지만 살펴 보자면 Child: >, Multiplication: *, Sibling: +, numbering: $, Climb-up: ^, Grouping: () 가 있습니다.                                 
                                                                                                                                                                                             
--emmet chlid : > -                                                                                                                                                        
+1) emmet chlid : >                                                                                                                                                         
 child는 부모/자식 관계로써 A > B라고 하면 A안에 B가 속해 있는걸 뜻합니다.                                                                                                                                                          
 ```html
 <nav>
@@ -14,7 +14,7 @@ child는 부모/자식 관계로써 A > B라고 하면 A안에 B가 속해 있�
 ```
 예시로 emmet 코드를 활용하여 nav>ul>li 쓰면 부모 자식관계로 나타나 지는걸 볼 수 있습니다.
                                                                                                                                    
-- emmet Multiplication: * -                                                                                                       
+2) emmet Multiplication: *                                                                                                        
  Multiplication은 곱셈으로써 A * n (n은 자연수)라고 하면 A가 n개 만들어 지는것을 뜻합니다.
 ```html
 <li> </il> 
@@ -23,43 +23,49 @@ child는 부모/자식 관계로써 A > B라고 하면 A안에 B가 속해 있�
 ```    
 예시로 emmet 코드를 활용해 li * 3 쓰면 보이는 것과 같이 li가 3개가 만들어 집니다.                          
 
--emmet Sibling: + -
+3) emmet Sibling: + 
 Sibling은 형제관계로써 같은 위치에 만들어 지는걸 뜻합니다.
 예시로 emmet 코드를 활용해 div+p+bq을 쓰면
-ex) <div></div>
+```html
+<div></div>
     <p></p>
     <blockquote></blockquote>
+```
 앞에 보이는 것과 같이 부모도 아니고, 자식도 아닌 형제관계가 만들어집니다. 
 
--emmet Climb-up: ^ -
+4) emmet Climb-up: ^ 
 Climb-up은 한 단계 부모로 올라가서 그 부모 안에 형제 추가입니다.
 예시로 nav>ul^li 쓰면
-ex) <nav> 
-    <ul> </ul> 
-    <li> </li>
-    <nav>
+```html
+<nav> 
+<ul> </ul> 
+<li> </li>
+<nav>
+```
 nl ^ li에서 li는 nl보다 1레벨이 낮아 부모쪽으로 올라오니 li와 nl은 형제가 됩니다.
 만약에 nl^^li을 쓰게 되면 li은 nl의 부모자식관계는 아니지만, nl의 부모인 nav와 li는 형제관계가 됩니다.
 
--emmet numbering: $ -
+5) emmet numbering: $ 
 numbering은 반복되는 요소 안에서 번호를 붙을수 있는 기능입니다.
-예시로 li.item$*3를 쓰면
-ex) <li class="item1"></li>
-    <li class="item2"></li>
-    <li class="item3"></li>
-자동으로 1~3까지가 출력이 됩니다.
+```html
+<li class="item1"></li>
+<li class="item2"></li>
+<li class="item3"></li>
+```
+예시로 li.item$*3를 쓰면 자동으로 1~3까지가 출력이 됩니다.
 
--emmet Grouping: () - 
+6) emmet Grouping: () - 
 Grouping은 여러 개체를 하나로 묶고, 반복 작업이나 부모자식관계를 설정할때 활용됩니다.
-예시로 (div>p)*2 있으면
-ex) <div>
-    <p></p>
-    </div>
+```html
+<div>
+<p></p>
+</div>
     
-    <div>
-    <p></p>
-    </div>
-div와 p는 부모 자식관계인데 그룹으로 지정해서 두번 반복하게 설정이 되어 있습니다.
+<div>
+<p></p>
+</div>
+```
+예시로 (div>p)*2 있으면 div와 p는 부모 자식관계인데 그룹으로 지정해서 두번 반복하게 설정이 되어 있습니다.
 
 -HTML 기본 구조-
 콘텐츠를 구조화 시킨 코드를 HTML태그
