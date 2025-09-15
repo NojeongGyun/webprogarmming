@@ -1,10 +1,10 @@
--emmet정의 -
-Emmet은 HTML, CSS 등의 코드 작성 속도를 빠르게 해주는 도구로써, 지정 되어 있는 문자에 형식을 더하면 자동으로 문장이 완성됩니다. 지정 되어 있는 
-문자에는 여러개가 있는데 그 중 몇가지만 살펴 보자면 Child: >, Multiplication: *, Sibling: +, numbering: $, Climb-up: ^, Grouping: () 가 있습니다.
-
--emmet chlid : > -
-child는 부모/자식 관계로써 A > B라고 하면 A안에 B가 속해 있는걸 뜻합니다. 
-예시로 emmet 코드를 활용하여 nav>ul>li 쓰면  
+-emmet정의 -                                                                                                                                            
+Emmet은 HTML, CSS 등의 코드 작성 속도를 빠르게 해주는 도구로써, 지정 되어 있는 문자에 형식을 더하면 자동으로 문장이 완성됩니다. 지정 되어 있는                                         
+문자에는 여러개가 있는데 그 중 몇가지만 살펴 보자면 Child: >, Multiplication: *, Sibling: +, numbering: $, Climb-up: ^, Grouping: () 가 있습니다.                                 
+                                                                                                                                                                                            
+-emmet chlid : > -                                                                                                                                                        
+child는 부모/자식 관계로써 A > B라고 하면 A안에 B가 속해 있는걸 뜻합니다.                                                                            
+예시로 emmet 코드를 활용하여 nav>ul>li 쓰면                                                                                                 
 ex) <nav> 
     <ul> 
     <li> </li> 
