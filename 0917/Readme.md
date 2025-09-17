@@ -10,7 +10,10 @@ header - nav - section - footer(보통의 구조)
 
 clear: both; - 왼쪽에서 오른쪽으로 쌓이다가 밑에감
 
-시멘트 블록태그 <figure>, <details>와 <summary>
+시멘트 블록태그 <figure>, <details>와 
+(summary) - 삼각형의 도형으로 아래를 가리킴
+(progress value="n" max="m") - m을 그래프의 최대값으로 놓고, n만큼 그래프가 참
+
 
  
 
