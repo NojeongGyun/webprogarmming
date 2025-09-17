@@ -21,13 +21,33 @@ clear: both; - 왼쪽에서 오른쪽으로 쌓이다가 밑에감
 font는 css에서 하기에 없어짐
 
 웹 폼 - 사용자에게 입력을 받을려고 할때 사용하는 태그(입력까지만 함)
-(input type="submit" value="완료") - summit은 버튼이고, value는 입력한 문자가 버튼에 뜨도록 하는것이다.
+(input type="submit" value="완료") - summit은 버튼이고, value는 입력한 문자가 버튼에 뜨도록 하는것이다. -> action 속성에 있는 곳에 저장이 됨
 
 HTML에서 name은 유일해야 한다.
 
+폼은 사용자에게 입력을 처리 하는 페이지이다.(사용자에게 보여지는)
+
+dataist - 여러 데이터 중 선택할 수 있는 옵션이다.
+(input type="reset" value="리셋1") - 적은 것들 다 없앰(리셋1버튼 생성)
+(input type="checkbox" value="1") - 여러개 체크박스로 선택가능
+(input type="radio" name="china" value="1") - 같은 이름으로 만들어야 하고 한개만 선택가능
+라벨 중
+
+색깔을 16진수 6비트로 색깔이 표현 가능하다 Red Green bule(각각 255개 선택가능)
+
+날짜, 시간 모두 HTML에서 지원함
+
+스핀버튼 - 증가 감소 버튼 지정
+
+placeholder - 입력에 도움 되는 문자열(입력하면 사라짐) (연하게 표시됨)
+
+(legend) - 그룹 박스
 
 
 깃허브 호스팅 = 24시간 (github.io)
+
+
+네이버 검색 단계 중
 
 
  
