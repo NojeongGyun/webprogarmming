@@ -20,7 +20,7 @@ HTML, CSS, JavaScript를 비롯해 프론트엔드 및 백엔드 기초를 학�
 | 주차 | 내용 | 정리 |
 |------|------|------|
 | 1주차 | 서버와 클라이언트 | [1주차 정리](./0903/readme.md) |
-| 2주차 | HTML 기초 태그 | [2주차 정리](https://github.com/NojeongGyun/webprogarmming/blob/main/0910/README.md) |
-| 3주차 | HTML 폼, 시맨틱 태그 | [3주차 정리](./notes/week03.md) |
+| 2주차 | HTML 기초 태그 | [2주차 정리](./0910/README.md) |
+| 3주차 | HTML 폼, 시맨틱 태그 | [3주차 정리](.//0917/Readme.md) |
 | 4주차 | CSS 선택자, 박스 모델 | [4주차 정리](./notes/week04.md) |
 | 5주차 | CSS 레이아웃 (Flex, Grid) | [5주차 정리](./notes/week05.md)
