@@ -6,5 +6,11 @@
 꼬리말 영역, 주로 저자나 저작권 정보 - footer
 
 header - nav - section - footer(보통의 구조)
+위치와 색, 모양이 자동으로 결정되는 것이 아님 - css3을 이용해서 위치 조정, 색깔 조정 등 구조를 형상화 할수 있다.
 
+clear: both; - 왼쪽에서 오른쪽으로 쌓이다가 밑에감
+
+시멘트 블록태그 <figure>, <details>와 <summary>
+
+ 
 
