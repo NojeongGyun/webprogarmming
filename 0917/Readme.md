@@ -20,40 +20,37 @@ HMTL5에서 새로 만들어진 의미로써 구조화의 의미를 전달하는
 문서 마지막 태그로써 주로 저자나 저작권 정보를 보여주는 역할을 합니다 -
 
 -시멘트 블록태그 -
-(figure) -
-(details) - 
+ (figure) - 이미지, 그림, 차트, 도표 등 미디어 콘텐츠를 담는 블록태그
+ (details) - 접기/펼치기 가능한 콘텐츠 영역 블록태그
 
 - 시멘트 인라인태그 -
-(summary) - 삼각형의 도형으로 아래를 가리킴
-(progress value="n" max="m") - m을 그래프의 최대값으로 놓고, n만큼 그래프가 참
+(summary) - 보통은 details 블록태그랑 같이 사용하며, 접기/펼치기와 클릭해서 열고 닫는 기능의 역할
+(progress value="n" max="m") - m을 그래프의 최대값으로 놓고, 최대값 m인 그래프가 n%만큼 참 (progress)
 (mark) - 부분 문자 강조
+(meter value="A" min="B" max="C")(/meter) - B와 C사이에 A의 %로 막대 그래프에 표기함  
 
-- 
 - css -
 css는 태그의 위치와, 색깔, 구조를 형상화 시킬수 있는 HTML태그가 아닌 스타일 언어 입니다. HTML4까지는 css가 없이 HTML4에 종속이 되었는데, HTML5부터 HTML5, css개념이 나누어졌습니다.
 css는 위치, 색깔 조정 등 구조를 형상화 시키는 역할을 합니다. 
 
+-웹 폼 -
+웹 폼이란 사용자에게 입력을 받을려고 할때 사용하는 태그입니다. 웹 폼을 만드는 태그는 (input), (textarea), (select) 등이 있습니다.
 
+-웹 폼(form) -
+웹 폼에서 form은 몸을 의미합니다. 주로 (form action="A" method="B") 를 쓰고,  A는 저장된 url을 뜻하고, B는 get,post가 있는데 
+get은 URL에 데이터를 붙여 조회용으로 보내고, POST는 데이터를 본문에 담아 저장이나 민감 정보용으로 보냅니다. 
 
-clear: both; - 왼쪽에서 오른쪽으로 쌓이다가 밑에감
-
-시멘트 블록태그 <figure>, <details>와 
-
-
-
-font는 css에서 하기에 없어짐
-
-웹 폼 - 사용자에게 입력을 받을려고 할때 사용하는 태그(입력까지만 함)
+-웹 폼(input) -
+웹 폼에서 input 태그란 사용자의 입력을 받기 위해 넣는 태그입니다. 
 (input type="submit" value="완료") - summit은 버튼이고, value는 입력한 문자가 버튼에 뜨도록 하는것이다. -> action 속성에 있는 곳에 저장이 됨
-
-HTML에서 name은 유일해야 한다.
-
-폼은 사용자에게 입력을 처리 하는 페이지이다.(사용자에게 보여지는)
-
-dataist - 여러 데이터 중 선택할 수 있는 옵션이다.
 (input type="reset" value="리셋1") - 적은 것들 다 없앰(리셋1버튼 생성)
 (input type="checkbox" value="1") - 여러개 체크박스로 선택가능
-(input type="radio" name="china" value="1") - 같은 이름으로 만들어야 하고 한개만 선택가능
+(input type="radio" name="china" value="1") - 같은 이름으로 만들어야 하고 한개만 선택가능 
+
+
+
+dataist - 여러 데이터 중 선택할 수 있는 옵션이다.
+
 라벨 중
 
 색깔을 16진수 6비트로 색깔이 표현 가능하다 Red Green bule(각각 255개 선택가능)
