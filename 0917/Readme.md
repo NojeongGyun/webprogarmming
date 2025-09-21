@@ -43,20 +43,28 @@ get은 URL에 데이터를 붙여 조회용으로 보내고, POST는 데이터�
 -웹 폼(input) -
 웹 폼에서 input 태그란 사용자의 입력을 받기 위해 넣는 태그입니다. input타입 태그에 입력을 받고, 그 입력을 토대로 form의 action 속성에 있는 곳에 데이터가 전송이 됩니다.
 (input type="submit" value="완료") - summit은 버튼이고, value는 입력한 문자가 버튼에 뜨도록 하는것 입니다. 
+
 (input type="reset" value="리셋1") - 해당 같은 폼의 전체를 초기화 시킵니다.(리셋1버튼 생성) 
+
 (input type="checkbox" value="1") - 여러개 체크박스로 선택가능합니다.(다중 선택지o)
+
 (input type="radio" name="china" value="1") - 같은 이름으로 만들어야 하고 한개만 선택가능합니다.(다중 선택지x) 
+
 (input type="text") - 한 줄만 입력 받는 태그입니다.
+
 (input type="password") - 입력 받되 내용은 *로 가려지고, 입력받은 수만큼 *의 개수가 증가합니다.
-(textarea cols="A" rows="B") - 여러줄 입력 가능하고, A,B로 행, 열을 늘릴 수 있습니다.-
+
+(textarea cols="A" rows="B") - 여러줄 입력 가능하고, A,B로 행, 열을 늘릴 수 있습니다.
+
 (datalist) - 드롭다운 리스트를 추가합니다. 사용할 떄는 (input type="text" list="A")에 종속 되어야하고, 그 안에 (datalist id="A") 있어야하고, 그 안에 (option value="B") 라는 문장을 추가해주면 
  드롭다운 리스트에 B라는 문자가 등록됩니다. 문자를 추가할려면 (datalist id="A") 안에 option value를 원하는 문자를 넣어 추가하면 됩니다.
+ 
 (label) - 입력 요소와 텍스트 설명을 연결하는 태그입니다.
 
+(input type="color" value="ABC") - A,B,C는 모두 16진수 2비트로 red, green, bule의 농도를 섞어 색깔을 나타냅니다. 
 
-색깔을 16진수 6비트로 색깔이 표현 가능하다 Red Green bule(각각 255개 선택가능)
-
-날짜, 시간 모두 HTML에서 지원함
+(input type="month|week|date|time|datetime-local" value "A") - month(yyyy-mm), week(YYYY-Www), date(YYYY-MM-DD), time(hh:mm or hh:mm:ss), datetime-local(YYYY-MM-DDThh:mm) 중에 타입 하나를 선택하여 넣고,
+value에 그 형식에 대해 알맞게 수를 입력해야 출력이 되고, 그렇지 않다면 빈화면으로 출력이 됩니다.
 
 스핀버튼 - 증가 감소 버튼 지정
 
