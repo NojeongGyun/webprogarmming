@@ -80,7 +80,8 @@ action 속성에 있는 곳에 데이터가 전송이 됩니다.
 time(hh:mm or hh:mm:ss), datetime-local(YYYY-MM-DDThh:mm) 중에 타입 하나를 선택하여 넣고, value에 그 형식에 대해 알맞게 
 수를 입력해야 출력이 되고, 그렇지 않다면 빈화면으로 출력이 됩니다.
 
-(input type="number" min="A" max="B" step= "C") - 스핀버튼이 생성되고 위쪽, 밑쪽 클릭당 최소값 A부터 최대값 B까지 C만큼 증가하거나, 감소합니다.
+(input type="number" min="A" max="B" step= "C") - 스핀버튼이 생성되고 위쪽, 밑쪽 클릭당 최소값 A부터 최대값 B까지 C만큼 증가하거나,
+감소합니다.
 
 (input type="range" min="A" max="B" list="A") - datalist와 같이 쓰며, 최솟값 A, 최댓값 B를 설정해 클릭하여 움직일 수 있는 슬라이드 
 바를 만들고 A의 목록의 값들이 설정됩니다.
