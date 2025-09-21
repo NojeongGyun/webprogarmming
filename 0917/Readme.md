@@ -41,7 +41,7 @@ m을 그래프의 최대값으로 놓고, 최대값 m인 그래프가 n%만큼 �
 부분 문자 강조입니다. 태그를 사용하면 디폴트 값인 노란색배경 검은 글자로 표기가 되고, css에서 (mark style) 태그를 사용해
 background-color으로 배경색 color으로 글자색을 바꿀수 있습니다.
  
-<b>(meter value="A" min="B" max="C")/b> - 
+<b>(meter value="A" min="B" max="C")</b> - 
 B와 C사이에 A의 %로 막대 그래프에 표기합니다  
 
 - <mark>css</mark> -
