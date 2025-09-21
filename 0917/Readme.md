@@ -41,15 +41,16 @@ css는 위치, 색깔 조정 등 구조를 형상화 시키는 역할을 합니�
 get은 URL에 데이터를 붙여 조회용으로 보내고, POST는 데이터를 본문에 담아 저장이나 민감 정보용으로 보냅니다. 
 
 -웹 폼(input) -
-웹 폼에서 input 태그란 사용자의 입력을 받기 위해 넣는 태그입니다. 
-(input type="submit" value="완료") - summit은 버튼이고, value는 입력한 문자가 버튼에 뜨도록 하는것이다. -> action 속성에 있는 곳에 저장이 됨
-(input type="reset" value="리셋1") - 적은 것들 다 없앰(리셋1버튼 생성)
-(input type="checkbox" value="1") - 여러개 체크박스로 선택가능
-(input type="radio" name="china" value="1") - 같은 이름으로 만들어야 하고 한개만 선택가능 
-
-
-
-dataist - 여러 데이터 중 선택할 수 있는 옵션이다.
+웹 폼에서 input 태그란 사용자의 입력을 받기 위해 넣는 태그입니다. input타입 태그에 입력을 받고, 그 입력을 토대로 form의 action 속성에 있는 곳에 데이터가 전송이 됩니다.
+(input type="submit" value="완료") - summit은 버튼이고, value는 입력한 문자가 버튼에 뜨도록 하는것 입니다. 
+(input type="reset" value="리셋1") - 해당 같은 폼의 전체를 초기화 시킵니다.(리셋1버튼 생성) 
+(input type="checkbox" value="1") - 여러개 체크박스로 선택가능합니다.(다중 선택지o)
+(input type="radio" name="china" value="1") - 같은 이름으로 만들어야 하고 한개만 선택가능합니다.(다중 선택지x) 
+(input type="text") - 한 줄만 입력 받는 태그입니다.
+(input type="password") - 입력 받되 내용은 *로 가려지고, 입력받은 수만큼 *의 개수가 증가합니다.
+(textarea cols="A" rows="B") - 여러줄 입력 가능하고, A,B로 행, 열을 늘릴 수 있습니다.-
+(datalist) - 드롭다운 리스트를 추가합니다. 사용할 떄는 (input type="text" list="A")에 종속 되어야하고, 그 안에 (datalist id="A") 있어야하고, 그 안에 (option value="B") 라는 문장을 추가해주면 
+ 드롭다운 리스트에 B라는 문자가 등록됩니다. 문자를 추가할려면 (datalist id="A") 안에 option value를 원하는 문자를 넣어 추가하면 됩니다.
 
 라벨 중
 
