@@ -51,8 +51,8 @@ get은 URL에 데이터를 붙여 조회용으로 보내고, POST는 데이터�
 (textarea cols="A" rows="B") - 여러줄 입력 가능하고, A,B로 행, 열을 늘릴 수 있습니다.-
 (datalist) - 드롭다운 리스트를 추가합니다. 사용할 떄는 (input type="text" list="A")에 종속 되어야하고, 그 안에 (datalist id="A") 있어야하고, 그 안에 (option value="B") 라는 문장을 추가해주면 
  드롭다운 리스트에 B라는 문자가 등록됩니다. 문자를 추가할려면 (datalist id="A") 안에 option value를 원하는 문자를 넣어 추가하면 됩니다.
+(label) - 입력 요소와 텍스트 설명을 연결하는 태그입니다.
 
-라벨 중
 
 색깔을 16진수 6비트로 색깔이 표현 가능하다 Red Green bule(각각 255개 선택가능)
 
