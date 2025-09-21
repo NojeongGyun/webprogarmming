@@ -1,15 +1,18 @@
 <pre>________________________________________________________chapter 3_______________________________________________________________
 -시멘트 테그-
-HMTL5에서 새로 만들어진 의미로써 구조화의 의미를 전달하는 태그입니다. 보통 시멘트 구조와 시멘트 구조의 서순으로는 머리말(header), 메뉴(nav), 본문내용(section), 기사(article) 보조영역(aside), 꼬리말(footer)으로 되어 있습니다.
+HMTL5에서 새로 만들어진 의미로써 구조화의 의미를 전달하는 태그입니다. 보통 시멘트 구조와 시멘트 구조의 서순으로는 머리말(header), 메뉴(nav), 
+본문내용(section), 기사(article) 보조영역(aside), 꼬리말(footer)으로 되어 있습니다.
 
 -메뉴(nav) -
-메뉴는 웹사이트 내의 주요 탐색 링크를 담는 태그입니다. 사용자가 사이트 안에서 주요 페이지로 이동할 수 있게 해주는 링크(하이퍼링크)를 넣어 이해하기 내용과 관련하여 추가적 설명 및 자료를 사용하는 역할입니다
+메뉴는 웹사이트 내의 주요 탐색 링크를 담는 태그입니다. 사용자가 사이트 안에서 주요 페이지로 이동할 수 있게 해주는 링크(하이퍼링크)를 넣어 이해
+하기 내용과 관련하여 추가적 설명 및 자료를 사용하는 역할입니다
 
 - 머리말(header) -
 머리말은 웹사이트나 문서의 소개 부분 또는 시작 부분을 나타내는 시맨틱 태그입니다. 주로 페이지의 제목을 표시 하는 역할입니다. 
 
 - 본문 내용(section) -
-본문은 콘텐츠를 제공해 주는 태그입니다. 보통은 머리말과 관련하여 콘첸츠를 보여주는 역할입니다. (section)을 여러개 지정 가능하고, 구분은 (h1 ~ h6)으로 합니다.  
+본문은 콘텐츠를 제공해 주는 태그입니다. 보통은 머리말과 관련하여 콘첸츠를 보여주는 역할입니다. (section)을 여러개 지정 가능하고, 
+구분은 (h1 ~ h6)으로 합니다.  
 
 - 기사(article) -
 본몬이랑 관련 있는 독립적인 콘텐츠를 제공해 주는 태그입니다. 
@@ -30,13 +33,14 @@ HMTL5에서 새로 만들어진 의미로써 구조화의 의미를 전달하는
  
 (progress value="n" max="m") - m을 그래프의 최대값으로 놓고, 최대값 m인 그래프가 n%만큼 찹니다. (progress)
  
-(mark) - 부분 문자 강조입니다. 태그를 사용하면 디폴트 값인 노란색배경 검은 글자로 표기가 되고, css에서 (mark style) 태그를 사용해 background-color으로 배경색 color으로 글자색을 바꿀수 있습니다.
+(mark) - 부분 문자 강조입니다. 태그를 사용하면 디폴트 값인 노란색배경 검은 글자로 표기가 되고, css에서 (mark style) 태그를 사용해
+background-color으로 배경색 color으로 글자색을 바꿀수 있습니다.
  
 (meter value="A" min="B" max="C")(/meter) - B와 C사이에 A의 %로 막대 그래프에 표기합니다  
 
 - css -
-css는 태그의 위치와, 색깔, 구조를 형상화 시킬수 있는 HTML태그가 아닌 스타일 언어 입니다. HTML4까지는 css가 없이 HTML4에 종속이 되었는데, HTML5부터 HTML5, css개념이 나누어졌습니다.
-css는 위치, 색깔 조정 등 구조를 형상화 시키는 역할을 합니다. 
+CSS는 HTML 태그가 아닌 스타일 언어로, 태그의 위치, 색상, 구조 등을 조정하여 웹 페이지의 시각적 형상을 만드는 역할을 합니다. 
+HTML4까지는 CSS 없이 HTML에 종속되어 있었지만, HTML5부터는 HTML과 CSS의 개념이 명확히 분리되었습니다.
 
 -웹 폼 -
 웹 폼이란 사용자에게 입력을 받을려고 할때 사용하는 태그입니다. 웹 폼을 만드는 태그는 (input), (textarea), (select) 등이 있습니다.
@@ -46,7 +50,8 @@ css는 위치, 색깔 조정 등 구조를 형상화 시키는 역할을 합니�
 get은 URL에 데이터를 붙여 조회용으로 보내고, POST는 데이터를 본문에 담아 저장이나 민감 정보용으로 보냅니다. 
 
 -웹 폼(input) -
-웹 폼에서 input 태그란 사용자의 입력을 받기 위해 넣는 태그입니다. input타입 태그에 입력을 받고, 그 입력을 토대로 form의 action 속성에 있는 곳에 데이터가 전송이 됩니다.
+웹 폼에서 input 태그란 사용자의 입력을 받기 위해 넣는 태그입니다. input타입 태그에 입력을 받고, 그 입력을 토대로 form의 
+action 속성에 있는 곳에 데이터가 전송이 됩니다.
  
 (input type="submit" value="완료") - summit은 버튼이고, value는 입력한 문자가 버튼에 뜨도록 하는것 입니다. 
 
@@ -60,23 +65,28 @@ get은 URL에 데이터를 붙여 조회용으로 보내고, POST는 데이터�
 
 (input type="password") - 입력 받되 내용은 *로 가려지고, 입력받은 수만큼 *의 개수가 증가합니다.
 
-(textarea cols="A" rows="B") - 여러줄 입력 가능하고, A,B로 행, 열을 늘릴 수 있습니다. 주의 사항으로 폼을 열고 닫을 때 (/form)을 사용하기 전에 (/textarea)를 먼저 입력 하고 닫아야 정상적으로 수행이 됩니다.
+(textarea cols="A" rows="B") - 여러줄 입력 가능하고, A,B로 행, 열을 늘릴 수 있습니다. 주의 사항으로 폼을 열고 닫을 때 (/form)을 
+사용하기 전에 (/textarea)를 먼저 입력 하고 닫아야 정상적으로 수행이 됩니다.
 
-(datalist) - 드롭다운 리스트를 추가합니다. 사용할 떄는 (input type="text" list="A")에 종속 되어야하고, 그 안에 (datalist id="A") 있어야하고, 그 안에 (option value="B") 라는 문장을 추가해주면 
- 드롭다운 리스트에 B라는 문자가 등록됩니다. 문자를 추가할려면 (datalist id="A") 안에 option value를 원하는 문자를 넣어 추가하면 됩니다.
+(datalist) - 드롭다운 리스트를 추가합니다. 사용할 떄는 (input type="text" list="A")에 종속 되어야하고, 그 안에 (datalist id="A") 
+있어야하고, 그 안에 (option value="B") 라는 문장을 추가해주면 드롭다운 리스트에 B라는 문자가 등록됩니다. 문자를 추가할려면 
+(datalist id="A") 안에 option value를 원하는 문자를 넣어 추가하면 됩니다.
  
 (label) - 입력 요소와 텍스트 설명을 연결하는 태그입니다.
 
 (input type="color" value="ABC") - A,B,C는 모두 16진수 2비트로 red, green, bule의 농도를 섞어 색깔을 나타냅니다. 
 
-(input type="month|week|date|time|datetime-local" value "A") - month(yyyy-mm), week(YYYY-Www), date(YYYY-MM-DD), time(hh:mm or hh:mm:ss), datetime-local(YYYY-MM-DDThh:mm) 중에 타입 하나를 선택하여 넣고,
-value에 그 형식에 대해 알맞게 수를 입력해야 출력이 되고, 그렇지 않다면 빈화면으로 출력이 됩니다.
+(input type="month|week|date|time|datetime-local" value "A") - month(yyyy-mm), week(YYYY-Www), date(YYYY-MM-DD), 
+time(hh:mm or hh:mm:ss), datetime-local(YYYY-MM-DDThh:mm) 중에 타입 하나를 선택하여 넣고, value에 그 형식에 대해 알맞게 
+수를 입력해야 출력이 되고, 그렇지 않다면 빈화면으로 출력이 됩니다.
 
 (input type="number" min="A" max="B" step= "C") - 스핀버튼이 생성되고 위쪽, 밑쪽 클릭당 최소값 A부터 최대값 B까지 C만큼 증가하거나, 감소합니다.
 
-(input type="range" min="A" max="B" list="A") - datalist와 같이 쓰며, 최솟값 A, 최댓값 B를 설정해 클릭하여 움직일 수 있는 슬라이드 바를 만들고 A의 목록의 값들이 설정됩니다.
+(input type="range" min="A" max="B" list="A") - datalist와 같이 쓰며, 최솟값 A, 최댓값 B를 설정해 클릭하여 움직일 수 있는 슬라이드 
+바를 만들고 A의 목록의 값들이 설정됩니다.
 
-(input type "email|url|tel|search") - email형식(@), url형식(http:// or https://), 전화번호 형식(010-1234-1234), action url설정에 맞는 찾아지는 정보가 있습니다.
+(input type "email|url|tel|search") - email형식(@), url형식(http:// or https://), 전화번호 형식(010-1234-1234), action url설정에 
+따라 찾는 search형식이 있습니다.
 
 (placeholder) - 입력에 도움 되는 연하게 표시되는 문자열로 1문자라도 입력받으면 사라집니다. 보통 양식에 대한 힌트를 줄때 사용됩니다.
 
