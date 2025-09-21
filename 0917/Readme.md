@@ -54,7 +54,7 @@ get은 URL에 데이터를 붙여 조회용으로 보내고, POST는 데이터�
 
 (input type="password") - 입력 받되 내용은 *로 가려지고, 입력받은 수만큼 *의 개수가 증가합니다.
 
-(textarea cols="A" rows="B") - 여러줄 입력 가능하고, A,B로 행, 열을 늘릴 수 있습니다.
+(textarea cols="A" rows="B") - 여러줄 입력 가능하고, A,B로 행, 열을 늘릴 수 있습니다. 주의 사항으로 폼을 열고 닫을 때 (/form)을 사용하기 전에 (/textarea)를 먼저 입력 하고 닫아야 정상적으로 수행이 됩니다.
 
 (datalist) - 드롭다운 리스트를 추가합니다. 사용할 떄는 (input type="text" list="A")에 종속 되어야하고, 그 안에 (datalist id="A") 있어야하고, 그 안에 (option value="B") 라는 문장을 추가해주면 
  드롭다운 리스트에 B라는 문자가 등록됩니다. 문자를 추가할려면 (datalist id="A") 안에 option value를 원하는 문자를 넣어 추가하면 됩니다.
@@ -66,13 +66,22 @@ get은 URL에 데이터를 붙여 조회용으로 보내고, POST는 데이터�
 (input type="month|week|date|time|datetime-local" value "A") - month(yyyy-mm), week(YYYY-Www), date(YYYY-MM-DD), time(hh:mm or hh:mm:ss), datetime-local(YYYY-MM-DDThh:mm) 중에 타입 하나를 선택하여 넣고,
 value에 그 형식에 대해 알맞게 수를 입력해야 출력이 되고, 그렇지 않다면 빈화면으로 출력이 됩니다.
 
-스핀버튼 - 증가 감소 버튼 지정
+(input type="number" min="A" max="B" step= "C") - 스핀버튼이 생성되고 위쪽, 밑쪽 클릭당 최소값 A부터 최대값 B까지 C만큼 증가하거나, 감소합니다.
 
-placeholder - 입력에 도움 되는 문자열(입력하면 사라짐) (연하게 표시됨)
+(input type="range" min="A" max="B" list="A") - datalist와 같이 쓰며, 최솟값 A, 최댓값 B를 설정해 클릭하여 움직일 수 있는 슬라이드 바를 만들고 A의 목록의 값들이 설정됩니다.
 
-(legend) - 그룹 박스
+(input type "email|url|tel|search") - email형식(@), url형식(http:// or https://), 전화번호 형식(010-1234-1234), action url설정에 맞는 찾아지는 정보가 있습니다.
 
-폼을 열고 닫을 때 (/form)을 사용하기 전에 (/textarea)를 먼저 입력 하고 닫아야 정상적으로 수행이 된다.
+(placeholder) - 입력에 도움 되는 연하게 표시되는 문자열로 1문자라도 입력받으면 사라집니다. 보통 양식에 대한 힌트를 줄때 사용됩니다.
+
+(legend) - 네모박스에 한 그룹으로 뭍는 태그입니다.
+
+
+
+
+
+
+
 
 깃허브 호스팅 = 24시간 (github.io)
 
