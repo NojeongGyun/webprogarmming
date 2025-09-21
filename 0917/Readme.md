@@ -24,90 +24,108 @@ HMTL5에서 새로 만들어진 의미로써 구조화의 의미를 전달하는
 문서 마지막 태그로써 주로 저자나 저작권 정보를 보여주는 역할을 합니다 -
 
 -<mark>시멘트 블록태그 </mark>-
-<b>(figure)</b> - 이미지, 그림, 차트, 도표 등 미디어 콘텐츠를 담는 블록태그입니다.
+<b>(figure)</b> - 
+이미지, 그림, 차트, 도표 등 미디어 콘텐츠를 담는 블록태그입니다.
  
-(details) - 접기/펼치기 가능한 콘텐츠 영역 블록태그입니다.
+<b>(details)</b> - 
+접기/펼치기 가능한 콘텐츠 영역 블록태그입니다.
 
-- 시멘트 인라인태그 -
-(summary) - 보통은 details 블록태그랑 같이 사용하며, 접기/펼치기와 클릭해서 열고 닫는 기능의 역할입니다.
+- <mark>시멘트 인라인태그 </mark>-
+<b>(summary)</b> - 
+보통은 details 블록태그랑 같이 사용하며, 접기/펼치기와 클릭해서 열고 닫는 기능의 역할입니다.
  
-(progress value="n" max="m") - m을 그래프의 최대값으로 놓고, 최대값 m인 그래프가 n%만큼 찹니다. (progress)
+<b>(progress value="n" max="m")</b> - 
+m을 그래프의 최대값으로 놓고, 최대값 m인 그래프가 n%만큼 찹니다. (progress)
  
-(mark) - 부분 문자 강조입니다. 태그를 사용하면 디폴트 값인 노란색배경 검은 글자로 표기가 되고, css에서 (mark style) 태그를 사용해
+<b>(mark)</b> - 
+부분 문자 강조입니다. 태그를 사용하면 디폴트 값인 노란색배경 검은 글자로 표기가 되고, css에서 (mark style) 태그를 사용해
 background-color으로 배경색 color으로 글자색을 바꿀수 있습니다.
  
-(meter value="A" min="B" max="C")(/meter) - B와 C사이에 A의 %로 막대 그래프에 표기합니다  
+<b>(meter value="A" min="B" max="C")/b> - 
+B와 C사이에 A의 %로 막대 그래프에 표기합니다  
 
-- css -
+- <mark>css</mark> -
 CSS는 HTML 태그가 아닌 스타일 언어로, 태그의 위치, 색상, 구조 등을 조정하여 웹 페이지의 시각적 형상을 만드는 역할을 합니다. 
 HTML4까지는 CSS 없이 HTML에 종속되어 있었지만, HTML5부터는 HTML과 CSS의 개념이 명확히 분리되었습니다.
 
--웹 폼 -
+-<mark>웹 폼</mark> -
 웹 폼이란 사용자에게 입력을 받을려고 할때 사용하는 태그입니다. 웹 폼을 만드는 태그는 (input), (textarea), (select) 등이 있습니다.
 
-웹 폼(form) -
+<b>웹 폼(form)</b> -
 웹 폼에서 form은 몸을 의미합니다. 주로 (form action="A" method="B") 를 쓰고,  A는 저장된 url을 뜻하고, B는 get,post가 있는데 
 get은 URL에 데이터를 붙여 조회용으로 보내고, POST는 데이터를 본문에 담아 저장이나 민감 정보용으로 보냅니다. 
 
-웹 폼(input) -
+<b>웹 폼(input)</b> -
 웹 폼에서 input 태그란 사용자의 입력을 받기 위해 넣는 태그입니다. input타입 태그에 입력을 받고, 그 입력을 토대로 form의 
 action 속성에 있는 곳에 데이터가 전송이 됩니다.
  
-(input type="submit" value="완료") - summit은 버튼이고, value는 입력한 문자가 버튼에 뜨도록 하는것 입니다. 
+<b>(input type="submit" value="완료")</b> - 
+summit은 버튼이고, value는 입력한 문자가 버튼에 뜨도록 하는것 입니다. 
 
-(input type="reset" value="리셋1") - 해당 같은 폼의 전체를 초기화 시킵니다.(리셋1버튼 생성) 
+<b>(input type="reset" value="리셋1") </b>- 
+해당 같은 폼의 전체를 초기화 시킵니다.(리셋1버튼 생성) 
 
-(input type="checkbox" value="1") - 여러개 체크박스로 선택가능합니다.(다중 선택지o)
+<b>(input type="checkbox" value="1") </b>- 
+여러개 체크박스로 선택가능합니다.(다중 선택지o)
 
-(input type="radio" name="china" value="1") - 같은 이름으로 만들어야 하고 한개만 선택가능합니다.(다중 선택지x) 
+<b>(input type="radio" name="china" value="1")</b> - 
+이름은 같되, value는 다르게 만들어야 하고 한개만 선택가능합니다. (다중 선택지x) 
 
-(input type="text") - 한 줄만 입력 받는 태그입니다.
+<b>(input type="text")</b> - 
+한 줄만 입력 받는 태그입니다.
 
-(input type="password") - 입력 받되 내용은 *로 가려지고, 입력받은 수만큼 *의 개수가 증가합니다.
+<b>(input type="password") </b>- 
+입력 받되 내용은 *로 가려지고, 입력받은 수만큼 *의 개수가 증가합니다.
 
-(textarea cols="A" rows="B") - 여러줄 입력 가능하고, A,B로 행, 열을 늘릴 수 있습니다. 주의 사항으로 폼을 열고 닫을 때 (/form)을 
+<b>(textarea cols="A" rows="B")</b> - 
+여러줄 입력 가능하고, A,B로 행, 열을 늘릴 수 있습니다. 주의 사항으로 폼을 열고 닫을 때 (/form)을 
 사용하기 전에 (/textarea)를 먼저 입력 하고 닫아야 정상적으로 수행이 됩니다.
 
-(datalist) - 드롭다운 리스트를 추가합니다. 사용할 떄는 (input type="text" list="A")에 종속 되어야하고, 그 안에 (datalist id="A") 
+<b>(datalist)</b> - 
+드롭다운 리스트를 추가합니다. 사용할 떄는 (input type="text" list="A")에 종속 되어야하고, 그 안에 (datalist id="A") 
 있어야하고, 그 안에 (option value="B") 라는 문장을 추가해주면 드롭다운 리스트에 B라는 문자가 등록됩니다. 문자를 추가할려면 
 (datalist id="A") 안에 option value를 원하는 문자를 넣어 추가하면 됩니다.
  
-(label) - 입력 요소와 텍스트 설명을 연결하는 태그입니다.
+<b>(label)</b> - 
+입력 요소와 텍스트 설명을 연결하는 태그입니다.
 
-(input type="color" value="ABC") - A,B,C는 모두 16진수 2비트로 red, green, bule의 농도를 섞어 색깔을 나타냅니다. 
+<b>(input type="color" value="ABC")</b> -
+A,B,C는 모두 16진수 2비트로 red, green, bule의 농도를 섞어 색깔을 나타냅니다. 
 
-(input type="month|week|date|time|datetime-local" value "A") - month(yyyy-mm), week(YYYY-Www), date(YYYY-MM-DD), 
-time(hh:mm or hh:mm:ss), datetime-local(YYYY-MM-DDThh:mm) 중에 타입 하나를 선택하여 넣고, value에 그 형식에 대해 알맞게 
-수를 입력해야 출력이 되고, 그렇지 않다면 빈화면으로 출력이 됩니다.
+<b>(input type="month|week|date|time|datetime-local" value "A")</b> - 
+month(yyyy-mm), week(YYYY-Www), date(YYYY-MM-DD), time(hh:mm or hh:mm:ss), datetime-local(YYYY-MM-DDThh:mm) 
+중에 타입 하나를 선택하여 넣고, value에 그 형식에 대해 알맞게 수를 입력해야 출력이 되고, 그렇지 않다면 빈화면으로 출력이 됩니다.
 
-(input type="number" min="A" max="B" step= "C") - 스핀버튼이 생성되고 위쪽, 밑쪽 클릭당 최소값 A부터 최대값 B까지 C만큼 증가하거나,
-감소합니다.
+<b>(input type="number" min="A" max="B" step= "C")</b> - 
+스핀버튼이 생성되고 위쪽, 밑쪽 클릭당 최소값 A부터 최대값 B까지 C만큼 증가하거나, 감소합니다.
 
-(input type="range" min="A" max="B" list="A") - datalist와 같이 쓰며, 최솟값 A, 최댓값 B를 설정해 클릭하여 움직일 수 있는 슬라이드 
-바를 만들고 A의 목록의 값들이 설정됩니다.
+<b>(input type="range" min="A" max="B" list="A")</b> -
+datalist와 같이 쓰며, 최솟값 A, 최댓값 B를 설정해 클릭하여 움직일 수 있는 슬라이드 바를 만들고 A의 목록의 값들이 설정됩니다.
 
-(input type "email|url|tel|search") - email형식(@), url형식(http:// or https://), 전화번호 형식(010-1234-1234), action url설정에 
-따라 찾는 search형식이 있습니다.
+<b>(input type "email|url|tel|search") </b>- 
+email형식(@), url형식(http:// or https://), 전화번호 형식(010-1234-1234), action url설정에 따라 찾는 search형식이 있습니다.
 
-(placeholder) - 입력에 도움 되는 연하게 표시되는 문자열로 1문자라도 입력받으면 사라집니다. 보통 양식에 대한 힌트를 줄때 사용됩니다.
+<b>(placeholder) </b>- 
+입력에 도움 되는 연하게 표시되는 문자열로 1문자라도 입력받으면 사라집니다. 보통 양식에 대한 힌트를 줄때 사용됩니다.
 
-(legend) - 네모박스에 한 그룹으로 뭍는 태그입니다.
+<b>(legend)</b> - 
+네모박스에 한 그룹으로 뭍는 태그입니다.
  
 ________________________________________________________chapter 4 start______________________________________________________________
 
--Element -
+- <mark>Element </mark>-
  웹 문서를 구성하는 기본 단위를 말합니다. 웹페이지(콘텐츠 + 태그)의 구조를 지니고 있고, 더 세분화 하자면 태그, 속성, 내용, 닫는 태그로 구성되어 있습니다.
 
-시작태그 -
+<b>시작태그</b> -
 엘리먼트의 시작을 나타내는 태그로써 (p), (div), (span) 등이 있습니다.
 
-속성 -
+<b>속성</b> -
 태그에 속성명(attribute)과 그에 맞는 속성값(value)이 있으며, 속성값에 있는 속성에 따라 출력되는 모습이나, 동작이 바뀝니다.
  
-내용(content) - 
+<b>내용(content)</b> - 
 태그 안에 들어가는 실제 데이터를 의미합니다.
 
-닫는 태그 - 
+<b>닫는 태그</b> - 
 시작 태그에 맞게 (/A)를 붙여 태그를 종료합니다.
 
 CSS(인라인, 스타일, 링크, 인포트)
