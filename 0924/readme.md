@@ -47,15 +47,16 @@ ID 셀렉터는 #ID {속성1 : 값1; 속성2 : 값2;...} 을 설정하면 그 ID
 
 <b>속성 셀렉터</b> -
 속성 셀렉터는 태그[태그의 속성] {속성1 : 값1; 속성2 : 속성2;....} 을 설정하면 태그의 속성에 맞는 모든 값들은 설정한 속성의 값에 따릅니다.
-ex) - input태그의 type속성에만 적용 - 
+ex) 
+- input태그의 type속성에만 적용 - 
     <code> input[type] {
            border: 1px solid gray;
            }    </code>
 
-   - input태그의 email속성에만 적용 -
-    <code>input[type="email"] {
-          background-color: #e6f7ff;
-          }  </code>
+- input태그의 email속성에만 적용 -
+  <code>input[type="email"] {
+        background-color: #e6f7ff;
+        }  </code>
 
 <b>자식 셀렉터</b> -
 자식 셀렉터는 해당 부모 태그의 설정한 자식 태그만 스타일 적용 하는 셀렉터입니다. 부모태그 > 자식태그 {속성1 : 값1; 속성2 : 값2;...} 로 해당 부모태그의 해당 자식태그만 스타일을 가질 수 있습니다.
@@ -73,47 +74,52 @@ ID 셀렉터 > 클래스 셀렉터 > 태그 셀렉터 > 속성 셀렉터 > 자�
 
 <b>마우스 </b>-
 마우스가 들어간 조건은 hover, active가 있고, 각각 마우스가 올라 갈때 스타일 적용, 미우스를 누르고 있으면 스타일 적용입니다.
-ex)    - 사이트 링크에 마우스가 올라갈떄 색깔을 빨강 적용 - 
-       <code>a:hover {
-             color: red;
-             } </code>
+ex)    
+- 사이트 링크에 마우스가 올라갈떄 색깔을 빨강 적용 - 
+   <code>a:hover {
+         color: red;
+         } </code>
  
-       -버튼을 클릭하고 있을 때 배경색 회색 적용 -
-       <code> button:active {
-              background-color: #f0f0f0;
-              }</code>
+ -버튼을 클릭하고 있을 때 배경색 회색 적용 -
+   <code>button:active {
+         background-color: #f0f0f0;
+         }</code>
  
 <b>폼요소 </b>-
 폼요소의 가상 셀렉터에는 focus가 있고, focus를 넣으면 해당 폼 요소가 키보드나 마우스 입력을 받을 때 스타일 적용 입니다.
-ex) - 모든 input박스에 키보드나 마우스로 입력 받을 떄 박스 테두리를 파란색 적용 -
-        <code>input:focus {
-              border-color: blue;
-              }</code>
+ex) 
+- 모든 input박스에 키보드나 마우스로 입력 받을 떄 박스 테두리를 파란색 적용 -
+  <code>input:focus {
+        border-color: blue;
+        }</code>
 
 <b>링크 </b>-
 링크의 가상 셀렉터는 link, visited가 있고, 각각 방문 하지않은 사이트, 방문한 사이트에 스타일 적용입니다. 지정하지 않으면 기본값인 방문한 사이트는 보라색이며, 방문하지 않은 사이트는 파란색입니다.
-ex) - 사이트 링크를 방문하지 않았다면 색깔은 검정, 밑줄을 하지 않음 스타일 적용 -
-      <code> a:link {
-             color: black;
-             text-decoration: none; /* text - decoration은 강조하기 위한 밑줄이다. */
-             }</code>
-    - 사이트에 방문한 경우 색깔은 빨강, 밑줄은 있는 
-      <code> a:visited {
-             color: red;
-             } </code>
+ex)
+- 사이트 링크를 방문하지 않았다면 색깔은 검정, 밑줄을 하지 않음 스타일 적용 -
+  <code>a:link {
+        color: black;
+        text-decoration: none; /* text - decoration은 강조하기 위한 밑줄이다. */
+        }</code>
+
+- 사이트에 방문한 경우 색깔은 빨강, 밑줄은 있는 
+  <code>a:visited {
+        color: red;
+        } </code>
 
 <b>블록 </b>-
 블록의 가상 셀렉터는 first-letter, first-line이 있고, 각각 설정한 태그의 모든 첫번쨰 문자, 설정한 태그의 첫태그만 스타일 적용입니다. (p)나 (div) 등 블록 태그에만 사용가능합니다. 
-ex) - 모든 p 태그의 첫 문자를 size를 200%, 색깔은 파랑으로 설정 -
-      <code>p:first-letter {
-            font-size: 200%;
-            color: blue;
-            }</code>
+ex)
+- 모든 p 태그의 첫 문자를 size를 200%, 색깔은 파랑으로 설정 -
+  <code>p:first-letter {
+        font-size: 200%;
+        color: blue;
+        }</code>
   
-    - 첫 h3 태그의 모든 문자를 size 150%, 색깔은 노랑으로 설정 -
-     <code> h3::first-line {
-            color: yellow;
-            }</code>
+- 첫 h3 태그의 모든 문자를 size 150%, 색깔은 노랑으로 설정 -
+  <code>h3::first-line {
+        color: yellow;
+        }</code>
 
 <b>구조 </b>-
 구조의 가상 셀렉터에는 nth-chlid(even), nth-chlid(i)가 있고, 각각 짝수번째 자식, 홀수번째 자식들의 스타일 적용입니다.
