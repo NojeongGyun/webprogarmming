@@ -56,9 +56,9 @@ ex)
            }    </code>
 
 - input태그의 email속성에만 적용 -
-  <code>input[type="email"] {
-        background-color: #e6f7ff;
-        }  </code>
+  <code>  input[type="email"] {
+          background-color: #e6f7ff;
+          }  </code>
 
 <b>자식 셀렉터</b> -
 자식 셀렉터는 해당 부모 태그의 설정한 자식 태그만 스타일 적용 하는 셀렉터입니다. 부모태그 > 자식태그 {속성1 : 값1; 속성2 : 값2;...} 로 해당 부모태그의 해당 자식태그만 스타일을 가질 수 있습니다.
