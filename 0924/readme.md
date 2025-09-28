@@ -48,9 +48,9 @@ ID 셀렉터는 #ID {속성1 : 값1; 속성2 : 값2;...} 을 설정하면 그 ID
 <b>속성 셀렉터</b> -
 속성 셀렉터는 태그[태그의 속성] {속성1 : 값1; 속성2 : 속성2;....} 을 설정하면 태그의 속성에 맞는 모든 값들은 설정한 속성의 값에 따릅니다.
 ex) - input태그의 type속성에만 적용 - 
-    <code> input[type] {
+    <div><code> input[type] {
      border: 1px solid gray;
-     }    </code>
+     }    </code></div>
 
    - input태그의 email속성에만 적용 -
     <code>input[type="email"] {
