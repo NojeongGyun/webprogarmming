@@ -158,7 +158,7 @@ font-famliy를 자세히 설명하자면 font-family : 글꼴스타일1, 글꼴�
 1개일 때 - padding: Apx  는 상, 하, 좌, 우 Apx로 패딩 값 설정
 2개일 떄 - padding: Apx Bpx  는 상/하 Apx, 좌/우 Bpx 로 패딩 값 설정
 3개일 때 - padding: Apx Bpx Cpx  는 상 Apx, 좌/우 Bpx, 하Cpx 로 패딩 값 설정
-4개일 떄 - padding: Apx Bpx Cpx Dpx  는 상 Apx, 좌 Bpx, 우 Cpx, 하 Dpx 로 패딩 값 설정
+4개일 떄 - padding: Apx Bpx Cpx Dpx  는 상 Apx, 우 Bpx, 하 Cpx, 좌 Dpx 로 패딩 값 설정
 - 이런 단축 속성을 가지고 있습니다.
 
 <b>테두리 속성</b> -
@@ -301,6 +301,19 @@ overflow의 scroll은 넘치지않으면 그대로 보여주고, 콘텐츠가 �
 리스트 디자인을 위한 프로퍼티는 list-style, list-style-type, list-style-position, list-style-image가 있습니다.
 
 <b>list-style</b> -
+리스트 영역 자체를 꾸미는 것입니다.
+ex) 
+      - 마커를 표시하는 ul영역과 각 마커인 li의 설정을 보여줍니다.  -
+        <code> ul {
+               background : goldenrod; /* ul영역의 배경색을 골든로드 적용 */
+               padding : 10px 10px 10px 50px; /* 위쪽/오른쪽/아래쪽/왼쪽으로 각각 10px, 10px, 10px, 50px 적용 */
+               }
+         
+               ul li { /* ul의 자손 li */
+               background : greenyellow;
+               margin-bottom : 5px;
+               }
+                }</code>
 
 <b>list-style-type</b> -
 list-style-type은 마커 모양을 바꾸는 프로퍼티로 사용법은 list-style-type: square | circle | none | decimal | ower-roman | upper-alpha | 사용자 지정; 이 있고 
