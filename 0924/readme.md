@@ -48,14 +48,14 @@ ID 셀렉터는 #ID {속성1 : 값1; 속성2 : 값2;...} 을 설정하면 그 ID
 <b>속성 셀렉터</b> -
 속성 셀렉터는 태그[태그의 속성] {속성1 : 값1; 속성2 : 속성2;....} 을 설정하면 태그의 속성에 맞는 모든 값들은 설정한 속성의 값에 따릅니다.
 ex) - input태그의 type속성에만 적용 - 
-    <div><code> input[type] {
-     border: 1px solid gray;
-     }    </code></div>
+    <code> input[type] {
+           border: 1px solid gray;
+           }    </code>
 
    - input태그의 email속성에만 적용 -
     <code>input[type="email"] {
-    background-color: #e6f7ff;
-    }  </code>
+          background-color: #e6f7ff;
+          }  </code>
 
 <b>자식 셀렉터</b> -
 자식 셀렉터는 해당 부모 태그의 설정한 자식 태그만 스타일 적용 하는 셀렉터입니다. 부모태그 > 자식태그 {속성1 : 값1; 속성2 : 값2;...} 로 해당 부모태그의 해당 자식태그만 스타일을 가질 수 있습니다.
@@ -75,14 +75,20 @@ ID 셀렉터 > 클래스 셀렉터 > 태그 셀렉터 > 속성 셀렉터 > 자�
 마우스가 들어간 조건은 hover, active가 있고, 각각 마우스가 올라 갈때 스타일 적용, 미우스를 누르고 있으면 스타일 적용입니다.
 ex)    - 사이트 링크에 마우스가 올라갈떄 색깔을 빨강 적용 - 
        <code>a:hover {
-       color: red;
-       } </code>
+             color: red;
+             } </code>
  
        -버튼을 클릭하고 있을 때 배경색 회색 적용 -
        <code> button:active {
-        background-color: #f0f0f0;
-        }</code>
-
+              background-color: #f0f0f0;
+              }</code>
+<b>폼요소 </b>-
+폼요소의 가상 클래스에는 focus가 있고, focus를 넣으면 해당 폼 요소가 키보드나 마우스 입력을 받을 때 스타일 적용 입니다.
+ex) - 모든 input박스에 키보드나 마우스로 입력 받을 떄 박스 테두리를 파란색 적용 -
+        <code>input:focus {
+              border-color: blue;
+              }</code>
+ 
 body.main은 body의 class인 main이고, 이 두가지를 섞어 (body class = "main") 이 된다. 이 뜻은 (body) 부터 (/body)까지 전부 스타일을 적용해라  
 
 * 가상클래스
