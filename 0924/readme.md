@@ -370,12 +370,44 @@ ex)
                }</code>
  
 <b>셀 여백 및 정렬(padding, text-align)</b> -
-
+padding과 text-align으로 여백과 정렬을 할 수 있습니다.
+ex)
+      - td와 th의 속성 -
+        <code> td, th {
+               height : 20px;
+               width : 100px;
+               padding : 10px; /* 여백 10pt */
+               text-align : right; /* 오른쪽 정렬 */
+               }</code>
+ 
 <b>배경색과 테두리 효과</b> - 
+background와 border로 배경색과 테두리 효과를 변경 할 수 있습니다.
+ex)
+      - 테이블 아래쪽 디자인 -
+        <code> thead { /* <thead>의 모든 셀 적용 */
+               background : darkgray; /* 배경색 darkgray */
+               color : yellow; /* 글자색 yellow */
+               }
+         
+               td, tfoot th { /* 테이블 아래쪽 적용*/
+               border-bottom : 1px solid gray /* 회색 1pt 선 아래쪽 테두리 적용 */ 
+               }</code> 
 
 <b>지정 행 디자인</b> -
-
+짝수(even) 행, 홀수(odd) 행 지정하여 디자인을 할 수 있습니다.
+ex)
+      - 짝수 행 디자인 -
+        <code> tbody tr:nth-child(even) { /* boby에 있는 짝수 <tr>에 적용*/
+               background : aliceblue; /* 배경색 aliceblue 적용 */
+               } </code> 
+         
 <b>이벤트에 대한 디자인</b> -
-
+마우스 이벤트와 테이블을 결합할 수 도 있습니다.
+ex)
+      - 테이블 & 마우스 이벤트  -
+        <code> tbody tr:hover { /* 테이블 boby tr에 마우스를 이동 시키면 발동 이벤트 */
+               background : pink; /* 배경색 pink */ 
+               }</code> 
+         
 
 </pre>
