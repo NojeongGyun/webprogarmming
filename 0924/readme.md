@@ -149,10 +149,10 @@ font-famliy를 자세히 설명하자면 font-family : 글꼴스타일1, 글꼴�
 - <mark>Box Model</mark> -
 박스 모델은 모든 HTML 요소가 사각형 박스로 구성되어 있다고 가정하고, 각 박스의 크기와 간격을 계산하는 방식입니다. 박스 모델은 콘텐츠, 패딩, 테두리, 여백으로 구성되어 있습니다.
 
-- <b>콘텐츠</b> -
+<b>콘텐츠</b> -
 콘텐츠는 HTML 태그의 텍스트나 이미지가 출력되는 부분으로 박스 모델의 콘텐츠 프로버티는 너비를 조정하는 width와 높이를 조정하는 height가 있습니다.
  
-- <b>패딩</b> -
+<b>패딩</b> -
 패딩은 콘텐츠와 테두리 사이의 안쪽 여백으로 박스 모델의 패딩 프로버티는 위쪽 패딩을 조정하는 padding-top, 오른쪽 패딩을 조정하는 padding-right, 아래쪽 패딩을 조정하는 padding-bottom, 왼쪽 패딩을 조정하는 padding-left이 있습니다.
 패딩은 한번에 지정하는 단축 속성이 있는데, 이는 값 1개, 2개, 3개, 4개 일떄 의미가 달라집니다 -
 1개일 때 - padding: Apx  는 상, 하, 좌, 우 Apx로 패딩 값 설정
@@ -161,7 +161,16 @@ font-famliy를 자세히 설명하자면 font-family : 글꼴스타일1, 글꼴�
 4개일 떄 - padding: Apx Bpx Cpx Dpx  는 상 Apx, 좌 Bpx, 우 Cpx, 하 Dpx 로 패딩 값 설정
 - 이런 단축 속성을 가지고 있습니다.
 
+<b>테두리</b> -
+테두리는 패딩과 여백을 구분하는 경계선입니다. 박스 모델의 테두리 프로버티는 너비를 조정하는 border-width, 테두리 스타일을 변경하는 border-style, 테두리 색깔을 변경하는 border-color,
+그리고 특정 방향의 테두리 스타일을 변경하는 border-top, border-right, border-bottom, border-left가 있습니다
+테두리 스타일에는 실선(solid), 파선(dashed), 점선(dotted), 이중선(double), 테두리 없음(none)이 있습니다.
+사용법은 border: 두께 스타일 색상  순으로 기입하거나 아니면 각각 지정하면 됩니다.
+그리고 잘 활용되는 border-radius, border.png, 
 
+<b>여백</b> -
+여백은  테두리 바깥쪽의 외부 여백입니다. 다른 요소와의 간격을 띄울 때 사용하며 패딩에서 사용한 것과 거의 비슷하게 margin-top, margin-right, margin-bottom, margin-left로 각각 지정하거나 단축 속성으로 지정합니다.
+ 
 ---------------5 chaper-----------------------------
 인라인 블락, 
 
