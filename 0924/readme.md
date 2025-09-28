@@ -73,11 +73,15 @@ ID 셀렉터 > 클래스 셀렉터 > 태그 셀렉터 > 속성 셀렉터 > 자�
 
 <b>마우스 </b>-
 마우스가 들어간 조건은 hover, active가 있고, 각각 마우스가 올라 갈때 스타일 적용, 미우스를 누르고 있으면 스타일 적용입니다.
-ex)    - 사이트 링크(<a>) 
+ex)    - 사이트 링크에 마우스가 올라갈떄 색깔을 빨강 적용 - 
        <code>a:hover {
        color: red;
        } </code>
-
+ 
+       -버튼을 클릭하고 있을 때 배경색 회색 적용 -
+       <code> button:active {
+        background-color: #f0f0f0;
+        }</code>
 
 body.main은 body의 class인 main이고, 이 두가지를 섞어 (body class = "main") 이 된다. 이 뜻은 (body) 부터 (/body)까지 전부 스타일을 적용해라  
 
