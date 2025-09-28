@@ -325,8 +325,57 @@ list-style-position 목록 항목 마커의 위치를 지정하는 프로퍼티�
 <b>list-style-image</b> -
 list-style-image는 마커에 이미지를 부여하는 프로퍼티로 사용법은 list-style-image: url('사진이름'); 사진을 불러와 마커에 넣습니다. 이떄 type과 image가 중복으로 있으면 image가 우선순위를 가집니다.
 
+ 
+ - <mark>표 디자인</mark> -
+표 디자인에는 표 테두리 제어(border), 셀 크기 제어(width, height), 셀 여백 및 정렬(padding, text-align), 배경색과 테두리 효과, 지정 행 디자인, 이벤트에 대한 디자인 등을 만들 수 있습니다.
 
-4,5장 전부 풀기
-Lovable(자기소개 앱 만드는 사이트)
+<b>표 테두리 제어(border)</b> -
+이중 테두리, 단일 테두리,  테이블 테두리 그리고 그 안의 테두리 스타일을 변경 할 수 있습니다.
+
+이중 테두리로 설정하려면 table, th, td 모두 테두리를 지정해야 합니다. 
+ex) 
+      - 이중 테두리 지정  -
+        <code> table { /*테이블의 테두리는 파랑*/
+               border : 1px solid blue; /* 크기 테두리속성 색깔 */
+               }
+         
+               td, th { /* 행, 열의 테두리는 이중 초록 테두리*/
+               border : 1px dotted green;
+               }
+               </code>
+
+ 단일 테두리로 설정하려면 border-collapse : collapse; 를 쓰면 됩니다. 이떄 th와 td의 설정값은 같아야 단일 테두리로 바꿀 수 있습니다.
+ ex) 
+      - 단일 테두리 지정  -
+        <code> table {
+               border-collapse: collapse; /* 단일 테두리 지정 */
+               }
+             
+               table, th, td { /* 조건만족 : th, td 설정값 같음 */
+                 border: 1px solid black; /* 크기 테두리속성 색깔 */
+               }</code>
+
+<b>셀 크기 제어(width, height)</b> -
+th, td, thead, tbody, tfoot 태그안에 너비와 높이를 설정 할 수 있습니다.
+ex)
+      - thead크기와 나머지 크기 조절  -
+        <code> thead th { /* 표의 맨 위에 부분인 thead와 그 자손인 th의 설정(표 위에 딱 1라인만 설정값에 맞게 적용됨)*/
+               height : 40px; /* 높이 40px */
+               width : 100px; /* 너비 100px */
+               }
+         
+               td, th { /* thead부분을 제외하고 나머지 td, th가 설정값에 맞게 적용됨 */
+               height : 20px; /* 높이 20px */
+               width : 100px; /* 너비 100px */
+               }</code>
+ 
+<b>셀 여백 및 정렬(padding, text-align)</b> -
+
+<b>배경색과 테두리 효과</b> - 
+
+<b>지정 행 디자인</b> -
+
+<b>이벤트에 대한 디자인</b> -
+
 
 </pre>
