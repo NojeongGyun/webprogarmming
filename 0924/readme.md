@@ -130,20 +130,26 @@ text-index의 사용법은 text-index : lenth | percentage이고, 각각 들여�
 text-align의 사용법은 text-align : left | right | center | justify 이고, 각각 왼쪽 정렬, 오른쪽 정렬, 가운데 정렬, 양쪽 정렬 입니다.
 text- decoration의 사용법은 text-decoration : none | underline | overline | linethrough 이고, 각각 텍스트에 스타일 없음, 밑줄, 윗줄, 중앙 취소줄 입니다.
 
+<b>프로퍼티(폰트) </b>-
+font-family, font-size, font-sytyle, font-weight가 있고, 각각 글자 스타일(순서대로)  글자 사이즈, 글자 스타일, 글자 굵기 입니다.
+font-famliy를 자세히 설명하자면 font-family : 글꼴스타일1, 글꼴스타일2,....;  로 사용하는데, 글꼴스타일1이 없으면 2,3... 글꼴 유무에 따라 순서대로 적용하는 방식입니다.
+프로퍼티 폰트 스타일을 지정 할떄 필수적으로 포함되어야 하는 값은 font-size와 font-family 이고, 나머지는 생략이 가능합니다. 생략한 프로퍼티는 기본값으로 적용됩니다.
 
+- <mark>Box Model</mark> -
+박스 모델은 모든 HTML 요소가 사각형 박스로 구성되어 있다고 가정하고, 각 박스의 크기와 간격을 계산하는 방식입니다. 박스 모델은 콘텐츠, 패딩, 테두리, 여백으로 구성되어 있습니다.
 
+- <b>콘텐츠</b> -
+콘텐츠는 HTML 태그의 텍스트나 이미지가 출력되는 부분으로 박스 모델의 콘텐츠 프로버티는 너비를 조정하는 width와 높이를 조정하는 height가 있습니다.
  
-body.main은 body의 class인 main이고, 이 두가지를 섞어 (body class = "main") 이 된다. 이 뜻은 (body) 부터 (/body)까지 전부 스타일을 적용해라  
+- <b>패딩</b> -
+패딩은 콘텐츠와 테두리 사이의 안쪽 여백으로 박스 모델의 패딩 프로버티는 위쪽 패딩을 조정하는 padding-top, 오른쪽 패딩을 조정하는 padding-right, 아래쪽 패딩을 조정하는 padding-bottom, 왼쪽 패딩을 조정하는 padding-left이 있습니다.
+패딩은 한번에 지정하는 단축 속성이 있는데, 이는 값 1개, 2개, 3개, 4개 일떄 의미가 달라집니다 -
+1개일 때 - padding: Apx  는 상, 하, 좌, 우 Apx로 패딩 값 설정
+2개일 떄 - padding: Apx Bpx  는 상/하 Apx, 좌/우 Bpx 로 패딩 값 설정
+3개일 때 - padding: Apx Bpx Cpx  는 상 Apx, 좌/우 Bpx, 하Cpx 로 패딩 값 설정
+4개일 떄 - padding: Apx Bpx Cpx Dpx  는 상 Apx, 좌 Bpx, 우 Cpx, 하 Dpx 로 패딩 값 설정
+- 이런 단축 속성을 가지고 있습니다.
 
-* 가상클래스
-hover - 마우스 포인트가 올라가면 style
-w3schools
-~~~~
-(a heft="url" style = "text-decoration") - url밑줄 제거
-~~~
-font-style, font-weight, font-size, font-family 순서대로라 생략 가능 p40
-
-~~~~~
 
 ---------------5 chaper-----------------------------
 인라인 블락, 
