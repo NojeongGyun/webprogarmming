@@ -305,13 +305,13 @@ overflow의 scroll은 넘치지않으면 그대로 보여주고, 콘텐츠가 �
 ex) 
       - 마커를 표시하는 ul영역과 각 마커인 li의 설정을 보여줍니다.  -
         <code> ul {
-               background : goldenrod; /* ul영역의 배경색을 골든로드 적용 */
+               background : goldenrod; /* ul영역의 배경색을  goldenrod 적용 */
                padding : 10px 10px 10px 50px; /* 위쪽/오른쪽/아래쪽/왼쪽으로 각각 10px, 10px, 10px, 50px 적용 */
                }
          
                ul li { /* ul의 자손 li */
-               background : greenyellow;
-               margin-bottom : 5px;
+               background : greenyellow; /* ul부모의 자손인 li의 배경색 greenyellow 적용 */
+               margin-bottom : 5px; /* 아래 여백 5px 설정 */
                }
                 }</code>
 
