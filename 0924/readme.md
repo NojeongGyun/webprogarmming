@@ -297,6 +297,20 @@ overflow의 hidden은 넘치는 콘텐츠의 보이지 않는 부분을 잘라�
 overflow의 visble은 넘치는 콘텐츠를 자르지 않고, 그대로 보이게 합니다
 overflow의 scroll은 넘치지않으면 그대로 보여주고, 콘텐츠가 넘치면 hidden과 달리 스크롤로 볼 수 있습니다.
 
+- <mark>리스트 디자인</mark> -
+리스트 디자인을 위한 프로퍼티는 list-style, list-style-type, list-style-position, list-style-image가 있습니다.
+
+<b>list-style</b> -
+
+<b>list-style-type</b> -
+list-style-type은 마커 모양을 바꾸는 프로퍼티로 사용법은 list-style-type: square | circle | none | decimal | ower-roman | upper-alpha | 사용자 지정; 이 있고 
+각각 사각형, 원형, 없음, 숫자, 소문자 로마, 대문자 알파벳, 사용자 지정(String)의 의미를 가집니다.
+
+<b>list-style-position</b> -
+list-style-position 목록 항목 마커의 위치를 지정하는 프로퍼티로 list-style-position : outside | inside; 가 있고, 각각 마커가 텍스트 바깥쪽, 안쪽에 위치하도록 하는 기능을 가집니다.
+ 
+<b>list-style-image</b> -
+list-style-image는 마커에 이미지를 부여하는 프로퍼티로 사용법은 list-style-image: url('사진이름'); 사진을 불러와 마커에 넣습니다. 이떄 type과 image가 중복으로 있으면 image가 우선순위를 가집니다.
 
 
 4,5장 전부 풀기
