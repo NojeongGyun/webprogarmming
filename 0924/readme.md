@@ -166,7 +166,11 @@ font-famliy를 자세히 설명하자면 font-family : 글꼴스타일1, 글꼴�
 그리고 특정 방향의 테두리 스타일을 변경하는 border-top, border-right, border-bottom, border-left가 있습니다
 테두리 스타일에는 실선(solid), 파선(dashed), 점선(dotted), 이중선(double), 테두리 없음(none)이 있습니다.
 사용법은 border: 두께 스타일 색상  순으로 기입하거나 아니면 각각 지정하면 됩니다.
-그리고 잘 활용되는 border-radius, border.png, 
+그리고 잘 활용되는 border-radius, border.png가 있습니다.
+
+이미지 테두리 만들기를 할때 사용되는 border.png가 있는데, 해당 프로퍼티는 에지로 9등분한 테두리 모서리 이미지와, 에지로 9등분 한 모서리 나머지 이미지로 나눕니다. 
+ border-image : url(“A”) B round | repeat | stretch; 가 있는데 이미지 A를 B만큼 양쪽, 상하를 기준으로 B만큼 똑같이 자릅니다. 자를 때 이미지의 크기보다 자르는 크기가 크다면 실행이 되지 않습니다.
+round는 테두리 길이만큼 에지 이미지 반복 배치이고(테두리가 부족하면 그만큼의 차이를 모든 에지이미지가 공동 부담), repeat는 에지 이미지 반복 배치(테두리가 부족하면 이미지가 잘림), 마지막으로 stretch는 에지 이미지를 테두리 길이만큼 늘여 배치입니다.  
 
 <b>여백</b> -
 여백은  테두리 바깥쪽의 외부 여백입니다. 다른 요소와의 간격을 띄울 때 사용하며 패딩에서 사용한 것과 거의 비슷하게 margin-top, margin-right, margin-bottom, margin-left로 각각 지정하거나 단축 속성으로 지정합니다.
