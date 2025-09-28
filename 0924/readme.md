@@ -34,7 +34,7 @@ ________________________________________________________chapter 4 ______________
 적용 시키는 방법은 HTML style안에 값을 넣거나, 혹은 css 확장자 파일에 값을 넣고 연동시키는 방법 2가지가 있습니다.
 
 <b>전체 셀렉터</b> -
-전체 셀렉터는 모든 태그에 적용시키는 셀렉터로서 * {속성 * 벨류} 로 사용됩니다. (모든 HTML 태그에 벨류의 값을 가진 속성으로 바꾸어라)
+전체 셀렉터는 모든 태그에 적용시키는 셀렉터로서 * {속성 * 벨류} 로 사용됩니다. (모든 HTML 태그에 벨류의 값을 가진 속성으로 설정)
 
 <b>태그 셀렉터</b> -
 태그 셀렉터는 원하는 태그에 속성과 값을 넣음으로써, 해당 모든 태그는 원하는 속성 및 값을 적용 시킬수 있습니다.
@@ -82,12 +82,56 @@ ex)    - 사이트 링크에 마우스가 올라갈떄 색깔을 빨강 적용 -
        <code> button:active {
               background-color: #f0f0f0;
               }</code>
+ 
 <b>폼요소 </b>-
-폼요소의 가상 클래스에는 focus가 있고, focus를 넣으면 해당 폼 요소가 키보드나 마우스 입력을 받을 때 스타일 적용 입니다.
+폼요소의 가상 셀렉터에는 focus가 있고, focus를 넣으면 해당 폼 요소가 키보드나 마우스 입력을 받을 때 스타일 적용 입니다.
 ex) - 모든 input박스에 키보드나 마우스로 입력 받을 떄 박스 테두리를 파란색 적용 -
         <code>input:focus {
               border-color: blue;
               }</code>
+
+<b>링크 </b>-
+링크의 가상 셀렉터는 link, visited가 있고, 각각 방문 하지않은 사이트, 방문한 사이트에 스타일 적용입니다. 지정하지 않으면 기본값인 방문한 사이트는 보라색이며, 방문하지 않은 사이트는 파란색입니다.
+ex) - 사이트 링크를 방문하지 않았다면 색깔은 검정, 밑줄을 하지 않음 스타일 적용 -
+      <code> a:link {
+             color: black;
+             text-decoration: none; /* text - decoration은 강조하기 위한 밑줄이다. */
+             }</code>
+    - 사이트에 방문한 경우 색깔은 빨강, 밑줄은 있는 
+      <code> a:visited {
+             color: red;
+             } </code>
+
+<b>블록 </b>-
+블록의 가상 셀렉터는 first-letter, first-line이 있고, 각각 설정한 태그의 모든 첫번쨰 문자, 설정한 태그의 첫태그만 스타일 적용입니다. (p)나 (div) 등 블록 태그에만 사용가능합니다. 
+ex) - 모든 p 태그의 첫 문자를 size를 200%, 색깔은 파랑으로 설정 -
+      <code>p:first-letter {
+            font-size: 200%;
+            color: blue;
+            }</code>
+  
+    - 첫 h3 태그의 모든 문자를 size 150%, 색깔은 노랑으로 설정 -
+     <code> h3::first-line {
+            color: yellow;
+            }</code>
+
+<b>구조 </b>-
+구조의 가상 셀렉터에는 nth-chlid(even), nth-chlid(i)가 있고, 각각 짝수번째 자식, 홀수번째 자식들의 스타일 적용입니다.
+
+- <mark>css 프로퍼티</mark> -
+HTML 요소의 스타일을 지정하는 속성입니다.
+
+<b>프로퍼티(색) </b>-
+color, background-color, border-color이 있고, 각각 글자의 색깔, 배경색, 테두리 색 입니다. 이때 색깔 지정은 rgb를 이용할 수 있고, 혹은 색상키워드를 사용하여 지정합니다.
+
+<b>프로퍼티(텍스트) </b>-
+text-index, text-align, text-decoration가 있고, 각각 들여쓰기, 정렬, 텍스트 꾸미기 입니다.
+text-index의 사용법은 text-index : lenth | percentage이고, 각각 들여쓰기 너비만큼 들여써지고, 퍼센트에이지만큼 들여써집니다. 둘이 같은 곳에 스타일이 적용되면 나중에 적용될 스타일이 적용됩니다.
+text-align의 사용법은 text-align : left | right | center | justify 이고, 각각 왼쪽 정렬, 오른쪽 정렬, 가운데 정렬, 양쪽 정렬 입니다.
+text- decoration의 사용법은 text-decoration : none | underline | overline | linethrough 이고, 각각 텍스트에 스타일 없음, 밑줄, 윗줄, 중앙 취소줄 입니다.
+
+
+
  
 body.main은 body의 class인 main이고, 이 두가지를 섞어 (body class = "main") 이 된다. 이 뜻은 (body) 부터 (/body)까지 전부 스타일을 적용해라  
 
