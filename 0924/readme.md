@@ -222,7 +222,7 @@ ex)
 <b>상대 배치(position : relative)</b> -
 상대 배치는 기본 위치에서 해당 값만큼 상대적으로 이동시키는 배치입니다. 
 ex) 
-     -ID가 down인 태그에 배경색 초록을 적용시키고, 마우스를 갖다 대면 오른쪽으로 20px, 아래로 20px 옮김  -
+     - ID가 down인 태그에 배경색 초록을 적용시키고, 마우스를 갖다 대면 오른쪽으로 20px, 아래로 20px 옮김  -
        <code>#down:hover {
        position : relative; 
        left : 20px; /* 기준점(왼쪽)과의 거리를 나타내므로 오른쪽으로 20px 이동 */
@@ -230,7 +230,23 @@ ex)
        background : green;
        } </code>
  
-<b>절대 배치</b> -
+<b>절대 배치(position:absolute)</b> -
+절대 배치 부모태그를 위치 기준으로 잡고, 설정값을 통해 위치를 설정하는 배치입니다.
+ex) 
+          - 부모태그인 div위치에 따라 자식태그인 p는 위치를 변경시킴. -
+         <code> div { /* 부모 태그*/
+                 display : inline-block;
+                 position : absolute; /* 상대 배치 */
+                 border : 1px solid lightgray;
+                 }
+          
+                 div > p { /* p는 자식태그*/
+                 display : inline-block; 
+                 position : absolute; /* 절대 배치 */
+                 height : 20px;
+                 width : 15px;
+                 background : lightgray;
+                 } </code>
 
 <b>고정 배치</b> -
 
