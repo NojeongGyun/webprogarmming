@@ -230,7 +230,7 @@ ex)
               background : green;
               } </code>
  
-<b>절대 배치(position:absolute)</b> -
+<b>절대 배치(position : absolute)</b> -
 절대 배치 부모태그를 위치 기준으로 잡고, 설정값을 통해 위치를 설정하는 배치입니다.
 ex) 
       - 부모태그인 div위치에 따라 자식태그인 p는 위치를 변경시킴. -
@@ -248,13 +248,56 @@ ex)
                background : lightgray;
                } </code>
 
-<b>고정 배치</b> -
+<b>고정 배치(position: fixed)</b> -
+고정 배치는 위치가 변경되지 않는 고정된 위치로 이동시키는 배치이고, 축소, 확대를 해도 그 자리에 머물러 있습니다.
+ex) 
+      - ID가 fixed인 태그를 설정함 -
+        <code> #fixed {
+               position : fixed;
+               bottom : 10px; /* 상대 배치가 아니기에 아래로 10px */
+               right : 10px; /* 상대 배치가 아니기에 오른쪽으로 10px */
+               width : 100px;
+               padding : 5px;
+               background : red;
+               color : white;
+               }</code>
+        
+<b>유동 배치(position: sticky)</b> -
+유동 배치는 초기 상태에는 서의 기본 흐름에 따라 배치되고, 사용자가 페이지를 스크롤하여 요소가 지정된 스크롤 지점에 도달하면, 요소는 고정 배치처럼 고정이 됩니다.
+ex) 
+      - class이름인 sticky-header인 태그에의 유동 배치 -
+        <code> .sticky-header {
+                position: sticky;
+                top: 0; /* 스크롤을 내려 요소가 브라우저 상단에 닿으면 고정 */
+                }</code>
 
-<b>유동 배치</b> -
+ - <mark> 요소의 시각적인 표현과 표시 방식 제어 프로퍼티 </mark> -
+설명한 것들 외에 요소의 시각적인 표현과 표시 방식 제어에는  z-index, visibility, overflow가 있습니다.
+
+ <b>z-index</b> -
+ z-index의 사용법은 z-index : A(숫자) 로 숫자의 값이 클수록 곂칠떄 위로 올라오고, 작을수록 밑으로 내려가서 곂쳐집니다.
+ex) 
+      - z-index가 제일 큰 ID 제일 위 spade7부터 spade3, spade2, spadeA순으로 아래로 차곡 쌓이고, top과 left의 차이만큼 요소들이 곂칩니다.  -
+        <code> #spadeA { z-index : -3; left : 10px; top : 20px; }
+               #spade2 { z-index : 2; left : 40px; top : 30px; }
+               #spade3 { z-index : 3; left : 80px; top : 40px; }
+               #spade7 { z-index : 7; left : 120px; top : 50px; }</code>
+
+<b>visibility</b> -
+ visibliity의 사용법은 visibliity : visible | hidden | collapse; 가 있고 각각 보이게 하거나, 칸은 차지하는데 숨기거나, 테이블을 사용할 떄 행이나 열을 숨기고 공간까지 제거하는 기능을 합니다.
+ex) 
+      - span태그에 들어간 내용들을 모두 칸을 차지하는 ()처리를 하고, 마우스 드래그를 통해 그 내용을 확인 할 수 있습니다.  -
+        <code> span { 
+               visibility : hidden;
+               } </code>
+ 
+<b>overflow</b> -
+overflow는 요소의 콘텐츠가 지정된 영역을 벗어났을 때 어떻게 처리할지를 결정하는 프로퍼티입니다. 사용법은 overflow : hidden | visible | scroll; 가 있습니다
+overflow의 hidden은 넘치는 콘텐츠의 보이지 않는 부분을 잘라내 넘치는 부분을 볼 수 없습니다.
+overflow의 visble은 넘치는 콘텐츠를 자르지 않고, 그대로 보이게 합니다
+overflow의 scroll은 넘치지않으면 그대로 보여주고, 콘텐츠가 넘치면 hidden과 달리 스크롤로 볼 수 있습니다.
 
 
-
-애니매이션 (x) 안
 
 4,5장 전부 풀기
 Lovable(자기소개 앱 만드는 사이트)
