@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>환영합니다.</title>
+
+    <style>
+        h1 {
+            color: red;
+        }
+
+        span {
+            background-color: aliceblue;
+            font-family: "휴먼체";
+            font-style: italic;
+            font-size: 15pt;
+            
+        }
+
+    </style>
+</head>
+<body>
+    <script>
+        let ret = prompt("이름을 입력하세요", "");
+        if(ret == null) {
+            document.write("Null 오류");
+        }
+        else if(ret == "") {
+            document.write("<h1>사용자 이름을 정의하지 않았습니다.</h1>");
+        }
+        else {
+        document.write("<span>"+ ret + "</span>" + " 님 사이트 방문을 환영합니다" );
+        }
+
+
+
+    </script>
+
+
+</body>
+</html>
