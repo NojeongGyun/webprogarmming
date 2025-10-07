@@ -58,7 +58,7 @@
 <b>document.write() </b>-
 자바스크립트로 HTML 콘텐츠를 웹 페이지에 직접 삽입하는 코드로 ()안의 내용이 화면에 출력됩니다.
 <code>
-         document.write("<h3>Welcome!</h3>"); /*화면에 Welcome!출력 */
+    document.write("&lt;h3&gt;Welcome!&lt;/h3&gt;"); /* 화면에 Welcome! 출력 */
 </code>
 
  let ret = prompt("이름을 입력하세요", "황기태");  
