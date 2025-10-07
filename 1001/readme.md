@@ -2,17 +2,23 @@
 -<mark> 자바 스크립트 </mark>-
 자바스크립트는 웹 개발에서 가장 중요한 프로그래밍 언어 중 하나로, 캔버스를 이용한 그래픽 처리, 로컬/세션 스토리지에 데이터 저장, 위치 정보 서비스 제공 등
 다양한 기능을 수행할 수 있습니다 일반적으로 HTML 요소에 이벤트(클릭, 입력 등) 를 발생시켜 동적인 웹 페이지를 구현하며, 인터프리터 방식으로 코드가 한 줄씩 즉시 해석되어 실행됩니다.
-자바스크립트 사용법은 body나, head에 (script) 태그를 넣고, 원하는 자바스크립트 언어를 넣어 작동 시키면 되고, 아니면 .js파일을 만들어 불러오는 방법도 있습니다.
-그리고 자바스크립트에서 이벤트는 무조권 앞에 "on"이라는 문자가 나오고, 함수 정의를 할때 function을 붙이고, 함수이름, 매게변수가 그 뒤에 선언 됩니다.
-<b>script 태그</b> -
+자바스크립트는 HTML 태그 안에 직접 작성하거나 <script> 태그 안에 작성할 수 있으며, 또는 외부 .js 파일을 만들어 불러오는 방법도 있습니다. 이때 
+외부 파일을 불러올 경우, (script src="파일명.js")(/script) 전에 자바스크립트 코드를 작성하면 안 됩니다.
+또한, 자바스크립트에서 이벤트 이름은 반드시 "on"으로 시작하며, 함수를 정의할 때는 function 키워드를 사용하고, 그 뒤에 함수 이름과 매개변수를 선언합니다.
+
+<b>HTML태그안에 직접 기술</b> -
+<code> <button onclick="alert('클릭!')">눌러보세요</button> /* 클릭하면이라는 이벤트를 시행(이벤트기에 on이 붙음) 
+</code>
+       
+<b>script 태그 작성</b> -
 <code> <body>
        <h3>document.write() 활용</h3>
        <hr>
-       <script>
+       <script> /* <- 여기 */
        document.write("<h3>Welcome!</h3>");
        document.write("2 + 5 는 <br>");
        document.write("<mark>7 입니다.</mark>");
-       </script>
+       </script> /* <- */
        </body>
 </code>
  
@@ -24,6 +30,7 @@
        function out(obj) { /* fuction으로 매게변수 "obj", 함수 이름인 "out" 생성 */
        obj.src="media/apple.png";
        }
+       
         - lib.js 사용파일 -
 <code> <!DOCTYPE html>
        <html>
@@ -42,12 +49,9 @@
        </body>
        </html>
 
+-<mark> 자바스크립트 주의 사항 </mark>-
+.js파일을 불러온 경우 (./script)전에 자바스크립트 코드 추가 작성하면 안 됨
 
-
-
-p9 주의사항 
-
-자바스크립트를 쓸때 태그, 스크립트 태그, 외부파일에 기술할 수 있음
 
  document.write는 HTML5의 Body의 속성과 같다
 
