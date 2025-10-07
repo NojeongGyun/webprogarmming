@@ -49,7 +49,7 @@
         
             &lt;img src="media/apple.png" alt="이미지"
                 onmouseover="over(this)"  &lt;!-- 마우스 커서가 이미지 위로 올라가면 이벤트 실행 --&gt;
-                onmouseout="out(this)"    &lt;!-- 마우스 커서가 이미지에서 벗어나면 이벤트 실행 --&gt;&gt;
+                onmouseout="out(this)"    &lt;!-- 마우스 커서가 이미지에서 벗어나면 이벤트 실행 --&gt;
         &lt;/body&gt;
         &lt;/html&gt;
 </code>
