@@ -203,24 +203,25 @@ ex)
 문자열을 만들때는 ' 또는 " 중 하나를 반드시 선택하여 시작하고, 문자열의 시작과 끝 따옴표가 반드시 같아야 합니다.
 문자열에서 특정 문자를 그대로 사용하고 싶을 때에는 \로 열고 \로 닫으면 해당 문자를 문자열 안에서 그대로 사용할 수 있습니다.
 ex)     <code>
-        <!DOCTYPE html>
-        <html>
-        <head>
-        <meta charset="utf-8">
-        <title>리터럴</title></head>
-        <body>
-        <h3>리터럴</h3>
-        <hr>
-        <script>
+        &lt;!DOCTYPE html&gt;
+        &lt;html&gt;
+        &lt;head&gt;
+        &lt;meta charset="utf-8"&gt;
+        &lt;title&gt;리터럴&lt;/title&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+        &lt;h3&gt;리터럴&lt;/h3&gt;
+        &lt;hr&gt;
+        &lt;script&gt;
         let oct = 015;  
         let hex = 0x15; 
-        document.write("8진수 015는 십진수로 " + oct + "<br>"); /* 
-        document.write("16진수 0x15는 십진수로 " + hex + "<br>");
-        document.write('문자열 : 단일인용부호로도 표현' + "<br>"); 
-        document.write("그녀는 \"누구세요\"라고 했습니다."); /* "그녀는 누구세요" 라고 큰 따움표 그대로 출력됨 */
-        </script>
-        </body>
-        </html>
+        document.write("8진수 015는 십진수로 " + oct + "&lt;br&gt;"); 
+        document.write("16진수 0x15는 십진수로 " + hex + "&lt;br&gt;");
+        document.write('문자열 : 단일인용부호로도 표현' + "&lt;br&gt;"); 
+        document.write("그녀는 \"누구세요\"라고 했습니다."); /* "그녀는 누구세요" 라고 큰 따움표도 그대로 출력됨 */
+        &lt;/script&gt;
+        &lt;/body&gt;
+        &lt;/html&gt;
         </code>
 
 
