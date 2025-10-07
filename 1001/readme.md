@@ -298,32 +298,15 @@ A != B - A문자열과 B문자열이 같지 않으면 true, 같으면 fasle가 �
 A >= B, A > B, A < B, A <= B - A문자열과 B문자열을 사전순으로 비교하여 true, false가 됩니다.
 
 
--<mark> ddd </mark>-
+-<mark> 조건문 </mark>-
+조건문에는 if, for, switch이 있고, 흐름을 제어하는 continue, break가 있습니다.
+continue는 조건에 맞으면 그 조건을 넘어가는 것이고, break는 break를 만나면 들어 있는 블록 반복문을 나가는 것입니다.
 
-p63 eval() - 숫자 묶기
-isNaN()는 숫자면 false, 다른건 true
-parseInt() 숫자로 바꿔줌
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- 자바스크립트에서 제공하는 전역 함수 -
+eval(), parseInt() , isNaN()등 있습니다.
+eval() - 문자열로 된 숫자 연산 코드를 계산하여 숫자로 결과값이 출력됩니다.
+parseInt() - 문자를 숫자로 만들어줍니다.
+isNaN() - 숫자이면 false, 다른건 true로 값이 나옵니다.
+        
 
 </pre>
