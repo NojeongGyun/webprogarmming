@@ -9,7 +9,7 @@
 
 <b>HTML태그안에 직접 기술</b> -
 <code> 
-       <button onclick="alert('클릭!')">눌러보세요</button> /* 클릭하면이라는 이벤트를 시행(이벤트기에 on이 붙음) 
+       (button onclick="alert('클릭!')")눌러보세요</button> /* 클릭하면이라는 이벤트를 시행(이벤트기에 on이 붙음) 
 </code>
        
 <b>script 태그 작성</b> -
