@@ -51,7 +51,7 @@
        onmouseout="out(this)"> /* onmousout = 마우스 커서가 특정 위치에 올리지 않으면 이벤트 시행(이벤트이기에 on이 붙음) */
        </body>
        </html>
-
+</code>
 
 - <mark> 자바 스크립트 코드 </mark> -
 <b>document.write() </b>-
