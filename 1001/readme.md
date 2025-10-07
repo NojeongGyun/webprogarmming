@@ -296,8 +296,9 @@ A + B - A문자열과 B문자열을 서로 이어줍니다. (A = ab, B = cd, C =
 A == B - A문자열과 B문자열이 같은지 비교하여 같으면 true, 다르면 false가 됩니다.
 A != B - A문자열과 B문자열이 같지 않으면 true, 같으면 fasle가 됩니다.
 A >= B, A > B, A < B, A <= B - A문자열과 B문자열을 사전순으로 비교하여 true, false가 됩니다.
-                        
 
+
+-<mark> ddd </mark>-
 
 p63 eval() - 숫자 묶기
 isNaN()는 숫자면 false, 다른건 true
