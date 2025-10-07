@@ -12,17 +12,17 @@
         &lt;button onclick=&quot;alert('클릭!')&quot;&gt;눌러보세요&lt;/button&gt; /* 클릭하면이라는 이벤트를 시행(이벤트기에 on이 붙음) */
 </code>
       
-       
 <b>script 태그 작성</b> -
-<code> <body>
-       <h3>document.write() 활용</h3>
-       <hr>
-       <script> /* <- 여기 */
-       document.write("<h3>Welcome!</h3>");
-       document.write("2 + 5 는 <br>");
-       document.write("<mark>7 입니다.</mark>");
-       </script> /* <- */
-       </body>
+<code>
+&lt;body&gt;
+    &lt;h3&gt;document.write() 활용&lt;/h3&gt;
+    &lt;hr&gt;
+    &lt;script&gt; /* <- 여기 */
+        document.write("&lt;h3&gt;Welcome!&lt;/h3&gt;");
+        document.write("2 + 5 는 &lt;br&gt;");
+        document.write("&lt;mark&gt;7 입니다.&lt;/mark&gt;");
+    &lt;/script&gt; /* <- */
+&lt;/body&gt;
 </code>
  
 <b>.js파일 불러오기</b> -
@@ -35,22 +35,24 @@
        }
        
         - lib.js 사용파일 -
-<code> <!DOCTYPE html>
-       <html>
-       <head>
-       <meta charset="utf-8">
-       <title>외부 파일에 자바스크립트 작성</title>
-       <script src="lib.js"> /* lib.js파일을 쓰겠다 선언 */
-       </script> /* 파일을 불러왔기 떄문에 (script src...)(/script) 안에 아무 자바스크립트 언어가 들어 가지 않음 */
-       </head>
-       <body>
-       <h3>마우스 올려 보세요</h3>
-       
-       <img src="media/apple.png" alt="이미지"
-       onmouseover="over(this)" /* onmouseover = 마우스 커서가 특정 위치에 올리면 이벤트 시행(이벤트이기에 on이 붙음) */
-       onmouseout="out(this)"> /* onmousout = 마우스 커서가 특정 위치에 올리지 않으면 이벤트 시행(이벤트이기에 on이 붙음) */
-       </body>
-       </html>
+<code>
+        &lt;!DOCTYPE html&gt;
+        &lt;html&gt;
+        &lt;head&gt;
+            &lt;meta charset="utf-8"&gt;
+            &lt;title&gt;외부 파일에 자바스크립트 작성&lt;/title&gt;
+            &lt;script src="lib.js"&gt;&lt;/script&gt; 
+            &lt;!-- 외부 파일을 불러왔기 때문에 이 script 안에는 JS 코드 작성 금지 --&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+            &lt;h3&gt;마우스 올려 보세요&lt;/h3&gt;
+        
+            &lt;img src="media/apple.png" alt="이미지"
+                onmouseover="over(this)"  &lt;!-- 마우스 커서가 이미지 위로 올라가면 이벤트 실행 --&gt;
+                onmouseout="out(this)"    &lt;!-- 마우스 커서가 이미지에서 벗어나면 이벤트 실행 --&gt;
+            &gt;
+        &lt;/body&gt;
+        &lt;/html&gt;
 </code>
 
 - <mark> 자바 스크립트 코드 </mark> -
