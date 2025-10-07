@@ -45,7 +45,7 @@
        </head>
        <body>
        <h3>마우스 올려 보세요</h3>
-       <hr>
+       
        <img src="media/apple.png" alt="이미지"
        onmouseover="over(this)" /* onmouseover = 마우스 커서가 특정 위치에 올리면 이벤트 시행(이벤트이기에 on이 붙음) */
        onmouseout="out(this)"> /* onmousout = 마우스 커서가 특정 위치에 올리지 않으면 이벤트 시행(이벤트이기에 on이 붙음) */
