@@ -14,15 +14,15 @@
       
 <b>script 태그 작성</b> -
 <code>
-&lt;body&gt;
+    &lt;body&gt;
     &lt;h3&gt;document.write() 활용&lt;/h3&gt;
-    &lt;hr&gt;
-    &lt;script&gt; /* <- 여기 */
+        &lt;hr&gt;
+        &lt;script&gt; /* <- 여기 */
         document.write("&lt;h3&gt;Welcome!&lt;/h3&gt;");
         document.write("2 + 5 는 &lt;br&gt;");
         document.write("&lt;mark&gt;7 입니다.&lt;/mark&gt;");
-    &lt;/script&gt; /* <- */
-&lt;/body&gt;
+        &lt;/script&gt; /* <- */
+        &lt;/body&gt;
 </code>
  
 <b>.js파일 불러오기</b> -
