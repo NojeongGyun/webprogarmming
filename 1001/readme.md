@@ -8,12 +8,12 @@
 그 뒤에 함수 이름과 매개변수를 선언합니다.
 
 <b>HTML태그안에 직접 기술</b> -
-<code>
+ex) <code>
         &lt;button onclick=&quot;alert('클릭!')&quot;&gt;눌러보세요&lt;/button&gt; /* 클릭하면이라는 이벤트를 시행(이벤트기에 on이 붙음) */
 </code>
       
 <b>script 태그 작성</b> -
-<code>
+ex) <code>
     &lt;body&gt;
     &lt;h3&gt;document.write() 활용&lt;/h3&gt;
         &lt;hr&gt;
@@ -26,7 +26,7 @@
 </code>
  
 <b>.js파일 불러오기</b> -
-          - lib.js파일 -
+ex)         - lib.js파일 -
 <code> function over(obj) { /* function으로 매게변수 "obj", 함수 이름인 "over" 생성 */
        obj.src="media/banana.png"; 
        }
@@ -57,11 +57,26 @@
 - <mark> 자바 스크립트 코드 </mark> -
 <b>document.write() </b>-
 자바스크립트로 HTML 콘텐츠를 웹 페이지에 직접 삽입하는 코드로 ()안의 내용이 화면에 출력됩니다.
-<code>
+그리고 document.writeln()는 문자를 출력하고 한칸 들여쓰기가 됩니다.
+ex) <code>
     document.write("&lt;h3&gt;Welcome!&lt;/h3&gt;"); /* 화면에 Welcome! 출력 */
 </code>
 
- let ret = prompt("이름을 입력하세요", "황기태");  
+<b>prompt()</b> -
+사용자로부터 문자열을 입력 받아 리턴 코드로 보통은 function함수 정의랑 같이 쓰이고,  사용법은 prompt("메시지", "디폴트 입력값") 입니다.
+ex) <code>
+        let ret = prompt("이름을 입력하세요", "황기태");
+        if(ret == null) {
+        // 취소 버튼이나 다이얼로그를 닫은 경우
+        }
+        else if(ret == "") {
+        // 문자열 입력 없이 확인 버튼 누른 경우
+        }
+        else {
+        // ret에는 사용자가 입력한 문자열
+        }
+
+</code>
  
 
 C언어의 개념과 비슷합 하지만 데이터 타입은 값에 의해서 결정됨(파이썬처럼)
