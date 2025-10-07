@@ -211,7 +211,6 @@ ex)     <code>
         &lt;/head&gt;
         &lt;body&gt;
         &lt;h3&gt;리터럴&lt;/h3&gt;
-        &lt;hr&gt;
         &lt;script&gt;
         let oct = 015;  
         let hex = 0x15; 
