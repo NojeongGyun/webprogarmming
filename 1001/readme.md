@@ -2,27 +2,48 @@
 -<mark> 자바 스크립트 </mark>-
 자바스크립트는 웹 개발에서 가장 중요한 프로그래밍 언어 중 하나로, 캔버스를 이용한 그래픽 처리, 로컬/세션 스토리지에 데이터 저장, 위치 정보 서비스 제공 등
 다양한 기능을 수행할 수 있습니다 일반적으로 HTML 요소에 이벤트(클릭, 입력 등) 를 발생시켜 동적인 웹 페이지를 구현하며, 인터프리터 방식으로 코드가 한 줄씩 즉시 해석되어 실행됩니다.
-
-
--자바스크립트 역할-
-캔버스 그래픽, 로컬/세션 스토리지 저장, 위치정보서비스 등
-
-자바스크립트의  사용법은 <script></script> 태그를 이용하고 안에 넣음
-
-자바스크립트 이벤트는 on~가 들어간다  
-onmouseout= 마우스가 올려지지 않으면
-onmouseover = 마우스가 올려지면
-
-<code>
-<script>
-function over(obj) {
-obj.src="media/banana.png";
-}
-function out(obj) {
-obj.src="media/apple.png";
-}
-</script>
+자바스크립트 사용법은 body나, head에 (script) 태그를 넣고, 원하는 자바스크립트 언어를 넣어 작동 시키면 되고, 아니면 .js파일을 만들어 불러오는 방법도 있습니다.
+그리고 자바스크립트에서 이벤트는 무조권 앞에 "on"이라는 문자가 나오고, 함수 정의를 할때 function을 붙이고, 함수이름, 매게변수가 그 뒤에 선언 됩니다.
+<b>script 태그</b> -
+<code> <body>
+       <h3>document.write() 활용</h3>
+       <hr>
+       <script>
+       document.write("<h3>Welcome!</h3>");
+       document.write("2 + 5 는 <br>");
+       document.write("<mark>7 입니다.</mark>");
+       </script>
+       </body>
 </code>
+ 
+<b>.js파일 불러오기</b> -
+          - lib.js파일 -
+<code> function over(obj) { /* function으로 매게변수 "obj", 함수 이름인 "over" 생성 */
+       obj.src="media/banana.png"; 
+       }
+       function out(obj) { /* fuction으로 매게변수 "obj", 함수 이름인 "out" 생성 */
+       obj.src="media/apple.png";
+       }
+        - lib.js 사용파일 -
+<code> <!DOCTYPE html>
+       <html>
+       <head>
+       <meta charset="utf-8">
+       <title>외부 파일에 자바스크립트 작성</title>
+       <script src="lib.js"> /* lib.js파일을 쓰겠다 선언 */
+       </script>
+       </head>
+       <body>
+       <h3>마우스 올려 보세요</h3>
+       <hr>
+       <img src="media/apple.png" alt="이미지"
+       onmouseover="over(this)" /* onmouseover = 마우스 커서가 특정 위치에 올리면 이벤트 시행(이벤트이기에 on이 붙음) */
+       onmouseout="out(this)"> /* onmousout = 마우스 커서가 특정 위치에 올리지 않으면 이벤트 시행(이벤트이기에 on이 붙음) */
+       </body>
+       </html>
+
+
+
 
 p9 주의사항 
 
