@@ -14,15 +14,9 @@
 <b>Bom </b>-
 BOM 객체는 브라우저 자체를 제어하거나 정보에 접근하기 위한 객체로, window, location, history, navigator, screen 등이 포함됩니다.
 
-자바에서 쓸 수 있는 객체가 3가지 있다. 코어객체, Dom, bom이 있다.
-HTML태그마다  브라우저에서 Dom객체가 만들어진다.
+- <mark> Dom활용 </mark> -
+(ex1) <img src="images/logo.png" width="200" alt="로고">
 
-
-p8
-HTML 태그는 5가지가 있습니다.
-태그, 속성, css, 이벤트 리스너, 콘텐츠   이 모든 걸 한가지로 묶어서 한가지의 노드 혹은 객체라고 지칭한다.
-
-p9
 자식이 몇개 있는지 컬렉션에서 불러와 확인할 수 있다.
 p.style  p.prompt    p라는 객체에서 브라우저에서 다루어짐
 
