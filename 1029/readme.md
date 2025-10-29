@@ -18,7 +18,10 @@ BOM 객체는 브라우저 자체를 제어하거나 정보에 접근하기 위�
 (ex1) 
   <img src="images/Dom활용(1).png" width="500" alt="로고">
 - let span = document.getElementById("mySpan");  이 코드에서 myspan이라는 ID를 가진 엘리먼트 전체를 span이라는 객체에 가져오고, 
-  span객체에 css를 적용하여 버튼을 클릭하면 "문장입니다" 라는 텍스트 스타일이 바뀌게 설정이 되어 있습니다.
+  span객체에 css를 적용하여 버튼을 클릭(on click)하면 "문장입니다" 라는 텍스트 스타일이 바뀌게 설정이 되어 있고, 클릭하지 않으면
+  원래 스타일인 span태그의 글자색이 빨간색(" style="color:red)으로 적용되는걸 볼 수 있습니다.
+
+
   
 자식이 몇개 있는지 컬렉션에서 불러와 확인할 수 있다.
 p.style  p.prompt    p라는 객체에서 브라우저에서 다루어짐
