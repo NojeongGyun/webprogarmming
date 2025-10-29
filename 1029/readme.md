@@ -15,7 +15,8 @@
 BOM 객체는 브라우저 자체를 제어하거나 정보에 접근하기 위한 객체로, window, location, history, navigator, screen 등이 포함됩니다.
 
 - <mark> Dom활용 </mark> -
-(ex1) <img src="images/Dom활용(1).png" width="200" alt="로고">
+(ex1) 
+  <img src="images/Dom활용(1).png" width="500" alt="로고">
 
 자식이 몇개 있는지 컬렉션에서 불러와 확인할 수 있다.
 p.style  p.prompt    p라는 객체에서 브라우저에서 다루어짐
