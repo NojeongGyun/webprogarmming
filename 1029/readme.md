@@ -25,8 +25,8 @@ BOM 객체는 브라우저 자체를 제어하거나 정보에 접근하기 위�
 (ex2) 
   <img src="images/Dom활용(2).png" width="500" alt="로고">
 
-- p라는 객체에 <span style="color:red">클릭하세요</span> 이 내용을 모두 담고, <code> p.innerHTML= "나의 <img src='puppy.png"> 강아지" </code> 는 p객체에 "나의 <code> <img src='puppy.png'> 강아지" </code> 라는 내용을 덮어 쓰게 됩니다.
-  그렇기에 onclick="change()" 즉 마우스가 해당 문구에 클릭이 되면 해당 이미지가 화면에 출력 되어지는 것을 볼 수 있습니다.
+- p라는 객체에 <span style="color:red">클릭하세요</span> 이 내용을 모두 담고, <pre> p.innerHTML= "나의 <img src='puppy.png"> 강아지" </pre> 는 p객체에 "나의 <code> <img src='puppy.png'> 강아지" </code> 라는 
+  내용을 덮어 쓰게 됩니다. 그렇기에 onclick="change()" 즉 마우스가 해당 문구에 클릭이 되면 해당 이미지가 화면에 출력 되어지는 것을 볼 수 있습니다.
 
 
 
