@@ -34,6 +34,7 @@ this는 현재 실행중인 객체를 가리키는 키워드입니다.
 (ex1)
   <img src="images/this활용(1).png" width="500" alt="로고">
 
+- 이 예제는 각 버튼과 텍스트를 클릭시 파라미터값에 따라 글자의 색과 사이즈가 들어가는 코드입니다. function change(obj, size, color) 라는 메소드를 만들고, 
 
 
 
