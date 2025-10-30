@@ -38,7 +38,10 @@ this는 현재 실행중인 객체를 가리키는 키워드입니다.
   버튼을 클릭하면 이 함수가 호출이 되는데 obj대신 this로 인해 각 버튼이 객체로 만들어지고, size, color가 설정한 파라미터 값으로 바뀝니다.
 
 - <mark>document</mark> -
-document는 HTML 문서 전체를 대변하는 객체로서, 트리 구조(DOM)에서 최상위에 위치하며 모든 태그는 document의 하위 객체입니다.
+document는 HTML 문서 전체를 대변하는 객체로서, 트리 구조(DOM)에서 최상위에 위치하며 모든 태그는 document의 하위 객체입니다. 
+document를 이용하여 문서의 정보를 확인할 수 있습니다.
+(ex1) 
+  <img src="images/document활용(1).png" width="500" alt="로고">
 
 
 
