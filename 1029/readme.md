@@ -32,6 +32,7 @@ BOM 객체는 브라우저 자체를 제어하거나 정보에 접근하기 위�
 (ex3)
   <img src="images/Dom활용(3).png" width="500" alt="로고">
 
+- let spanArray = document.getElementsByTagName("span"); 라는 코드를 써 spanArray라는 객체가 span태그가 나온 순서대로 spanArray[0] = <span>사과</span>, spanArray[1] = <span>바나나</span>... 이런식으로 span태그가 나온 순서대로 배열에 넣어집니다. 함수에는 배열의 개수만큼 반복하고 배열에 있는 태그 모두 글자색, 폰트 사이즈를 바꿉니다. 이 함수는 버튼을 클릭 하였을 시에 호출이 됩니다.
 
 (ex4)
   <img src="images/Dom활용(4).png" width="500" alt="로고">
