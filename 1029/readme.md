@@ -29,13 +29,16 @@ BOM 객체는 브라우저 자체를 제어하거나 정보에 접근하기 위�
   "나의 &it;img src='puppy.png'&gt; 강아지" </code> 라는 내용을 덮어 쓰게 됩니다. 그렇기에 onclick="change()" 
   즉 마우스가 해당 문구에 클릭이 되면 해당 이미지가 화면에 출력 되어지는 것을 볼 수 있습니다. 
 
-- <mark> this </mark> -
+- <mark>this</mark> -
 this는 현재 실행중인 객체를 가리키는 키워드입니다.
 (ex1)
   <img src="images/this활용(1).png" width="500" alt="로고">
 
 - 이 예제는 각 버튼과 텍스트를 클릭시 파라미터값에 따라 글자의 색과 사이즈가 들어가는 코드입니다. function change(obj, size, color) 라는 메소드를 만들고, 
+  버튼을 클릭하면 이 함수가 호출이 되는데 obj대신 this로 인해 각 버튼이 객체로 만들어지고, size, color가 설정한 파라미터 값으로 바뀝니다.
 
+- <mark>document</mark> -
+document는 HTML 문서 전체를 대변하는 객체로서, 트리 구조(DOM)에서 최상위에 위치하며 모든 태그는 document의 하위 객체입니다.
 
 
 
