@@ -29,9 +29,16 @@ BOM 객체는 브라우저 자체를 제어하거나 정보에 접근하기 위�
   "나의 &it;img src='puppy.png'&gt; 강아지" </code> 라는 내용을 덮어 쓰게 됩니다. 그렇기에 onclick="change()" 
   즉 마우스가 해당 문구에 클릭이 되면 해당 이미지가 화면에 출력 되어지는 것을 볼 수 있습니다. 
 
+- <mark> this </mark> -
+this는 현재 실행중인 객체를 가리키는 키워드입니다.
+(ex1)
+  <img src="images/this활용(1).png" width="500" alt="로고">
 
 
 
+
+
+  
   
 자식이 몇개 있는지 컬렉션에서 불러와 확인할 수 있다.
 p.style  p.prompt    p라는 객체에서 브라우저에서 다루어짐
