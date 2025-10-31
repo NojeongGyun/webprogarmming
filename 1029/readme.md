@@ -64,7 +64,7 @@ Dom으로 문서의 정보를 알 수 있는 동시에 반대로 생성, 삽입,
   <img src="images/Dom삭제.png" width="500" alt="로고">
 
 - let parent = myDiv.parentElement;  에서 myDIV의 부모 태그를 parent객체에 넣고, parent.removeChild(myDiv); 의 코드는 
-  myDIV의 부모인 parent에서 자식객체를 제거를 의미합니다.
+  myDIV의 부모인 parent에서 자식태그 제거를 의미합니다.
   
 - <mark>this</mark> -
 this는 현재 실행중인 객체를 가리키는 키워드입니다.
