@@ -47,7 +47,7 @@ spanArray[0] = <span>사과</span>, spanArray[1] = <span>바나나</span>... 이
 <b>Dom객체 생성, 삽입, 삭제</b> -
 Dom으로 문서의 정보를 알 수 있는 동시에 반대로 생성, 삽입, 삭제 기능도 직접 구현 할 수 있습니다.
 (ex1 - 생성) 
-  <img src="images/Dom생성(1).png" width="500" alt="로고">
+  <img src="images/Dom객체생성(1).png" width="500" alt="로고">
 
 
 (ex2 - 삽입)
