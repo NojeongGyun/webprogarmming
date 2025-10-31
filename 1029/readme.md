@@ -152,7 +152,7 @@ addEventListener사용 방법은 [객체.addEventListener("이벤트", 함수)] 
 - <mark>익명 함수</mark> -
   함수 안의 코드가 길지 않을 때는, 함수 이름을 따로 만들지 않고 필요한 위치에 바로 작성하는 함수를 익명 함수라고 합니다.
 (ex1)
-  <img src="images/익명함수(1).png" width="500" alt="로고">
+  <img src="images/익명함수.png" width="500" alt="로고">
 
 - 예시를 보면 p.onmouseover 객체 p의 이벤트 리스너에 대한 행동이 배경색을 바꾸는 것으로 코드가 짧고, 단순하여 [function () { }] - 익명함수
   에 넣어 사용하고, p.addEventListener("mouseout", function () { this.style.backgroundColor="white"; } 이 코드도 이벤트 리스너에서 실행되는 
