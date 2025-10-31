@@ -61,7 +61,11 @@ document를 사용하는 예시를 보겠습니다.
 
 - 예시를 보면 document를 이용하여 문서의 정보를 살펴보고 있습니다.
 
-
+<b>document write / writeln</b> -
+write는 HTML 문서에 직접 내용을 쓰는 자바스크립트 명령입니다. 보통 ln은 붙이면 한줄 들여쓰기인데 자바 스크립트에서는 한 칸 들여쓰기로 인식이 되어
+document를 활용하여 한줄 들여쓰기를 하려고 하면 &it;br&gt; 태그를 써야 합니다.
+(ex1)
+  <img src="images/document활용(2).png" width="500" alt="로고">
   
   
 자식이 몇개 있는지 컬렉션에서 불러와 확인할 수 있다.
