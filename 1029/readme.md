@@ -58,12 +58,12 @@ Dom으로 문서의 정보를 알 수 있는 동시에 반대로 생성, 삽입,
 (ex2 - 삽입)
   <img src="images/Dom삽입.png" width="500" alt="로고">
 
-
+- 생성한 newDIV 객체는 <p "id=p"> 태그의 자식이 됩니다.
   
 (ex3 - 삭제)
   <img src="images/Dom삭제.png" width="500" alt="로고">
 
-
+- let parent = myDiv.parentElement;  에서 myDIV의 부모 태그를 parent객체에 넣고, parent.removeChild(myDiv); myDIV의 부모인 parent에서 자식객체를 제거합니다.
   
 - <mark>this</mark> -
 this는 현재 실행중인 객체를 가리키는 키워드입니다.
