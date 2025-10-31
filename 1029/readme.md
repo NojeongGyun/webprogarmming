@@ -126,7 +126,7 @@ DOM 객체의 이벤트 리스너 프로퍼티에 작성방법은 Dom객체를 �
 (ex1)
   <img src="images/이벤트리스너(2).png" width="500" alt="로고">
 
-- 
+- ID가 "p"인 객체를 변수p에 담고 p가 이벤트(mouseover, mouseout)이 일어나면 각각 over(), out() 함수를 호출합니다.  
 
 <b>이벤트 리스너(addEventListener 메소드 사용)</b> -
 addEventListener사용 방법은 [객체.addEventListener("이벤트", 함수)] 입니다. 지정한 객체가 이벤트를 시행하면 두 번째 
@@ -134,16 +134,14 @@ addEventListener사용 방법은 [객체.addEventListener("이벤트", 함수)] 
 (ex1)
   <img src="images/이벤트리스너(3).png" width="500" alt="로고">
 
-
+- ID가 "p"인 객체를 변수p에 담고 addEventListener에 담긴 이벤트가 일어나면 함수가 호출 됩니다.
 
 
 
   
 --chapter 9-
-자바스크립트는 이벤트 앞에 on을 붙인다.
 
-p7
-이벤트가 발생하면 함수 호출 가능함
+  
 
 p23
 클릭이벤트가 있으면 모든 노드에서 이벤트 타켓을 찾고(이벤트 캡쳐단계) = 위에서 아래로 이벤트 리스너를 찾는 것
