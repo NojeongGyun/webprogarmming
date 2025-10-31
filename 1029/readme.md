@@ -145,7 +145,10 @@ addEventListener사용 방법은 [객체.addEventListener("이벤트", 함수)] 
 - "클릭하세요"라는 버튼을 클릭하면 event객체가 클릭한 정보를 얻게 됩니다. 그리고 "p"인 태그에 마우스를 올리면 f함수가
   실행되고, 둘 모두 어떤 이벤트인지 화면에 출력이 됩니다. type은 프로퍼티로 객체가 가진 이벤트를 알려주는 역할입니다.
   또 다른 프로퍼티를 알아보자면 target, currentTarget, defaulPrevented, prevenDefault()가 있습니다.
-
+  각 의미하는바로는 이벤트를 유발시킨 DOM 객체(target), 이벤트 리스너가 붙어 있는 DOM 요소 객체(currentTarget), 
+  이벤트 디폴트 값이 취소 되었는지 나타내는 true, false 값(defaulPrevented), 이벤트의 디폴트 값을 취소시키는 
+  메소드(prevenDefault())입니다.
+  
 
 
   
