@@ -53,7 +53,7 @@ Dom으로 문서의 정보를 알 수 있는 동시에 반대로 생성, 삽입,
   newDIV.innerHTML = "새로 생성된 DIV입니다."; 이 코드에서는 div코드에 텍스트를 입력하였고,
   마지막으로 newDIV.setAttribute("id", "myDiv"); id가 "myDiv"인 newDIV인 객체를 만들고,     
   newDIV.style.backgroundColor = "yellow"; 바탕색을 지정하였습니다.
-  이 구조를 HTML로 나타내면 &it;div id="myDiv" style="background-color: yellow;"&gt; 새로 생성된 DIV입니다. &it;/div&gt;   입니다. 
+  이 구조를 HTML로 나타내면 &lt;div id="myDiv" style="background-color: yellow;"&gt; 새로 생성된 DIV입니다. &lt;/div&gt;   입니다. 
 
 (ex2 - 삽입)
   <img src="images/Dom삽입.png" width="500" alt="로고">
