@@ -136,6 +136,27 @@ addEventListener사용 방법은 [객체.addEventListener("이벤트", 함수)] 
 
 - ID가 "p"인 객체를 변수p에 담고 addEventListener에 담긴 이벤트가 일어나면 함수가 호출 됩니다.
 
+<b>이벤트 객체</b> -
+이벤트 리스너가 이벤트를 받으면, 브라우저가 이벤트 객체를 만들어서 그 안에 정보를 넣어 줍니다. 
+이벤트 한번당 1개의 이벤트 객체를 만들고, 이벤트 행동이 완료되면 이벤트 객체의 정보는 소멸하게 됩니다.
+(ex1)
+  <img src="images/이벤트객체.png" width="500" alt="로고">
+
+- "클릭하세요"라는 버튼을 클릭하면 event객체가 클릭한 정보를 얻게 됩니다. 그리고 "p"인 태그에 마우스를 올리면 f함수가
+  실행되고, 둘 모두 어떤 이벤트인지 화면에 출력이 됩니다. type은 프로퍼티로 객체가 가진 이벤트를 알려주는 역할입니다.
+  또 다른 프로퍼티를 알아보자면 target, currentTarget, defaulPrevented, prevenDefault()가 있습니다.
+
+
+
+  
+- <mark>익명 함수</mark> -
+  함수 안의 코드가 길지 않을 때는, 함수 이름을 따로 만들지 않고 필요한 위치에 바로 작성하는 함수를 익명 함수라고 합니다.
+(ex1)
+  <img src="images/익명함수(1).png" width="500" alt="로고">
+
+- 예시를 보면 p.onmouseover 객체 p의 이벤트 리스너에 대한 행동이 배경색을 바꾸는 것으로 코드가 짧고, 단순하여 [function () { }] - 익명함수
+  에 넣어 사용하고, p.addEventListener("mouseout", function () { this.style.backgroundColor="white"; } 이 코드도 이벤트 리스너에서 실행되는 
+  동작이 짧고 단순하기 때문에, 별도의 함수 이름을 만들지 않고 익명 함수로 바로 작성하여 CSS를 적용합니다.
 
 
   
