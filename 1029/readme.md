@@ -67,6 +67,14 @@ document를 활용하여 한줄 들여쓰기를 하려고 하면 &it;br&gt; 태�
 (ex1)
   <img src="images/document활용(2).png" width="500" alt="로고">
   
+<b>document open/close</b> -
+document.open()은 작성한 HTML코드를 초기화 하고 다시 트리를 만드는 작업에 돌입하는 것이고, document.close()는 document.open() 메서드를 실행 후
+작성이 완료되면 트리 구조를 확정 짓는 메서드입니다.
+
+
+
+
+
   
 자식이 몇개 있는지 컬렉션에서 불러와 확인할 수 있다.
 p.style  p.prompt    p라는 객체에서 브라우저에서 다루어짐
