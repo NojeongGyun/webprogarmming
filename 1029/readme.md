@@ -75,7 +75,8 @@ document.open()은 작성한 HTML코드를 초기화 하고 다시 트리를 만
 
 - win = window.open("", "outWin", "width=300,height=200"); 이 코드는 새로 열린 창을 가리키는 window 객체를 win 변수에 저장하는 것이고, ID가 
   "srcText"인 태그를 textArea객체에 저장 후 아무것도 없는 새창(win.document.open())에 teatArea에 있는 값을 그대로 출력하고 새창 입력을 종료
-  합니다(win.document.close();)
+  합니다(win.document.close();). 만약 처음 화면에 출력되어었던 textArea태그에 아무것도 적지 않았다면, 새창이 열리고도 아무것도 출력이 안되는걸
+  볼 수 있습니다.
   
 
 
