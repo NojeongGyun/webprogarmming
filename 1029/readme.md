@@ -38,6 +38,11 @@ spanArray[0] = <span>사과</span>, spanArray[1] = <span>바나나</span>... 이
 
 (ex4)
   <img src="images/Dom활용(4).png" width="500" alt="로고">
+
+- let tagArray = document.getElementsByClassName("place"); 라는 코드를 써 tagArray라는 객체가 Class name이 "place"인 태그가 나온 순서대로
+  tagArray[0]부터 차례대로 넣고, css를 적용하고, let tagArray = document.getElementsByClassName("food"); 코드도 마찬가지로 Class name이"food"
+  인 태그가 나온 순서대로 tagArray[0]부터 차례대로 넣습니다. 이떄 tagArray라는 객체는 서로 독립된 공간이기에 공유되지 않습니다. 그렇기에 
+  둘의 함수가 시행되었다고 한들 서로 독립적으로 tagArray[0]부터 증가 됩니다.
   
 - <mark>this</mark> -
 this는 현재 실행중인 객체를 가리키는 키워드입니다.
