@@ -167,6 +167,17 @@ addEventListener사용 방법은 [객체.addEventListener("이벤트", 함수)] 
 
 - <mark>다양한 이벤트</mark> -
 
+<b>마우스 이벤트</b> -
+onclick - HTML 태그가 클릭될 때
+ondblclick - HTML 태그가 더블 클릭될 때
+onmousedown - 마우스 버튼을 누르는 순간
+onmouseup - 눌러진 버튼이 놓여지는 순간
+onmouseover - 마우스가 태그 위로 올라오는 순간. 자식 영역 포함
+onmouseout - 마우스가 태그 위로 올라오는 순간. 자식 영역 포함
+onmouseenter - 마우스가 태그 위로 올라오는 순간. 버블 단계 없음
+onmouseleave - 마우스가 태그 위로 올라오는 순간. 버블 단계 없음
+onwheel - HTML 태그에 마우스 휠이 구르는 동안 계속 호출
+          (휠을 위로 굴리면 wheelDelta > 0, 아래로 굴리면 wheelDelta < 0)
 
 
   
