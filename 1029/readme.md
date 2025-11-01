@@ -204,46 +204,21 @@ HTML 문서의 <img> 태그는 자바스크립트에서 이미지 객체로 표�
 
 - 이 예제는 클릭할때 마다 src가 바뀌고, 바뀌는걸 토대로 img태그를 써서 출력하고 있습니다.
   
---chapter 9-
+- <mark>포커스</mark> -
+포커스는 키보드 입력을 받을 준비가 되어 있는 상태입니다. 포커스 관련 이벤트 리스너로는 onblur, onfocus가 있고,
+각 포커스를 잃었을떄, 포커스를 얻었을 떄의 이벤트 리스너 입니다.
 
-  
+- <mark>다양한 객체</mark> -
 
-p23
-클릭이벤트가 있으면 모든 노드에서 이벤트 타켓을 찾고(이벤트 캡쳐단계) = 위에서 아래로 이벤트 리스너를 찾는 것
-해당 이벤트에서  window까지가는 단계를 event bubble 이라고 함
+<b>라디오 객체</b>
+라디오는 같은 name이나 class name 속성을 가진 그룹 내에서 하나만 선택 가능합니다. 그렇기에 라디오 객체를 만들려고 한다면
+ document.getElementsByName(이름), document.getElementsByClassName(이름), document.getElementsByID(이름) 을 써서 
+라디오 객체를 만드는데, 라디오의 특성상 같은 name으로 그룹화를 하기에 보통 document.getElementsByName(이름)를 많이 씁니다.
 
-p11
-익명함수는 호출 되었을 때 이름을 부여함
-
-p13 시험문제 내기 좋음
-
-p15
-이벤트 리스너 객체 e는 자동으로 만들어짐 
-e는 메소드하고, 프롬퍼티의 정보가 들어있음
-접근은 e.(명령)으로 접근 해 주면 됩니다.
-
-
-p19
-이벤트 디폴트로 이벤트의 행동을 취소할 수 있다.
-
-
-p27
-이벤트 흐름을 event.stopPropagation();로 중단 시킬 수 있음
-
-p30
-마우스 이벤트 
-
-p43
-포커스 = 마우스가 위에 있는거
-onblur = 포커스를 잃었을때
-onfocus = 포커스를 얻었을때
-
-p45
-라디오의 옵션을 추가할려면 같은 이름의 밸류를 채워야한다
-
-
-
-
+<b>체크박스 객체</b>
+체크박스는 라디오랑 달리 같은 여러개 선택가능하다는 특성이 있습니다. 체크 박스 객체를 생성할때도 마찬가지로 
+ document.getElementsByName(이름), document.getElementsByClassName(이름), document.getElementsByID(이름)를 
+써서 체크박스 객체를 만들 수 있습니다.
 
 
 
