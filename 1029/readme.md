@@ -235,9 +235,16 @@ document.getElementsByClassName(이름), document.getElementById(이름) 등을 
 select객체.options[인덱스번호].selected를 사용해 특정 선택지를 선택할 수도 있습니다. 또한 select에는 onchange
 라는 이벤트 리스너가 있어, 콤보박스의 선택이 변경될 때마다 해당 이벤트가 발생하고 지정된 행동이 실행됩니다.
 
+<b>reset</b> -
+input type="reset"에서 reset버튼을 클릭하면 onreset 이벤트 리스너가 실행됩니다.
+만약 이벤트 핸들러에서 false를 반환하면, 폼은 초기화되지 않습니다. 초기화는 폼 단위로
+이루어 지기에 이벤트 리스너를 사용 할 떄 form태그를 달아야합니다
 
-
-
+  
+<b>submit</b> -
+input type="submit"에서 submit버튼을 클릭하면 onsubmit 이벤트 리스너가 실행됩니다.
+만약 이벤트 핸들러에서 false를 반환하면, 폼은 초기화되지 않습니다. 제출은 폼 단위로
+이루어 지기에 이벤트 리스너를 사용 할 떄 form태그를 달아야합니다
 
 
 
