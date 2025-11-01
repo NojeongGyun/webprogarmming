@@ -189,6 +189,9 @@ onwheel - HTML 태그에 마우스 휠이 구르는 동안 계속 호출
 이벤트 객체.button - 0(아무것도 안눌림), 1(왼쪽 버튼 눌림), 2(오른쪽 버튼 눌림), 3(오른쪽, 왼쪽 둘다 눌림), 4(중간버튼 눌림) 
 가 있습니다.
 
+<b>키 이벤트</b> -
+
+            
 - <mark>포커스</mark> -
 포커스는 키보드 입력을 받을 준비가 되어 있는 상태입니다. 포커스 관련 이벤트 리스너로는 onblur, onfocus가 있고,
 각 포커스를 잃었을떄, 포커스를 얻었을 떄의 이벤트 리스너 입니다.
@@ -213,13 +216,22 @@ HTML 문서의 <img> 태그는 자바스크립트에서 이미지 객체로 표�
 라디오는 같은 name이나 class name 속성을 가진 그룹 내에서 하나만 선택 가능합니다. 그렇기에 라디오 객체를 만들려고 한다면
  document.getElementsByName(이름), document.getElementsByClassName(이름), document.getElementsByID(이름) 을 써서 
 라디오 객체를 만드는데, 라디오의 특성상 같은 name으로 그룹화를 하기에 보통 document.getElementsByName(이름)를 많이 씁니다.
-
+라디오객체.checked를 하면 라디오버튼 체크의 유무를 알 수 있고, 라디오객체.value를 하면 라디오 버튼이 어떤게 선택 되었는지
+알 수 있습니다.
+    
 <b>체크박스 객체</b>
 체크박스는 라디오랑 달리 같은 여러개 선택가능하다는 특성이 있습니다. 체크 박스 객체를 생성할때도 마찬가지로 
  document.getElementsByName(이름), document.getElementsByClassName(이름), document.getElementsByID(이름)를 
-써서 체크박스 객체를 만들 수 있습니다.
+써서 체크박스 객체를 만들 수 있습니다. 라디오객체.checked를 하면 체크박스 체크의 유무를 알 수 있고, 
+체크박스.value를 하면 라디오 버튼이 어떤게 선택 되었는지 알 수 있습니다.
 
-
+<b>select 객체</b> -
+<select>는 콤보박스에서 선택지 중 하나만 선택할 수 있습니다. select 객체는 document.getElementsByName(이름),
+document.getElementsByClassName(이름), document.getElementById(이름) 등을 통해 생성하거나 가져올 수 있습니다. 
+콤보박스의 선택지는 HTML에 작성된 순서대로 인덱스가 매겨지며, 맨 위의 선택지가 인덱스 0이고, 이후 들어오는 
+선택지는 1씩 증가합니다. 현재 선택된 항목의 인덱스는 select객체.selectedIndex로 확인할 수 있고, 이를 바탕으로 
+select객체.options[인덱스번호].selected를 사용해 특정 선택지를 선택할 수도 있습니다. 또한 select에는 onchange
+라는 이벤트 리스너가 있어, 콤보박스의 선택이 변경될 때마다 해당 이벤트가 발생하고 지정된 행동이 실행됩니다.
 
 
 
