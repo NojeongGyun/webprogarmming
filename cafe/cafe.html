@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오세요수제디저트 카페</title>
+    <meta name="description" content="따뜻하고 맛있는 수제 디저트와 음료를 즐기실 수 있는 오세요 카페입니다">
+    
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* 기본 스타일 및 리셋 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* 새 배경 스타일 */
+            font-family: 'Noto Sans KR', sans-serif; /* 전체 폰트 변경 */
+            background: linear-gradient(to bottom right, hsl(35, 25%, 96%), hsl(45, 30%, 92%)); /* 부드러운 베이지 그라데이션 */
+            background-attachment: fixed; /* 스크롤 시 배경 고정 */
+            color: hsl(25, 35%, 15%);
+            line-height: 1.6;
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+            
+            /* 배경에 은은한 텍스처 추가 (선택 사항) */
+            /* background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MC 可愛cE9MIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+PHxnIGZpbGw9IiMwMDAwMDAiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTktNGwxMSAxMVY0LjI1TDQuMjUgOWg0Ljc1eiIvPjwvZz48L2c+PC9zdmc+'); */
+        }
+
+        /* 헤더 스타일 */
+        header {
+            /* 새 헤더 배경 스타일 */
+            background: linear-gradient(to right, hsl(25, 45%, 45%), hsl(35, 55%, 35%)); /* 고급스러운 갈색 그라데이션 */
+            color: hsl(30, 20%, 98%);
+            padding: 2.5rem 1rem; /* 패딩 증가 */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* 그림자 강화 */
+            position: sticky; /* 상단 고정 */
+            top: 0;
+            z-index: 1000; /* 다른 요소 위에 오도록 설정 */
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif; /* 타이틀 폰트 변경 */
+            text-align: center;
+            font-size: 3.5rem; /* 폰트 크기 증가 */
+            margin-bottom: 0.75rem; /* 여백 증가 */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* 텍스트 그림자 */
+            letter-spacing: 0.1rem; /* 자간 조절 */
+        }
+
+        header p {
+            font-family: 'Noto Sans KR', sans-serif; /* 부제목 폰트 */
+            text-align: center;
+            font-size: 1.25rem; /* 폰트 크기 증가 */
+            opacity: 0.9;
+            font-weight: 300; /* 얇은 글씨 */
+            letter-spacing: 0.05rem; /* 자간 조절 */
+            color: hsl(30, 20%, 90%); /* 살짝 어두운 흰색 */
+        }
+
+        .main-wrapper {
+            display: flex;
+            flex-grow: 1;
+            max-width: 1600px;
+            margin: 3rem auto;
+            padding: 0 1rem;
+            width: 100%;
+        }
+
+        .container {
+            flex: 3;
+            padding-right: 2rem;
+        }
+
+        /* --- 사이드바 컨테이너 스타일 --- */
+        #sidebar {
+            flex: 1;
+            position: sticky;
+            top: 8rem; /* 헤더 높이 고려하여 조정 */
+            align-self: flex-start;
+            height: fit-content;
+        }
+        
+        /* --- 오늘의 계산왕 섹션 스타일 --- */
+        #calculator-section {
+            padding: 1.5rem;
+            background-color: hsl(30, 20%, 98%);
+            border-radius: 1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid hsl(35, 60%, 70%);
+            margin-bottom: 1.5rem;
+        }
+
+        #calculator-section h2 {
+            font-size: 1.5rem;
+            color: hsl(25, 45%, 40%);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid hsl(35, 60%, 70%);
+            padding-bottom: 0.5rem;
+        }
+        
+        /* 인원 수 입력 필드 스타일 */
+        .input-group {
+            margin-bottom: 1rem;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            font-weight: bold;
+            color: hsl(25, 35%, 15%);
+        }
+
+        .input-group input[type="number"] {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid hsl(35, 60%, 70%);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .confirm-button {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: hsl(35, 60%, 70%);
+            color: hsl(25, 35%, 15%);
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-bottom: 0.5rem;
+        }
+        
+        .confirm-button.present {
+            background-color: hsl(25, 45%, 50%);
+            color: white;
+        }
+
+        .confirm-button:hover {
+            background-color: hsl(35, 70%, 60%);
+        }
+        
+        .confirm-button.present:hover {
+            background-color: hsl(25, 60%, 60%);
+        }
+        
+        /* --- 알파벳 표시 영역 스타일 --- */
+        #participant-display-area {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid hsl(35, 60%, 70%);
+            text-align: center;
+            font-weight: 500;
+        }
+
+        /* 제시된 모든 알파벳을 보여주는 팔레트 */
+        .participant-palette {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 0.75rem;
+            margin-bottom: 1.5rem;
+            min-height: 30px;
+        }
+
+        /* 팔레트의 개별 알파벳 스와치 */
+        .participant-swatch {
+            width: 30px;
+            height: 30px;
+            border-radius: 5px;
+            border: 2px solid white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            transition: all 0.3s ease-in-out;
+            cursor: default;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #333;
+            font-size: 1.1rem;
+        }
+        
+        /* 최종 선택된 알파벳 스와치 */
+        #selected-participant-swatch {
+            width: 60px;
+            height: 60px;
+            margin: 0.75rem auto 0;
+            border-radius: 50%;
+            border: 5px solid hsl(25, 45%, 40%);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            text-align: center;
+            line-height: 50px;
+            font-size: 2rem;
+            font-weight: bold;
+            color: hsl(25, 35%, 15%);
+            background-color: #E9E9E9;
+        }
+
+        /* --- 장바구니 요약 영역 스타일 --- */
+        #cart-summary {
+            padding: 1.5rem;
+            background-color: hsl(30, 20%, 98%);
+            border-radius: 1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid hsl(35, 60%, 70%);
+        }
+
+        #cart-summary h2 {
+            font-size: 1.5rem;
+            color: hsl(25, 45%, 40%);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid hsl(35, 60%, 70%);
+            padding-bottom: 0.5rem;
+        }
+
+        /* 장바구니 정보 그룹 */
+        .cart-info {
+            margin-bottom: 0.75rem; 
+        }
+
+        /* 총 개수와 금액 정보가 담긴 각 <p> 태그 (각각 한 줄) */
+        .cart-info p {
+            font-size: 1.125rem;
+            margin-bottom: 0.75rem;
+            display: flex; 
+            justify-content: space-between; 
+            white-space: nowrap; 
+        }
+        
+        /* 예상 결제 금액 항목 스타일 */
+        .cart-info .total {
+            font-weight: bold;
+            font-size: 1.25rem;
+            color: hsl(25, 45%, 40%);
+            padding-top: 0.5rem;
+            border-top: 1px dashed hsl(25, 15%, 45%, 0.5);
+            margin-bottom: 0;
+        }
+        
+        /* 장바구니 상세 목록 스타일 */
+        #cart-details {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid hsl(30, 20%, 85%);
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            background-color: hsl(35, 25%, 96%);
+            border-radius: 0.5rem;
+            white-space: nowrap; 
+            overflow: hidden; 
+        }
+        
+        .cart-item-name {
+            font-weight: 500;
+            flex-grow: 1;
+            min-width: 50px; 
+            overflow: hidden; 
+            text-overflow: ellipsis;
+        }
+        
+        .cart-item-qty {
+            font-weight: bold;
+            color: hsl(25, 45%, 40%);
+            margin-left: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 1024px) {
+            .main-wrapper {
+                flex-direction: column;
+                margin: 2rem auto;
+            }
+
+            .container {
+                padding-right: 0;
+                margin-bottom: 2rem;
+            }
+
+            #sidebar {
+                position: static;
+                width: 100%;
+                top: 2rem; /* 헤더가 줄어들었을 때 사이드바 고정 위치 조정 */
+            }
+            header h1 {
+                font-size: 2.5rem;
+            }
+            header p {
+                font-size: 1rem;
+            }
+        }
+        
+        /* 메뉴 레이아웃 */
+        .menu-row {
+            display: grid;
+            grid-template-columns: 1fr; 
+            gap: 1.5rem;
+            margin-bottom: 3rem; 
+            align-items: start; 
+        }
+
+        @media (min-width: 768px) {
+            .menu-row {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: hsl(25, 45%, 40%);
+            border-bottom: 2px solid hsl(35, 60%, 70%);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .menu-item {
+            background-color: hsl(30, 20%, 98%);
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 0.5rem;
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+        }
+        
+        /* 메뉴 정보 및 템프/맛 선택 영역 (왼쪽 그룹) */
+        .menu-info-group {
+            display: flex; 
+            flex-direction: column; 
+            align-items: flex-start; 
+            flex-grow: 1; 
+            margin-right: 0.5rem; 
+            white-space: nowrap; 
+            overflow: hidden; 
+        }
+
+        /* 메뉴 이름, 옵션, 가격을 묶는 그룹 */
+        .menu-details-line {
+            display: flex; 
+            align-items: center; /* 세로 정렬 */
+            width: 100%; 
+            margin-top: 0.5rem; 
+            overflow: hidden;
+            white-space: nowrap; 
+        }
+
+        /* 메뉴 이름 (가변적으로 공간 사용) */
+        .menu-item-name {
+            font-weight: 500;
+            color: hsl(25, 35%, 15%);
+            flex-shrink: 1; 
+            cursor: pointer;
+            text-overflow: ellipsis; 
+            overflow: hidden;
+            white-space: nowrap; 
+            min-width: 50px; 
+            margin-left: 0.5rem; /* 옵션 버튼과의 간격 */
+            margin-right: 0.5rem;
+        }
+        
+        .menu-item-price {
+            color: hsl(25, 15%, 45%);
+            font-weight: 600;
+            margin-left: auto; /* 가격을 오른쪽 끝으로 밀어냅니다. */
+            white-space: nowrap;
+            flex-shrink: 0; 
+        }
+        
+        /* --- 템프/맛 선택 버튼 스타일 (공통) --- */
+        .temp-selection, .flavor-selection {
+            display: flex; /* 버튼을 한 줄로 정렬 */
+            font-size: 0.8rem;
+            border: 1px solid hsl(35, 60%, 70%);
+            border-radius: 5px;
+            overflow: hidden;
+            flex-shrink: 0; 
+            margin-bottom: 0; /* 마진 제거 */
+        }
+        
+        .temp-selection label, .flavor-selection label {
+            padding: 0.3rem 0.5rem;
+            cursor: pointer;
+            background-color: hsl(30, 20%, 98%);
+            color: hsl(25, 35%, 15%);
+            transition: all 0.2s; /* 부드러운 전환 효과 */
+            white-space: nowrap;
+            display: inline-block; /* 한 줄 정렬을 위한 설정 */
+        }
+
+        .temp-selection input[type="radio"], .flavor-selection input[type="radio"] {
+            display: none;
+        }
+        
+        .temp-selection input[type="radio"]:checked + label,
+        .flavor-selection input[type="radio"]:checked + label {
+            background-color: hsl(25, 45%, 40%);
+            color: white;
+            font-weight: bold;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2); /* 선택 시 그림자 강조 */
+        }
+
+        .temp-selection label:not(:last-child),
+        .flavor-selection label:not(:last-child) { 
+             border-right: 1px solid hsl(35, 60%, 70%); 
+        }
+        /* --- /템프/맛 선택 버튼 스타일 --- */
+
+        /* --- 수량 조절 버튼 스타일 (가장 오른쪽) --- */
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            background-color: hsl(35, 60%, 70%, 0.3);
+            border-radius: 0.5rem;
+            margin-left: auto; 
+            flex-shrink: 0; 
+        }
+        
+        .quantity-controls button {
+            background-color: hsl(25, 45%, 40%);
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            line-height: 1;
+            padding: 0;
+            border-radius: 0.5rem;
+        }
+
+        .quantity-controls button:hover {
+            background-color: hsl(25, 60%, 50%);
+        }
+
+        .quantity-controls .quantity {
+            width: 30px;
+            text-align: center;
+            font-weight: bold;
+            color: hsl(25, 35%, 15%);
+            padding: 0 5px;
+        }
+        /* --- /수량 조절 버튼 스타일 --- */
+        
+        /* 이미지 디스플레이 스타일 */
+        .image-display { background-color: hsl(30, 20%, 98%); border-radius: 1rem; box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); padding: 1.5rem; margin-top: 1rem; margin-bottom: 1rem; display: none; flex-direction: column; align-items: center; justify-content: center; animation: fadeIn 0.3s ease; position: relative; }
+        .image-display.show { display: flex; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        .image-display h3 { font-size: 1.5rem; font-weight: bold; color: hsl(25, 45%, 40%); margin-bottom: 1rem; text-align: center; }
+        .image-display-price { font-size: 1.25rem; color: hsl(35, 60%, 70%); font-weight: 600; margin-bottom: 1.5rem; }
+        .image-container { width: 100%; aspect-ratio: 1; background-color: hsl(30, 25%, 90%); border-radius: 0.75rem; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .image-container img { width: 100%; height: 100%; object-fit: cover; }
+        .placeholder-text { text-align: center; color: hsl(25, 15%, 45%); padding: 2rem; }
+        .close-button { position: absolute; top: 10px; right: 10px; background-color: hsl(25, 45%, 40%); color: white; border: none; border-radius: 50%; width: 30px; height: 30px; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; line-height: 1; padding-bottom: 2px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); transition: background-color 0.2s ease; z-index: 10; }
+        .close-button:hover { background-color: hsl(25, 60%, 50%); }
+
+        footer {
+            background-color: hsl(30, 20%, 98%);
+            border-top: 1px solid hsl(30, 20%, 85%);
+            padding: 1.5rem 1rem;
+            margin-top: auto;
+            text-align: center;
+            color: hsl(25, 15%, 45%);
+            box-shadow: 0 -2px 8px rgba(0,0,0,0.05); /* 푸터 그림자 추가 */
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 1.5rem 1rem;
+            }
+            header h1 {
+                font-size: 2rem;
+            }
+            header p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>오세요수제디저트 카페</h1>
+        <p>COFFEE & DESSERT</p>
+    </header>
+
+    <div class="main-wrapper">
+        <div class="container">
+            <div id="menu-container"></div> 
+        </div>
+
+        <aside id="sidebar">
+            <section id="calculator-section">
+                <h2>오늘의 계산왕 👑</h2>
+                
+                <div class="input-group">
+                    <label for="participant-count">참여 인원 수 (최대 26명)</label>
+                    <input type="number" id="participant-count" min="2" max="26" value="4">
+                </div>
+                
+                <button class="confirm-button present" id="present-button" onclick="presentParticipants()">인원 수 확정 및 알파벳 제시</button>
+                <button class="confirm-button" id="pick-button" onclick="pickWinnerParticipant()" style="display: none;">계산왕 뽑기!</button>
+                
+                <div id="participant-display-area">
+                    <p>제시된 알파벳:</p>
+                    <div class="participant-palette" id="participant-palette">
+                        </div>
+                    <p>뽑힌 계산왕:</p>
+                    <div class="participant-swatch" id="selected-participant-swatch">
+                        ?
+                    </div>
+                </div>
+            </section>
+            <section id="cart-summary">
+                <h2>🛒 장바구니 요약</h2>
+                <div class="cart-info">
+                    <p>총 메뉴 개수: <span id="total-items">0개</span></p>
+                    <p class="total">예상 결제 금액: <span id="total-price">0원</span></p>
+                </div>
+                <div id="cart-details">
+                </div>
+            </section>
+            </aside>
+    </div>
+
+    <footer>
+        <p>© 2025 오세요수제디저트 카페. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // 전역 변수로 현재 제시된 알파벳 목록을 저장
+        window.currentParticipants = [];
+
+        // --- 메뉴 데이터 및 장바구니 로직 ---
+        
+        function parsePrice(price) {
+            if (typeof price === 'number') return price;
+            if (typeof price === 'object') return price.hot; 
+            const cleanedPrice = String(price).split('/')[0].replace(/[^0-9]/g, '');
+            return parseInt(cleanedPrice) || 0;
+        }
+
+        const menuData = {
+            "오세요 시그니처": [
+                { id: 1, name: "몬드라떼(only ice)", price: 5500, tempOption: 'ice', image: "https://via.placeholder.com/400x400/FFDDC1/8B4513?text=Ond+Latte" },
+                { id: 2, name: "라벤더라떼(only ice)", price: 5500, tempOption: 'ice', image: "https://via.placeholder.com/400x400/FFDDCC/8B4513?text=Omil+Diole" },
+                { id: 3, name: "오렌지셔벗에이드(only ice)", price: 5500, tempOption: 'ice', image: "images/오렌지셔벗스파클링.jpg" },
+                { id: 4, name: "냉율무(only ice)", price: 4500, tempOption: 'ice', image: "images/냉율무.jpg" }
+            ], 
+            "프라페": [
+                { id: 5, name: "에스프레소 메가톤", price: 5000, tempOption: 'none', image: "https://via.placeholder.com/400x400/D2B48C/8B4513?text=Espresso+Macaron" },
+                { id: 6, name: "더블자바칩", price: 5000, tempOption: 'none', image: "https://via.placeholder.com/400x400/FFE4B5/8B4513?text=Double+Chivanil" },
+                { id: 7, name: "오레오레오", price: 5000, tempOption: 'none', image: "https://via.placeholder.com/400x400/2F4F4F/FFFFFF?text=Oreo" },
+                { id: 8, name: "순수밀크", price: 5000, tempOption: 'none', image: "https://via.placeholder.com/400x400/F8F8FF/8B4513?text=Pure+Milk" }
+            ], 
+            "밀크드링크": [
+                { id: 9, name: "퓨어 그린티 라떼(hot/ice)", price: 4000, tempOption: 'optional', image: "images/퓨어그린티라떼.jpg" },
+                { id: 10, name: "로얄 밀크티", price: 4000, tempOption: 'none', image: "https://via.placeholder.com/400x400/B0E0E6/8B4513?text=Konjac+Aloe" },
+                { id: 11, name: "밀크 초콜릿", price: 4000, tempOption: 'optional', image: "https://via.placeholder.com/400x400/8B4513/FFFFFF?text=Milk+Chocolate" },
+                { id: 12, name: "고구마 라떼", price: 4500, tempOption: 'optional', image: "https://via.placeholder.com/400x400/FFDAB9/8B4513?text=Sweet+Potato+Latte" },
+                { id: 13, name: "오트밀 라떼", price: 4500, tempOption: 'none', image: "https://via.placeholder.com/400x400/FFA500/FFFFFF?text=Orange+Latte" }
+            ], 
+            "수제 베이커리": [
+                { id: 14, name: "시오빵(소금빵)", price: 3000, tempOption: 'none', image: "images/소금빵.jpg" },
+                { id: 15, name: "먹물소금빵", price: 4000, tempOption: 'none', image: "images/먹물소금빵" },
+                { id: 16, name: "찐밤식빵", price: 8000, tempOption: 'none', image: "images/찐밤식빵.jpg" },
+                { id: 17, name: "밀크브레드-버터모님빵", price: 6000, tempOption: 'none', image: "images/밀크브레드.jpg" },
+                { id: 18, name: "찹쌀떡 소금빵", price: 4000, tempOption: 'none', image: "https://via.placeholder.com/400x400/FFFAF0/8B4513?text=Rice+Cake+Shio+Bread" }
+            ], 
+            "휘낭시에": [
+                { id: 19, name: "플레인 휘낭시에", price: 1500, tempOption: 'none', image: "https://via.placeholder.com/400x400/F5DEB3/8B4513?text=Plain+Financier" },
+                { id: 20, name: "누룽지 휘낭시에", price: 2500, tempOption: 'none', image: "images/누룽지휘낭시에.jpg" },
+                { id: 21, name: "고르곤졸라 휘낭시에", price: 1500, tempOption: 'none', image: "https://via.placeholder.com/400x400/E0FFFF/8B4513?text=Gorgonzola+Financier" },
+                { id: 22, name: "무화과 휘낭시에", price: 2500, tempOption: 'none', image: "https://via.placeholder.com/400x400/FDD017/8B4513?text=Fig+Financier" },
+                { id: 23, name: "초코 카라멜 휘낭시에", price: 2500, tempOption: 'none', image: "https://via.placeholder.com/400x400/A0522D/FFFFFF?text=Choco+Caramel+Financier" },
+                { id: 24, name: "두바이 초코 휘낭시에", price: 5500, tempOption: 'none', image: "https://via.placeholder.com/400x400/4F2C0A/FFFFFF?text=Dubai+Choco+Financier" }
+            ], 
+            "구움과자": [
+                { id: 25, name: "흑임자찰떡 쿠키", price: 2500, tempOption: 'none', image: "https://via.placeholder.com/400x400/2F4F4F/FFFFFF?text=Black+Sesame+Cookie" },
+                { id: 26, name: "에그타르트", price: 3000, tempOption: 'none', image: "images/에그타르트.jpg" },
+                { id: 27, name: "커피피칸마들렌", price: 2500, tempOption: 'none', image: "images/커피피칸마들렌.jpg" },
+                { id: 28, name: "피칸파이", price: 2500, tempOption: 'none', image: "https://via.placeholder.com/400x400/CD853F/FFFFFF?text=Pecan+Pie" },
+                { id: 29, name: "프레첼스콘", price: 2500, tempOption: 'none', image: "https://via.placeholder.com/400x400/F5DEB3/8B4513?text=Pretzel+Scone" },
+                { id: 30, name: "흑임자마들렌", price: 2500, tempOption: 'none', image: "https://via.placeholder.com/400x400/2F4F4F/FFFFFF?text=Black+Sesame+Madeleine" }
+            ], 
+            "커피": [
+                { id: 31, name: "에스프레소", price: 2800, tempOption: 'optional', image: "https://via.placeholder.com/400x400/6F4E37/FFFFFF?text=Espresso" },
+                { id: 32, name: "아메리카노(hot/ice)", price: 2800, tempOption: 'optional', image: "images/아메리카노.jpg" },
+                { id: 33, name: "카페 라떼", price: { hot: 4000, ice: 4300 }, tempOption: 'optional', image: "images/카페라떼.jpg" },
+                { id: 34, name: "바닐라 라떼", price: { hot: 4000, ice: 4300 }, tempOption: 'optional', image: "images/바닐라라떼.jpg" },
+                { id: 35, name: "카페모카", price: { hot: 4000, ice: 4300 }, tempOption: 'optional', image: "https://via.placeholder.com/400x400/8B4513/FFFFFF?text=Cafe+Mocha" },
+                { id: 36, name: "카라멜 마끼아또", price: { hot: 4000, ice: 4300 }, tempOption: 'optional', image: "https://via.placeholder.com/400x400/D2B48C/8B4513?text=Caramel+Macchiato" },
+                { id: 37, name: "플랫화이트(hot/ice)", price: 4000, tempOption: 'optional', image: "https://via.placeholder.com/400x400/DCDCDC/8B4513?text=Flat+White" },
+                { id: 38, name: "크림 아이리카노(hot/ice)", price: 4800, tempOption: 'optional', image: "https://via.placeholder.com/400x400/F5F5DC/8B4513?text=Cream+Americano" }
+            ], 
+            "조각케이크": [
+                { id: 39, name: "(현 - 골드키위)과일우유 생크림 케이크", price: 6000, tempOption: 'none', image: "images/과일우유 생크림 케이크.jpg" },
+                { id: 40, name: "오레오 초코 케이크", price: 6000, tempOption: 'none', image: "https://via.placeholder.com/400x400/2F4F4F/FFFFFF?text=Oreo+Chocolate+Cake" },
+                { id: 41, name: "골드구마 케이크", price: 6000, tempOption: 'none', image: "https://via.placeholder.com/400x400/FFDAB9/8B4513?text=Gold+Sweet+Potato+Cake" },
+                { id: 42, name: "더블치즈 케이크", price: 6000, tempOption: 'none', image: "https://via.placeholder.com/400x400/FDF5E6/8B4513?text=Double+Cheese+Cake" },
+                { id: 43, name: "바스크치즈 케이크", price: 6000, tempOption: 'none', image: "images/바스크치즈케이크.jpg" },
+                { id: 44, name: "티라미수 한모오리지널 케이크", price: 8500, tempOption: 'none', image: "images/티라미수 한모오리지널 케이크.jpg" },
+                { id: 45, name: "브라우니 케이크", price: 6000, tempOption: 'none', image: "https://via.placeholder.com/400x400/8B4513/FFFFFF?text=Brownie+Cake" }
+            ], 
+            "스파클링": [
+                { id: 46, name: "리얼자두", price: 4500, tempOption: 'none', image: "https://via.placeholder.com/400x400/BFFF00/8B4513?text=Lime+Sour" },
+                { id: 47, name: "리얼피치", price: 4500, tempOption: 'none', image: "https://via.placeholder.com/400x400/FFDAB9/8B4513?text=Lime+Peach" },
+                { id: 48, name: "리얼망고", price: 4500, tempOption: 'none', image: "https://via.placeholder.com/400x400/FFBF00/8B4513?text=Lime+Mango" },
+                { id: 49, name: "리얼레몬", price: 4500, tempOption: 'none', image: "https://via.placeholder.com/400x400/FFFF99/8B4513?text=Lime+Lemon" },
+                { id: 50, name: "리얼샤인머스컷", price: 4500, tempOption: 'none', image: "https://via.placeholder.com/400x400/ADFF2F/8B4513?text=Lime+Muscat" },
+                { id: 51, name: "리얼청자몽", price: 4500, tempOption: 'none', image: "https://via.placeholder.com/400x400/7CFC00/8B4513?text=Lime+Green+Apple" },
+                { id: 52, name: "자몽자몽", price: 4500, tempOption: 'none', image: "https://via.placeholder.com/400x400/FF8C69/FFFFFF?text=Grapefruit" },
+                { id: 53, name: "히비스커스라임", price: 4500, tempOption: 'none', image: "https://via.placeholder.com/400x400/FFD700/8B4513?text=Honey+Scandal" },
+                { id: 54, name: "리얼수제자몽", price: 6000, tempOption: 'none', image: "https://via.placeholder.com/400x400/B0E0E6/8B4513?text=Lime+Supesham" }
+            ], 
+            "스무디": [
+                { id: 55, name: "요거트 스무디", price: 5000, tempOption: 'flavor', flavors: ['딸기', '망고', '리얼 피치', '블루베리'], image: "https://via.placeholder.com/400x400/F0FFF0/8B4513?text=Yogurt+Smoothie" },
+                { id: 56, name: "리얼 자두 스무디", price: 5000, tempOption: 'none', image: "https://via.placeholder.com/400x400/DAA3A3/FFFFFF?text=Plum+Smoothie" },
+                { id: 57, name: "리얼 청자몽 스무디", price: 5000, tempOption: 'none', image: "https://via.placeholder.com/400x400/98FB98/FFFFFF?text=Green+Apple+Smoothie" }
+            ], 
+            "냉장 디저트": [
+                { id: 58, name: "바닐라 푸딩", price: 6000, tempOption: 'none', image: "images/바닐라푸딩.jpg" },
+                { id: 59, name: "블론디", price: 2500, tempOption: 'none', image: "images/블론디.jpg" },
+                { id: 60, name: "쫀득버터바", price: 2500, tempOption: 'none', image: "images/쫀득버터바.jpg" }
+            ], 
+            "버블티": [
+                { id: 61, name: "흑당 버블티", price: 4500, tempOption: 'none', image: "https://via.placeholder.com/400x400/654321/FFFFFF?text=Brown+Sugar+Bubble+Tea" },
+                { id: 62, name: "카페 흑당 버블티", price: 4500, tempOption: 'none', image: "https://via.placeholder.com/400x400/4A2C0A/FFFFFF?text=Coffee+Brown+Sugar+Bubble+Tea" },
+                { id: 63, name: "돼지바 버블티", price: 4500, tempOption: 'none', image: "https://via.placeholder.com/400x400/B0C4DE/8B4513?text=Dessert+Bubble+Tea" }
+            ], 
+            "티": [
+                { id: 64, name: "리얼 자두(hot/ice)", price: { hot: 4500, ice: 5000 }, tempOption: 'optional', image: "https://via.placeholder.com/400x400/DAA3A3/FFFFFF?text=Real+Plum+Tea" },
+                { id: 65, name: "리얼 청사과 수제(hot/ice)", price: { hot: 5500, ice: 6000 }, tempOption: 'optional', image: "https://via.placeholder.com/400x400/98FB98/FFFFFF?text=Real+Green+Apple+Tea" }
+            ], 
+            "키즈": [
+                { id: 66, name: "피치요거트 스무디", price: 3000, tempOption: 'none', image: "https://via.placeholder.com/400x400/FFDAB9/8B4513?text=Peach+Yogurt" },
+                { id: 67, name: "밀크 초콜릿", price: 3000, tempOption: 'optional', image: "https://via.placeholder.com/400x400/8B4513/FFFFFF?text=Kids+Milk+Chocolate" }
+            ], 
+            "시즌메뉴": [
+                { id: 68, name: "수제생강라떼(only hot)", price: 5000, tempOption: 'hot', image: "https://via.placeholder.com/400x400/E6BC5A/8B4513?text=Ginger+Latte" },
+                { id: 69, name: "과일쥬스(제철과일)", price: 5000, tempOption: 'none', image: "https://via.placeholder.com/400x400/B0E0E6/8B4513?text=Fruit+Juice" }
+            ],
+            "수제마카롱": [
+                { id: 70, name: "마카롱", price: 1500, tempOption: 'none', image: "images/마카롱.jpg" }
+            ] 
+        };
+        
+        const cart = {};
+        let selectedItem = null;
+        let currentImageDisplay = null;
+        
+        const menuGroups = [
+            ["오세요 시그니처", "프라페", "밀크드링크"], 
+            ["수제 베이커리", "휘낭시에", "구움과자"], 
+            ["커피", "조각케이크", "스파클링"], 
+            ["스무디", "냉장 디저트", "버블티"], 
+            ["티", "키즈", "시즌메뉴"],
+            ["수제마카롱"] 
+        ];
+
+
+        function findItemById(itemId) {
+            for (const category in menuData) {
+                const item = menuData[category].find(i => i.id === itemId);
+                if (item) return item;
+            }
+            return null;
+        }
+
+        function getPriceText(price, option) {
+            let actualPrice = 0;
+            if (typeof price === 'object') {
+                actualPrice = price[option] || price.hot;
+            } else {
+                actualPrice = price;
+            }
+            return `${actualPrice.toLocaleString()}원`;
+        }
+
+        function getSelectedOption(itemId, menuItemElement) {
+            const optionInputs = menuItemElement.querySelectorAll(`input[name="option-${itemId}"]:checked`);
+            if (optionInputs.length > 0) {
+                return optionInputs[0].value;
+            }
+            const hiddenInput = menuItemElement.querySelector(`input[name="option-${itemId}"][type="hidden"]`);
+            if (hiddenInput) return hiddenInput.value;
+            
+            return 'none';
+        }
+
+        function getItemActualPrice(item, option) {
+            if (typeof item.price === 'object') {
+                return item.price[option] || item.price.hot; 
+            }
+            return item.price;
+        }
+
+        function updateItemPriceDisplay(itemId, newOption, menuItemElement) {
+            const item = findItemById(itemId);
+            if (!item) return;
+
+            const priceDisplay = menuItemElement.querySelector(`#price-display-${itemId}`);
+            if (priceDisplay) {
+                priceDisplay.textContent = getPriceText(item.price, newOption);
+            }
+            
+            const oldQtyEl = menuItemElement.querySelector('.quantity');
+            const cleanNewOption = newOption.replace(/\s/g, '');
+            const cartKey = `${itemId}-${cleanNewOption}`; 
+
+            const newQty = cart[cartKey] ? cart[cartKey].quantity : 0;
+            oldQtyEl.id = `qty-${cartKey}`;
+            oldQtyEl.textContent = newQty;
+        }
+
+        function updateQuantityDisplay(cartKey, quantity) {
+            const qtyElement = document.getElementById(`qty-${cartKey}`);
+            if (qtyElement) {
+                qtyElement.textContent = quantity;
+            }
+        }
+
+        function incrementQuantity(event, itemId, menuItemElement) {
+            event.stopPropagation();
+            
+            const option = getSelectedOption(itemId, menuItemElement);
+            const cleanOption = option.replace(/\s/g, ''); 
+            const cartKey = `${itemId}-${cleanOption}`;
+            const item = findItemById(itemId);
+            if (!item) return;
+
+            if (cart[cartKey]) {
+                cart[cartKey].quantity++;
+            } else {
+                const price = getItemActualPrice(item, option);
+                cart[cartKey] = { item: item, quantity: 1, option: option, price: price };
+            }
+
+            updateQuantityDisplay(cartKey, cart[cartKey].quantity);
+            updateCartSummary();
+        }
+
+        function decrementQuantity(event, itemId, menuItemElement) {
+            event.stopPropagation();
+            
+            const option = getSelectedOption(itemId, menuItemElement);
+            const cleanOption = option.replace(/\s/g, ''); 
+            const cartKey = `${itemId}-${cleanOption}`;
+            
+            if (cart[cartKey]) {
+                cart[cartKey].quantity--;
+                
+                if (cart[cartKey].quantity <= 0) {
+                    delete cart[cartKey];
+                }
+            }
+
+            const quantity = cart[cartKey] ? cart[cartKey].quantity : 0;
+            updateQuantityDisplay(cartKey, quantity);
+            updateCartSummary();
+        }
+
+        function updateCartSummary() {
+            let totalItems = 0;
+            let totalPrice = 0;
+            const cartDetails = document.getElementById('cart-details');
+            cartDetails.innerHTML = ''; 
+
+            const cartKeys = Object.keys(cart).sort((a, b) => {
+                const itemIdA = parseInt(a.split('-')[0]);
+                const itemIdB = parseInt(b.split('-')[0]);
+                return itemIdA - itemIdB;
+            }
+            );
+
+            cartKeys.forEach(cartKey => {
+                const cartItem = cart[cartKey];
+                if (cartItem.quantity > 0) {
+                    totalItems += cartItem.quantity;
+                    totalPrice += cartItem.price * cartItem.quantity;
+
+                    const detailDiv = document.createElement('div');
+                    detailDiv.className = 'cart-item';
+                    
+                    let optionSuffix = '';
+                    
+                    if (cartItem.item.tempOption === 'optional') {
+                        optionSuffix = (cartItem.option === 'hot' ? ' (HOT)' : ' (ICE)');
+                    } else if (cartItem.item.tempOption === 'flavor') {
+                        optionSuffix = ` (${cartItem.option})`;
+                    } else if (cartItem.item.tempOption === 'hot' || cartItem.item.tempOption === 'ice') {
+                        optionSuffix = ''; 
+                    } else {
+                        optionSuffix = '';
+                    }
+
+                    detailDiv.innerHTML = `
+                        <span class="cart-item-name">${cartItem.item.name}${optionSuffix}</span>
+                        <span class="cart-item-qty">${cartItem.quantity}개 / ${(cartItem.price * cartItem.quantity).toLocaleString()}원</span>
+                    `;
+                    cartDetails.appendChild(detailDiv);
+                }
+            });
+
+            document.getElementById('total-items').textContent = `${totalItems}개`;
+            document.getElementById('total-price').textContent = `${totalPrice.toLocaleString()}원`;
+        }
+        
+        function selectItem(menuData, itemId, element) {
+             const item = findItemById(itemId);
+             if (!item) return;
+             
+            if (element.classList.contains('selected') && currentImageDisplay && currentImageDisplay.previousSibling === element) {
+                closeImageDisplay();
+                return;
+            }
+            
+            document.querySelectorAll('.menu-item').forEach(el => {
+                el.classList.remove('selected');
+            });
+
+            if (currentImageDisplay) {
+                currentImageDisplay.remove();
+                currentImageDisplay = null;
+            }
+
+            element.classList.add('selected');
+            selectedItem = item;
+
+            const imageDisplay = document.createElement('div');
+            imageDisplay.className = 'image-display show';
+            
+            let imageContent;
+            const closeButtonHtml = `<button class="close-button" onclick="closeImageDisplay(event)">&times;</button>`;
+            
+            const currentOption = getSelectedOption(itemId, element);
+            const displayPrice = getPriceText(item.price, currentOption);
+
+
+            if (item.image) {
+                imageContent = `
+                    ${closeButtonHtml}
+                    <h3>${item.name}</h3>
+                    <p class="image-display-price">${displayPrice}</p>
+                    <div class="image-container">
+                        <img src="${item.image}" alt="${item.name}">
+                    </div>
+                `;
+            } else {
+                imageContent = `
+                    ${closeButtonHtml}
+                    <h3>${item.name}</h3>
+                    <p class="image-display-price">${displayPrice}</p>
+                    <div class="image-container">
+                        <div class="placeholder-text">
+                            <p>이미지를 추가해주세요</p>
+                            <p>menuData에 image 속성을 추가하세요</p>
+                        </div>
+                    </div>
+                `;
+            }
+            imageDisplay.innerHTML = imageContent;
+
+            const parentSection = element.parentElement;
+            parentSection.insertBefore(imageDisplay, element.nextSibling);
+
+            currentImageDisplay = imageDisplay;
+        }
+
+        function closeImageDisplay(event) {
+            if (event) {
+                event.stopPropagation();
+            }
+            if (currentImageDisplay) {
+                currentImageDisplay.remove();
+                currentImageDisplay = null;
+            }
+            document.querySelectorAll('.menu-item').forEach(el => {
+                el.classList.remove('selected');
+            });
+            selectedItem = null;
+        }
+
+        function renderMenu() {
+            const menuContainer = document.getElementById('menu-container');
+            menuContainer.innerHTML = '';
+
+            menuGroups.forEach(group => {
+                const rowDiv = document.createElement('div');
+                rowDiv.className = 'menu-row';
+                
+                group.forEach(category => {
+                    if (menuData[category]) {
+                        const section = document.createElement('div');
+                        section.className = 'menu-section';
+
+                        const title = document.createElement('h2');
+                        title.className = 'category-title';
+                        title.textContent = category;
+                        section.appendChild(title);
+
+                        menuData[category].forEach(item => {
+                            const menuItem = document.createElement('div');
+                            menuItem.className = 'menu-item';
+                            
+                            let optionControls = '';
+                            let initialOption = 'none'; 
+                            
+                            if (item.tempOption === 'optional') {
+                                initialOption = 'hot'; 
+                                optionControls = `
+                                    <div class="temp-selection">
+                                        <input type="radio" id="temp-hot-${item.id}" name="option-${item.id}" value="hot" checked onchange="updateItemPriceDisplay(${item.id}, 'hot', this.closest('.menu-item'))">
+                                        <label for="temp-hot-${item.id}">HOT</label>
+                                        <input type="radio" id="temp-ice-${item.id}" name="option-${item.id}" value="ice" onchange="updateItemPriceDisplay(${item.id}, 'ice', this.closest('.menu-item'))">
+                                        <label for="temp-ice-${item.id}">ICE</label>
+                                    </div>
+                                `;
+                            } else if (item.tempOption === 'hot' || item.tempOption === 'ice') {
+                                initialOption = item.tempOption;
+                                optionControls = `<input type="hidden" name="option-${item.id}" value="${item.tempOption}">`;
+                            } 
+                            else if (item.tempOption === 'flavor' && item.flavors && item.flavors.length > 0) {
+                                initialOption = item.flavors[0]; 
+                                
+                                const flavorInputs = item.flavors.map((flavor, index) => `
+                                    <input type="radio" id="flavor-${item.id}-${flavor.replace(/\s/g, '')}" 
+                                           name="option-${item.id}" 
+                                           value="${flavor}" 
+                                           ${index === 0 ? 'checked' : ''} 
+                                           onchange="updateItemPriceDisplay(${item.id}, '${flavor}', this.closest('.menu-item'))">
+                                    <label for="flavor-${item.id}-${flavor.replace(/\s/g, '')}">${flavor}</label>
+                                `).join('');
+
+                                optionControls = `<div class="flavor-selection">${flavorInputs}</div>`;
+                            }
+
+                            const quantityElement = `<div class="quantity" id="qty-${item.id}-${initialOption.replace(/\s/g, '')}">0</div>`;
+
+                            menuItem.innerHTML = `
+                                <div class="menu-info-group">
+                                    <div class="menu-details-line"> 
+                                        ${optionControls} <span class="menu-item-name" onclick="selectItem(menuData, ${item.id}, this.closest('.menu-item'))">${item.name}</span>
+                                        <span class="menu-item-price" id="price-display-${item.id}">${getPriceText(item.price, initialOption)}</span>
+                                    </div>
+                                </div>
+                                <div class="quantity-controls">
+                                    <button onclick="decrementQuantity(event, ${item.id}, this.closest('.menu-item'))">-</button>
+                                    ${quantityElement}
+                                    <button onclick="incrementQuantity(event, ${item.id}, this.closest('.menu-item'))">+</button>
+                                </div>
+                            `;
+                            section.appendChild(menuItem);
+                        });
+
+                        rowDiv.appendChild(section);
+                    }
+                });
+
+                menuContainer.appendChild(rowDiv);
+            });
+            updateCartSummary(); 
+        }
+
+        // --- 오늘의 계산왕 로직 (알파벳으로 최종 변경) ---
+
+        /**
+         * 1단계: 인원 수만큼 알파벳(A, B, C...)을 생성하여 제시합니다.
+         */
+        function presentParticipants() {
+            const countElement = document.getElementById('participant-count');
+            const participantCount = parseInt(countElement.value, 10);
+                
+            const palette = document.getElementById('participant-palette');
+            const selectedSwatch = document.getElementById('selected-participant-swatch');
+            const pickButton = document.getElementById('pick-button');
+            const presentButton = document.getElementById('present-button');
+
+            // 상태 초기화
+            palette.innerHTML = '';
+            selectedSwatch.style.backgroundColor = '#E9E9E9';
+            selectedSwatch.textContent = '?';
+            
+            // 버튼 상태
+            pickButton.style.display = 'none';
+            presentButton.style.display = 'block';
+
+            // 유효성 검사
+            if (isNaN(participantCount) || participantCount < 2) {
+                alert("참여 인원 수는 최소 2명 이상으로 입력해주세요.");
+                return;
+            }
+            if (participantCount > 26) {
+                alert("알파벳 개수 제한으로 최대 26명까지만 지원합니다.");
+                return;
+            }
+
+            // A부터 시작하는 알파벳 생성
+            const participants = [];
+            for (let i = 0; i < participantCount; i++) {
+                const charCode = 'A'.charCodeAt(0) + i;
+                participants.push(String.fromCharCode(charCode));
+            }
+
+            // 전역 변수에 현재 제시된 참가자 목록 저장
+            window.currentParticipants = participants;
+
+            // 제시된 모든 알파벳을 팔레트에 표시
+            participants.forEach((participant, index) => {
+                const swatch = document.createElement('div');
+                swatch.className = 'participant-swatch';
+                swatch.textContent = participant;
+                swatch.style.backgroundColor = index % 2 === 0 ? '#EBEBEB' : '#FFFFFF'; 
+                
+                // 기존 하이라이트 효과 제거
+                swatch.style.transform = 'scale(1)';
+                swatch.style.borderColor = 'white';
+                swatch.style.boxShadow = '0 1px 3px rgba(0,0,0,0.2)';
+
+                palette.appendChild(swatch);
+            });
+
+            // 뽑기 버튼 활성화 및 제시 버튼 숨김
+            pickButton.style.display = 'block';
+            presentButton.style.display = 'none';
+        }
+
+
+        /**
+         * 2단계: 제시된 참가자 중에서 무작위로 하나를 뽑아 최종 선택 스와치에 표시합니다. (알림 제거됨)
+         */
+        function pickWinnerParticipant() {
+            const participants = window.currentParticipants;
+            const palette = document.getElementById('participant-palette');
+            const selectedSwatch = document.getElementById('selected-participant-swatch');
+            
+            // 버튼 상태 변경
+            document.getElementById('pick-button').style.display = 'none';
+            document.getElementById('present-button').style.display = 'block';
+
+
+            if (!participants || participants.length === 0) {
+                // 알림만 유지: 기능을 사용하지 않고 뽑기 버튼을 눌렀을 때만 알림
+                alert("먼저 '인원 수 확정 및 알파벳 제시' 버튼을 눌러 참가자를 제시해주세요.");
+                
+                // 버튼 상태 복구
+                document.getElementById('pick-button').style.display = 'block';
+                document.getElementById('present-button').style.display = 'none';
+                return;
+            }
+
+            // 무작위로 하나의 참가자 선택
+            const randomIndex = Math.floor(Math.random() * participants.length);
+            const winningParticipant = participants[randomIndex];
+            
+            // 최종 선택된 알파벳 표시
+            setTimeout(() => {
+                selectedSwatch.style.backgroundColor = 'hsl(35, 70%, 75%)'; // 승리 색상
+                selectedSwatch.textContent = winningParticipant; 
+                selectedSwatch.title = `계산왕: ${winningParticipant}`;
+
+                // 팔레트에서 선택된 알파벳 하이라이트
+                const swatches = palette.querySelectorAll('.participant-swatch');
+                swatches.forEach((swatch, index) => {
+                    if (index === randomIndex) {
+                        swatch.style.transform = 'scale(1.2)';
+                        swatch.style.borderColor = 'hsl(25, 45%, 40%)';
+                        swatch.style.boxShadow = `0 0 15px hsl(25, 45%, 40%)`;
+                        swatch.style.backgroundColor = 'hsl(35, 70%, 75%)';
+                    } else {
+                        swatch.style.transform = 'scale(1)';
+                        swatch.style.borderColor = 'white';
+                        swatch.style.boxShadow = '0 1px 3px rgba(0,0,0,0.2)';
+                    }
+                });
+
+            }, 300); 
+        }
+
+        /**
+         * 초기 로드 시 실행되는 함수
+         */
+        function initializeParticipantInterface() {
+             const palette = document.getElementById('participant-palette');
+             
+             // 초기값 (4명)으로 팔레트 미리 구성
+             const initialParticipants = ['A', 'B', 'C', 'D'];
+             initialParticipants.forEach((participant, index) => {
+                const swatch = document.createElement('div');
+                swatch.className = 'participant-swatch';
+                swatch.textContent = participant;
+                swatch.style.backgroundColor = index % 2 === 0 ? '#EBEBEB' : '#FFFFFF';
+                palette.appendChild(swatch);
+            });
+            
+            // 초기 상태에서는 뽑기 버튼 숨김
+            document.getElementById('pick-button').style.display = 'none';
+            document.getElementById('present-button').style.display = 'block';
+
+            // 초기 currentParticipants 설정
+            window.currentParticipants = initialParticipants;
+        }
+
+
+        // 페이지 로드 시 메뉴 렌더링 및 계산왕 인터페이스 초기화
+        renderMenu(); 
+        initializeParticipantInterface(); 
+    </script>
+</body>
+</html>
