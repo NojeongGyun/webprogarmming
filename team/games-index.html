@@ -36,10 +36,8 @@
             color: white;
             margin-bottom: 40px;
             animation: fadeInDown 0.8s ease;
-            
-            /* 버튼이 header 영역을 침범하지 않도록 패딩을 유지 */
-            padding-top: 0; /* body padding이 20px이므로 header에는 별도 패딩 불필요 */
             position: relative; 
+            padding-top: 0; 
         }
 
         @keyframes fadeInDown {
@@ -53,8 +51,8 @@
             }
         }
 
-        /* ⭐ CSS 클래스 기반 스타일 유지 (인라인 스타일보다 관리 용이) ⭐ */
-        .back-to-main {
+        /* ⭐ ID 선택자를 사용하여 CSS 우선순위 최상위로 설정 ⭐ */
+        #back-to-main {
             position: fixed; /* 뷰포트 기준으로 확실하게 고정 */
             top: 20px; /* 상단 20px 여백 */
             left: 20px; /* 좌측 20px 여백 */
@@ -69,11 +67,14 @@
             font-size: 1rem;
             transition: background 0.3s, transform 0.3s;
             backdrop-filter: blur(4px); 
-            z-index: 99999; /* ⭐ z-index를 극한으로 높여 최우선 표시 ⭐ */
+            z-index: 999999; /* ⭐ z-index를 최대치로 설정하여 모든 요소 위에 표시 ⭐ */
             border: 1px solid rgba(255, 255, 255, 0.6); 
+            
+            /* ⭐ 최종 방어책: Display 속성 강제 적용 ⭐ */
+            display: inline-block !important; 
         }
 
-        .back-to-main:hover {
+        #back-to-main:hover {
             background: rgba(0, 0, 0, 0.7);
             transform: scale(1.05);
         }
@@ -90,7 +91,12 @@
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.02); }
         }
-        
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+        }
+
         /* ... (나머지 CSS는 동일) ... */
         .game-grid {
             display: grid;
@@ -193,7 +199,7 @@
             }
 
             /* 모바일에서 버튼 위치 조정 */
-            .back-to-main {
+            #back-to-main {
                 top: 10px;
                 left: 10px;
             }
@@ -201,7 +207,7 @@
     </style>
 </head>
 <body>
-    <a href="https://nojeonggyun.github.io/webprogarmming/team/Project/main.html" class="back-to-main">돌아가기</a>
+    <a href="https://nojeonggyun.github.io/webprogarmming/team/Project/main.html" id="back-to-main">돌아가기</a>
 
     <div class="container">
         <div class="header">
