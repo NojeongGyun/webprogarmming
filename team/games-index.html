@@ -37,9 +37,10 @@
             margin-bottom: 40px;
             animation: fadeInDown 0.8s ease;
             
-            /* ⭐ 추가된 스타일: Relative 포지셔닝으로 자식 버튼 위치 기준 제공 ⭐ */
+            /* ⭐ 보강 1: Relative 포지셔닝으로 버튼의 위치 기준을 명확히 합니다. ⭐ */
             position: relative; 
-            padding-top: 60px; /* 버튼 공간 확보 */
+            /* ⭐ 보강 2: 상단 패딩을 늘려 버튼이 타이틀을 가리지 않도록 공간을 확보합니다. ⭐ */
+            padding-top: 70px; 
         }
 
         @keyframes fadeInDown {
@@ -53,25 +54,31 @@
             }
         }
 
-        /* ⭐ 새로 추가된 돌아가기 버튼 스타일 ⭐ */
+        /* ⭐ "돌아가기" 버튼 스타일 ⭐ */
         .back-to-main {
-            position: absolute;
+            /* ⭐ 보강 3: Fixed 포지셔닝으로 화면 상단에 확실히 고정합니다. ⭐ */
+            position: fixed; 
             top: 20px;
             left: 20px;
+            /* 뷰포트 너비가 작을 때는 왼쪽 패딩이 20px이므로 left: 20px은 컨테이너 경계선 밖에 위치하게 됩니다. */
+            /* 컨테이너의 왼쪽 패딩 20px을 고려하여, 버튼이 컨테이너의 왼쪽 정렬선에 가깝게 위치하도록 left를 조정할 수 있지만, 
+               Fixed를 사용했으므로 뷰포트 기준으로 20px이 가장 확실합니다. */
+
             text-decoration: none;
             color: white;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.4); /* 배경색을 진하게 하여 대비를 높임 */
             padding: 10px 15px;
             border-radius: 8px;
             font-weight: bold;
             font-size: 1rem;
             transition: background 0.3s, transform 0.3s;
-            backdrop-filter: blur(5px); /* 배경 블러 처리 */
-            z-index: 10;
+            backdrop-filter: blur(5px); 
+            z-index: 9999; /* ⭐ 보강 4: z-index를 높여 모든 요소 위에 표시되도록 합니다. ⭐ */
+            border: 1px solid rgba(255, 255, 255, 0.5); /* 테두리를 추가하여 더 눈에 띄게 함 */
         }
 
         .back-to-main:hover {
-            background: rgba(255, 255, 255, 0.35);
+            background: rgba(0, 0, 0, 0.6);
             transform: scale(1.05);
         }
 
@@ -153,138 +160,3 @@
         .game-card:nth-child(3) { animation-delay: 0.2s; }
         .game-card:nth-child(4) { animation-delay: 0.25s; }
         .game-card:nth-child(5) { animation-delay: 0.3s; }
-        .game-card:nth-child(6) { animation-delay: 0.35s; }
-        .game-card:nth-child(7) { animation-delay: 0.4s; }
-        .game-card:nth-child(8) { animation-delay: 0.45s; }
-        .game-card:nth-child(9) { animation-delay: 0.5s; }
-        .game-card:nth-child(10) { animation-delay: 0.55s; }
-        .game-card:nth-child(11) { animation-delay: 0.6s; }
-        .game-card:nth-child(12) { animation-delay: 0.65s; }
-
-        .game-icon {
-            font-size: 3.5rem;
-            margin-bottom: 16px;
-            display: inline-block;
-            transition: transform 0.3s ease;
-        }
-
-        .game-card:hover .game-icon {
-            transform: scale(1.2) rotate(5deg);
-        }
-
-        .game-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 8px;
-            color: #333;
-            position: relative;
-        }
-
-        .game-card p {
-            color: #666;
-            font-size: 0.95rem;
-            position: relative;
-        }
-
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .game-grid {
-                grid-template-columns: 1fr;
-            }
-
-            /* 모바일에서 버튼 위치 조정 */
-            .back-to-main {
-                top: 10px;
-                left: 10px;
-            }
-            .header {
-                padding-top: 50px; /* 버튼 공간 확보 */
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <a href="https://nojeonggyun.github.io/webprogarmming/team/Project/main.html" class="back-to-main">돌아가기</a>
-            
-            <h1>🎮 미니게임 센터</h1>
-            <p>재미있는 게임을 즐겨보세요!</p>
-        </div>
-
-        <div class="game-grid">
-            <a href="number-guess.html" class="game-card">
-                <div class="game-icon">🎯</div>
-                <h3>숫자 맞추기</h3>
-                <p>1~100 사이 숫자 맞추기</p>
-            </a>
-            
-            <a href="pitch-test.html" class="game-card">
-                <div class="game-icon">👂</div>
-                <h3>절대 음감 테스트</h3>
-                <p>도~시 음계 5문제 맞추기</p>
-            </a>
-            <a href="memory.html" class="game-card">
-                <div class="game-icon">🧠</div>
-                <h3>메모리 게임</h3>
-                <p>같은 카드 찾기</p>
-            </a>
-
-            <a href="reaction.html" class="game-card">
-                <div class="game-icon">⚡</div>
-                <h3>반응속도 테스트</h3>
-                <p>얼마나 빠른지 테스트</p>
-            </a>
-
-            <a href="rhythm-custom.html" class="game-card">
-                <div class="game-icon">🎹</div>
-                <h3>커스텀 리듬 게임</h3>
-                <p>사용자 지정 5키 입력 리듬</p>
-            </a>
-            <a href="typing.html" class="game-card">
-                <div class="game-icon">⌨️</div>
-                <h3>타이핑 속도</h3>
-                <p>타이핑 속도 측정</p>
-            </a>
-
-            <a href="math.html" class="game-card">
-                <div class="game-icon">🔢</div>
-                <h3>수학 퀴즈</h3>
-                <p>빠른 계산 테스트</p>
-            </a>
-            
-            <a href="word.html" class="game-card">
-                <div class="game-icon">📝</div>
-                <h3>단어 맞추기</h3>
-                <p>숨겨진 단어 찾기</p>
-            </a>
-
-            <a href="flip.html" class="game-card">
-                <div class="game-icon">🃏</div>
-                <h3>카드 뒤집기</h3>
-                <p>기억력 테스트</p>
-            </a>
-
-            <a href="sequence.html" class="game-card">
-                <div class="game-icon">🔄</div>
-                <h3>순서 기억하기</h3>
-                <p>패턴 따라하기</p>
-            </a>
-
-            <a href="whack.html" class="game-card">
-                <div class="game-icon">🔨</div>
-                <h3>두더지 잡기</h3>
-                <p>두더지를 빠르게 잡으세요</p>
-            </a>
-
-            <a href="2048.html" class="game-card">
-                <div class="game-icon">🎲</div>
-                <h3>2048</h3>
-                <p>같은 숫자를 합치세요</p>
-            </a>
-        </div>
-    </div>
-</body>
-</html>
