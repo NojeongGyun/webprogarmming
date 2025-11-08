@@ -9,7 +9,7 @@
         body {
             font-family: 'Malgun Gothic', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
-            flex-direction: column; /* 헤더와 컨테이너를 세로로 정렬 */
+            flex-direction: column; 
             justify-content: center;
             align-items: center;
             min-height: 100vh;
@@ -17,7 +17,7 @@
             margin: 0;
         }
 
-        /* ⭐ 1. 헤더 스타일 (게임 컨테이너와 너비 일치) ⭐ */
+        /* 1. 헤더 스타일 (게임 컨테이너와 너비 일치) */
         .header {
             width: 700px; 
             display: grid; 
@@ -32,13 +32,13 @@
             border: 2px solid #38c172; 
         }
 
-        /* ⭐ 3. 타이틀 왼쪽 배치 및 줄 바꿈 방지 ⭐ */
+        /* 2. 타이틀 왼쪽 배치 및 줄 바꿈 방지 */
         .header h2 {
             text-align: left; 
             margin: 0;
             font-size: 1.5em; 
             color: #38c172; 
-            white-space: nowrap; /* 줄 바꿈 방지 */
+            white-space: nowrap; 
             overflow: hidden; 
             text-overflow: ellipsis; 
         }
@@ -49,7 +49,7 @@
             margin-right: 20px; 
         }
         
-        /* 홈 버튼 스타일 */
+        /* 3. 홈 버튼 스타일 */
         .home-button {
             text-decoration: none;
             color: #38c172;
@@ -65,26 +65,25 @@
             background: rgba(56, 193, 114, 0.1); 
         }
         
-        /* ⭐ 1. 게임 컨테이너 너비 변경 (700px) ⭐ */
+        /* 4. 게임 컨테이너 너비 변경 (700px) */
         #game-container {
             background: white;
             padding: 35px;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
             text-align: center;
-            width: 700px; /* 600px -> 700px로 변경 */
+            width: 700px; 
             border: 2px solid #38c172;
         }
         
-        /* 기존의 h1, high-score-display 스타일은 헤더로 이동되었으므로 일부 삭제 */
         h1 {
-            display: none; /* 기존 h1은 헤더로 이동하여 숨김 */
+            display: none; 
         }
         #high-score-display {
             font-size: 1.1em;
             color: #d9534f;
             font-weight: bold;
-            margin: 0; /* 헤더의 .stats에서 처리 */
+            margin: 0; 
         }
 
         p#message {
@@ -200,9 +199,10 @@
 
     <script>
         // --- 상수 및 변수 설정 ---
-        const MAX_QUESTIONS = 5; // 최대 문제 수 설정
+        const MAX_QUESTIONS = 5; 
 
-        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        // ⭐ AudioContext를 null로 초기화하여 사용자 상호 작용 시 생성/활성화합니다. ⭐
+        let audioContext = null; 
         let oscillator = null; 
 
         // 한국어 음이름과 주파수 매핑
@@ -227,13 +227,23 @@
         const scoreEl = document.getElementById('score');
         const totalNotesEl = document.getElementById('total-notes');
         const highScoreEl = document.getElementById('high-score');
-        const currentQuestionEl = document.getElementById('current-question'); // 현재 문제 번호 DOM
+        const currentQuestionEl = document.getElementById('current-question'); 
 
         // --- 함수 정의 ---
 
+        // ⭐ AudioContext 생성 및 활성화 함수 ⭐
+        function setupAudioContext() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+        }
+        
         // 최고 점수 로드/업데이트
         function loadHighScore() {
-            const storedScore = localStorage.getItem('pitchHighScoreLimited'); // 키 변경
+            const storedScore = localStorage.getItem('pitchHighScoreLimited'); 
             highScore = storedScore ? parseInt(storedScore) : 0;
             highScoreEl.textContent = highScore;
         }
@@ -241,11 +251,11 @@
         function updateHighScore() {
             if (score > highScore) {
                 highScore = score;
-                localStorage.setItem('pitchHighScoreLimited', highScore); // 키 변경
+                localStorage.setItem('pitchHighScoreLimited', highScore); 
                 highScoreEl.textContent = highScore;
-                return true; // 최고 점수 갱신 성공
+                return true; 
             }
-            return false; // 최고 점수 갱신 실패
+            return false; 
         }
 
         // 음표 버튼 생성
@@ -266,6 +276,8 @@
 
         // 음 재생
         function playNote(frequency) {
+            if (!audioContext) return; // AudioContext가 없으면 재생하지 않음
+
             if (oscillator) {
                 oscillator.stop();
                 oscillator = null;
@@ -309,21 +321,19 @@
 
         // 다음 문제 시작 및 음 재생
         function startNextNote() {
-            // 게임이 이미 끝났는지 확인
             if (totalNotes >= MAX_QUESTIONS) {
                 endGame();
                 return;
             }
             
-            // 게임 시작 또는 다음 문제 진행
             if (currentNote === null) {
-                totalNotes++; // 문제 번호 증가 (현재 문제에 대한 응답이 없을 때만)
+                totalNotes++; 
                 
                 const randomIndex = Math.floor(Math.random() * noteNames.length);
                 currentNote = noteNames[randomIndex];
                 const frequency = NOTES[currentNote];
 
-                currentQuestionEl.textContent = totalNotes; // 문제 번호 화면 업데이트
+                currentQuestionEl.textContent = totalNotes; 
                 messageEl.textContent = '🎶 음을 듣고 어떤 음인지 맞춰보세요!';
                 resultMessageEl.textContent = '';
                 noteSelection.style.display = 'block';
@@ -335,11 +345,9 @@
                     btn.classList.remove('correct', 'incorrect');
                 });
 
-                // 음 재생
                 playNote(frequency);
 
             } else {
-                // 다시 듣기
                 playNote(NOTES[currentNote]);
             }
         }
@@ -350,9 +358,8 @@
 
             const isCorrect = (selectedNote === currentNote);
             
-            // 버튼 상태 업데이트 (정답 표시)
             Array.from(noteButtonsDiv.children).forEach(btn => {
-                btn.disabled = true; // 정답 확인 후 모든 버튼 비활성화
+                btn.disabled = true; 
 
                 if (btn.textContent === selectedNote) {
                     btn.classList.add(isCorrect ? 'correct' : 'incorrect');
@@ -361,7 +368,6 @@
                 }
             });
 
-            // 점수 업데이트 및 결과 메시지 출력
             if (isCorrect) {
                 score++;
                 resultMessageEl.className = 'correct';
@@ -371,11 +377,9 @@
                 resultMessageEl.textContent = `❌ 틀렸습니다. 정답은 ${currentNote} 였습니다.`;
             }
 
-            // 점수판 업데이트
             scoreEl.textContent = score;
             totalNotesEl.textContent = totalNotes;
 
-            // 현재 문제 완료, 다음 문제로 진행할 준비
             currentNote = null; 
             
             if (totalNotes < MAX_QUESTIONS) {
@@ -384,17 +388,15 @@
                 startBtn.textContent = '결과 확인';
             }
             
-            startBtn.disabled = false; // 다음 문제 버튼 활성화
+            startBtn.disabled = false; 
         }
         
         // 게임 초기화
         function initGame() {
-            // 변수 초기화
             score = 0;
             totalNotes = 0;
             currentNote = null;
             
-            // DOM 업데이트
             loadHighScore();
             createNoteButtons();
             scoreEl.textContent = score;
@@ -410,15 +412,15 @@
         // 이벤트 리스너 설정
         function setupListeners() {
             startBtn.addEventListener('click', () => {
+                // ⭐ 사용자 클릭 시 AudioContext 활성화 (GitHub Pages 호환성 확보) ⭐
+                setupAudioContext(); 
+
                 if (startBtn.textContent.includes('테스트 시작') || startBtn.textContent.includes('새 게임 시작')) {
-                    // 새 게임 시작
-                    initGame(); // 변수 초기화 및 점수 로드
+                    initGame(); 
                     startNextNote();
                 } else if (startBtn.textContent === '결과 확인') {
-                    // 게임 종료 (마지막 문제 풀이 후)
                     endGame();
                 } else {
-                    // 다시 듣기 또는 다음 문제 진행
                     startNextNote();
                 }
             });
