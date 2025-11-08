@@ -36,6 +36,10 @@
             color: white;
             margin-bottom: 40px;
             animation: fadeInDown 0.8s ease;
+            
+            /* ⭐ 추가된 스타일: Relative 포지셔닝으로 자식 버튼 위치 기준 제공 ⭐ */
+            position: relative; 
+            padding-top: 60px; /* 버튼 공간 확보 */
         }
 
         @keyframes fadeInDown {
@@ -49,6 +53,29 @@
             }
         }
 
+        /* ⭐ 새로 추가된 돌아가기 버튼 스타일 ⭐ */
+        .back-to-main {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            text-decoration: none;
+            color: white;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: background 0.3s, transform 0.3s;
+            backdrop-filter: blur(5px); /* 배경 블러 처리 */
+            z-index: 10;
+        }
+
+        .back-to-main:hover {
+            background: rgba(255, 255, 255, 0.35);
+            transform: scale(1.05);
+        }
+
+        /* 기존 헤더 스타일 */
         .header h1 {
             font-size: 3rem;
             margin-bottom: 10px;
@@ -66,6 +93,7 @@
             opacity: 0.95;
         }
 
+        /* ... (나머지 CSS는 동일) ... */
         .game-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -165,12 +193,23 @@
             .game-grid {
                 grid-template-columns: 1fr;
             }
+
+            /* 모바일에서 버튼 위치 조정 */
+            .back-to-main {
+                top: 10px;
+                left: 10px;
+            }
+            .header {
+                padding-top: 50px; /* 버튼 공간 확보 */
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
+            <a href="https://nojeonggyun.github.io/webprogarmming/team/Project/main.html" class="back-to-main">돌아가기</a>
+            
             <h1>🎮 미니게임 센터</h1>
             <p>재미있는 게임을 즐겨보세요!</p>
         </div>
