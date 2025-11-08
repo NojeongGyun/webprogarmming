@@ -37,9 +37,9 @@
             margin-bottom: 40px;
             animation: fadeInDown 0.8s ease;
             
-            /* ⭐ 추가된 스타일: Relative 포지셔닝으로 자식 버튼 위치 기준 제공 ⭐ */
+            /* 버튼이 header 영역을 침범하지 않도록 패딩을 유지 */
+            padding-top: 0; /* body padding이 20px이므로 header에는 별도 패딩 불필요 */
             position: relative; 
-            padding-top: 60px; /* 버튼 공간 확보 */
         }
 
         @keyframes fadeInDown {
@@ -53,25 +53,28 @@
             }
         }
 
-        /* ⭐ 새로 추가된 돌아가기 버튼 스타일 ⭐ */
+        /* ⭐ CSS 클래스 기반 스타일 유지 (인라인 스타일보다 관리 용이) ⭐ */
         .back-to-main {
-            position: absolute;
-            top: 20px;
-            left: 20px;
+            position: fixed; /* 뷰포트 기준으로 확실하게 고정 */
+            top: 20px; /* 상단 20px 여백 */
+            left: 20px; /* 좌측 20px 여백 */
+            
+            /* 시각적 대비 및 계층 보장 */
             text-decoration: none;
             color: white;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.5); 
             padding: 10px 15px;
             border-radius: 8px;
             font-weight: bold;
             font-size: 1rem;
             transition: background 0.3s, transform 0.3s;
-            backdrop-filter: blur(5px); /* 배경 블러 처리 */
-            z-index: 10;
+            backdrop-filter: blur(4px); 
+            z-index: 99999; /* ⭐ z-index를 극한으로 높여 최우선 표시 ⭐ */
+            border: 1px solid rgba(255, 255, 255, 0.6); 
         }
 
         .back-to-main:hover {
-            background: rgba(255, 255, 255, 0.35);
+            background: rgba(0, 0, 0, 0.7);
             transform: scale(1.05);
         }
 
@@ -87,12 +90,7 @@
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.02); }
         }
-
-        .header p {
-            font-size: 1.2rem;
-            opacity: 0.95;
-        }
-
+        
         /* ... (나머지 CSS는 동일) ... */
         .game-grid {
             display: grid;
@@ -199,16 +197,14 @@
                 top: 10px;
                 left: 10px;
             }
-            .header {
-                padding-top: 50px; /* 버튼 공간 확보 */
-            }
         }
     </style>
 </head>
 <body>
+    <a href="https://nojeonggyun.github.io/webprogarmming/team/Project/main.html" class="back-to-main">돌아가기</a>
+
     <div class="container">
         <div class="header">
-            <a href="https://nojeonggyun.github.io/webprogarmming/team/Project/main.html" class="back-to-main">돌아가기</a>
             
             <h1>🎮 미니게임 센터</h1>
             <p>재미있는 게임을 즐겨보세요!</p>
