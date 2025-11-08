@@ -175,7 +175,7 @@
             <div id="high-score-display">🥇 최고 점수: <span id="high-score">0</span>점</div>
         </div>
         
-        <a href="https://nojeonggyun.github.io/webprogarmming/team/games-index.html" class="home-button">홈으로</a>
+        <a href="games-index.html" class="home-button">홈으로</a>
     </div>
 
     <div id="game-container">
@@ -231,7 +231,7 @@
 
         // --- 함수 정의 ---
 
-        // ⭐ AudioContext 생성 및 활성화 함수 ⭐
+        // ⭐ AudioContext 생성 및 활성화 함수 (GitHub Pages 호환성 핵심) ⭐
         function setupAudioContext() {
             if (!audioContext) {
                 audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -412,7 +412,7 @@
         // 이벤트 리스너 설정
         function setupListeners() {
             startBtn.addEventListener('click', () => {
-                // ⭐ 사용자 클릭 시 AudioContext 활성화 (GitHub Pages 호환성 확보) ⭐
+                // ⭐ 사용자 클릭 시 AudioContext 활성화 ⭐
                 setupAudioContext(); 
 
                 if (startBtn.textContent.includes('테스트 시작') || startBtn.textContent.includes('새 게임 시작')) {
