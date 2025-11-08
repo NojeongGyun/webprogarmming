@@ -51,11 +51,11 @@
             }
         }
 
-        /* ⭐ ID 선택자를 사용하여 CSS 우선순위 최상위로 설정 ⭐ */
+        /* ⭐ CSS 블록 위치 조정 반영 (인라인 스타일이 없으면 이 값이 적용됨) ⭐ */
         #back-to-main {
             position: fixed; /* 뷰포트 기준으로 확실하게 고정 */
-            top: 20px; /* 상단 20px 여백 */
-            left: 20px; /* 좌측 20px 여백 */
+            top: 30px; /* 상단 30px 여백으로 조정 */
+            left: 30px; /* 좌측 30px 여백으로 조정 */
             
             /* 시각적 대비 및 계층 보장 */
             text-decoration: none;
@@ -67,10 +67,10 @@
             font-size: 1rem;
             transition: background 0.3s, transform 0.3s;
             backdrop-filter: blur(4px); 
-            z-index: 999999; /* ⭐ z-index를 최대치로 설정하여 모든 요소 위에 표시 ⭐ */
+            z-index: 999999; 
             border: 1px solid rgba(255, 255, 255, 0.6); 
             
-            /* ⭐ 최종 방어책: Display 속성 강제 적용 ⭐ */
+            /* 최종 방어책: Display 속성 강제 적용 */
             display: inline-block !important; 
         }
 
@@ -207,7 +207,10 @@
     </style>
 </head>
 <body>
-    <a href="https://nojeonggyun.github.io/webprogarmming/team/Project/main.html" id="back-to-main">돌아가기</a>
+    <a href="https://nojeonggyun.github.io/webprogarmming/team/Project/main.html" id="back-to-main"
+       style="position: fixed !important; top: 30px !important; left: 30px !important; z-index: 999999 !important; display: inline-block !important;">
+       돌아가기
+    </a>
 
     <div class="container">
         <div class="header">
