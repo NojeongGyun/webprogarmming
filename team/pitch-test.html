@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>절대 음감 테스트 (5문제 한정)</title>
+    
+    <style>
+        body {
+            font-family: 'Malgun Gothic', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0fff0;
+            margin: 0;
+        }
+
+        #game-container {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+            border: 2px solid #38c172;
+        }
+
+        h1 {
+            color: #38c172;
+            margin-bottom: 10px;
+            font-size: 2em;
+        }
+
+        #high-score-display {
+            font-size: 1.1em;
+            color: #d9534f;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        p#message {
+            font-size: 1.1em;
+            color: #555;
+            min-height: 20px; /* 레이아웃 안정화 */
+        }
+
+        button {
+            padding: 12px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 17px;
+            font-weight: bold;
+            transition: all 0.2s ease-in-out;
+        }
+
+        #start-btn {
+            background-color: #2b6cb0;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        #start-btn:hover:not(:disabled) {
+            background-color: #1e4e7e;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        #start-btn:disabled {
+            background-color: #a0aec0;
+            cursor: not-allowed;
+        }
+
+        #note-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        #note-buttons button {
+            background-color: #9f7aea;
+            color: white;
+            width: 80px;
+        }
+
+        #note-buttons button[data-flat="true"] {
+             background-color: #4a5568;
+        }
+
+        #note-buttons button:hover:not(:disabled) {
+            opacity: 0.85;
+            transform: scale(1.05);
+        }
+
+        #result-message {
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 1.2em;
+            min-height: 25px;
+        }
+
+        .correct {
+            color: #38c172;
+        }
+
+        .incorrect {
+            color: #e3342f;
+        }
+
+        #score-board {
+            margin-top: 25px;
+            border-top: 2px dashed #e0e0e0;
+            padding-top: 15px;
+            font-size: 1.2em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <h1>👂 절대 음감 테스트 (도-시)</h1>
+        
+        <div id="high-score-display">🥇 최고 점수: <span id="high-score">0</span>점</div>
+
+        <p id="message">총 5문제! 시작 버튼을 누르세요.</p>
+        
+        <div id="controls">
+            <button id="start-btn">테스트 시작 (총 5문제)</button>
+        </div>
+
+        <div id="note-selection" style="display:none;">
+            <h2>문제 <span id="current-question">0</span> / 5</h2>
+            <div id="note-buttons">
+                </div>
+            <p id="result-message"></p>
+        </div>
+
+        <div id="score-board">
+            <p>현재 점수: <span id="score">0</span> / <span id="total-notes">0</span></p>
+        </div>
+    </div>
+
+    <script>
+        // --- 상수 및 변수 설정 ---
+        const MAX_QUESTIONS = 5; // 최대 문제 수 설정
+
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        let oscillator = null; 
+
+        // 한국어 음이름과 주파수 매핑
+        const NOTES = {
+            '도': 261.63, '도#': 277.18, '레': 293.66, '레#': 311.13, 
+            '미': 329.63, '파': 349.23, '파#': 369.99, '솔': 392.00, 
+            '솔#': 415.30, '라': 440.00, '라#': 466.16, '시': 493.88
+        };
+        const noteNames = Object.keys(NOTES); 
+
+        let currentNote = null; 
+        let score = 0;           
+        let totalNotes = 0;      
+        let highScore = 0;       
+
+        // DOM 요소
+        const startBtn = document.getElementById('start-btn');
+        const noteSelection = document.getElementById('note-selection');
+        const noteButtonsDiv = document.getElementById('note-buttons');
+        const messageEl = document.getElementById('message');
+        const resultMessageEl = document.getElementById('result-message');
+        const scoreEl = document.getElementById('score');
+        const totalNotesEl = document.getElementById('total-notes');
+        const highScoreEl = document.getElementById('high-score');
+        const currentQuestionEl = document.getElementById('current-question'); // 현재 문제 번호 DOM
+
+        // --- 함수 정의 ---
+
+        // 최고 점수 로드/업데이트
+        function loadHighScore() {
+            const storedScore = localStorage.getItem('pitchHighScoreLimited'); // 키 변경
+            highScore = storedScore ? parseInt(storedScore) : 0;
+            highScoreEl.textContent = highScore;
+        }
+
+        function updateHighScore() {
+            if (score > highScore) {
+                highScore = score;
+                localStorage.setItem('pitchHighScoreLimited', highScore); // 키 변경
+                highScoreEl.textContent = highScore;
+                return true; // 최고 점수 갱신 성공
+            }
+            return false; // 최고 점수 갱신 실패
+        }
+
+        // 음표 버튼 생성
+        function createNoteButtons() {
+            noteButtonsDiv.innerHTML = ''; 
+            noteNames.forEach(note => {
+                const button = document.createElement('button');
+                button.textContent = note;
+                
+                if (note.includes('#')) {
+                    button.setAttribute('data-flat', 'true');
+                }
+
+                button.addEventListener('click', () => checkAnswer(note));
+                noteButtonsDiv.appendChild(button);
+            });
+        }
+
+        // 음 재생
+        function playNote(frequency) {
+            if (oscillator) {
+                oscillator.stop();
+                oscillator = null;
+            }
+
+            oscillator = audioContext.createOscillator();
+            oscillator.type = 'sine'; 
+            oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
+
+            const gainNode = audioContext.createGain();
+            gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+            
+            gainNode.gain.linearRampToValueAtTime(0.6, audioContext.currentTime + 0.05); 
+            gainNode.gain.linearRampToValueAtTime(0, audioContext.currentTime + 1.0); 
+
+            oscillator.connect(gainNode).connect(audioContext.destination);
+            oscillator.start();
+
+            oscillator.stop(audioContext.currentTime + 1.0);
+        }
+        
+        // 게임 종료 처리
+        function endGame() {
+            const newHighScore = updateHighScore();
+            noteSelection.style.display = 'none';
+            
+            let endMessage = `🎉 테스트 종료! ${MAX_QUESTIONS}문제 중 ${score}개 정답!`;
+            if (newHighScore) {
+                endMessage += ` 🥇 **축하합니다! 새로운 최고 점수 달성!**`;
+            } else if (score === MAX_QUESTIONS) {
+                endMessage += ` 💯 만점입니다!`;
+            }
+            
+            messageEl.innerHTML = endMessage;
+            resultMessageEl.textContent = '';
+            
+            // 다음 게임 시작을 위한 버튼 준비
+            startBtn.textContent = '새 게임 시작 (5문제)';
+            startBtn.disabled = false;
+        }
+
+        // 다음 문제 시작 및 음 재생
+        function startNextNote() {
+            // 게임이 이미 끝났는지 확인
+            if (totalNotes >= MAX_QUESTIONS) {
+                endGame();
+                return;
+            }
+            
+            // 게임 시작 또는 다음 문제 진행
+            if (currentNote === null) {
+                totalNotes++; // 문제 번호 증가 (현재 문제에 대한 응답이 없을 때만)
+                
+                const randomIndex = Math.floor(Math.random() * noteNames.length);
+                currentNote = noteNames[randomIndex];
+                const frequency = NOTES[currentNote];
+
+                currentQuestionEl.textContent = totalNotes; // 문제 번호 화면 업데이트
+                messageEl.textContent = '🎶 음을 듣고 어떤 음인지 맞춰보세요!';
+                resultMessageEl.textContent = '';
+                noteSelection.style.display = 'block';
+                startBtn.textContent = '다시 듣기';
+
+                // 버튼 초기화 및 활성화
+                Array.from(noteButtonsDiv.children).forEach(btn => {
+                    btn.disabled = false;
+                    btn.classList.remove('correct', 'incorrect');
+                });
+
+                // 음 재생
+                playNote(frequency);
+
+            } else {
+                // 다시 듣기
+                playNote(NOTES[currentNote]);
+            }
+        }
+
+        // 사용자 정답 확인
+        function checkAnswer(selectedNote) {
+            if (!currentNote) return; 
+
+            const isCorrect = (selectedNote === currentNote);
+            
+            // 버튼 상태 업데이트 (정답 표시)
+            Array.from(noteButtonsDiv.children).forEach(btn => {
+                btn.disabled = true; // 정답 확인 후 모든 버튼 비활성화
+
+                if (btn.textContent === selectedNote) {
+                    btn.classList.add(isCorrect ? 'correct' : 'incorrect');
+                } else if (btn.textContent === currentNote) {
+                    btn.classList.add('correct'); 
+                }
+            });
+
+            // 점수 업데이트 및 결과 메시지 출력
+            if (isCorrect) {
+                score++;
+                resultMessageEl.className = 'correct';
+                resultMessageEl.textContent = `✅ 정답! ${currentNote} 음이었습니다.`;
+            } else {
+                resultMessageEl.className = 'incorrect';
+                resultMessageEl.textContent = `❌ 틀렸습니다. 정답은 ${currentNote} 였습니다.`;
+            }
+
+            // 점수판 업데이트
+            scoreEl.textContent = score;
+            totalNotesEl.textContent = totalNotes;
+
+            // 현재 문제 완료, 다음 문제로 진행할 준비
+            currentNote = null; 
+            
+            if (totalNotes < MAX_QUESTIONS) {
+                startBtn.textContent = '다음 음 재생';
+            } else {
+                startBtn.textContent = '결과 확인';
+            }
+            
+            startBtn.disabled = false; // 다음 문제 버튼 활성화
+        }
+        
+        // 게임 초기화
+        function initGame() {
+            // 변수 초기화
+            score = 0;
+            totalNotes = 0;
+            currentNote = null;
+            
+            // DOM 업데이트
+            loadHighScore();
+            createNoteButtons();
+            scoreEl.textContent = score;
+            totalNotesEl.textContent = totalNotes;
+            currentQuestionEl.textContent = 0;
+            messageEl.textContent = `총 ${MAX_QUESTIONS}문제! 시작 버튼을 누르세요.`;
+            resultMessageEl.textContent = '';
+            noteSelection.style.display = 'none';
+            startBtn.textContent = `테스트 시작 (총 ${MAX_QUESTIONS}문제)`;
+            startBtn.disabled = false;
+        }
+
+        // 이벤트 리스너 설정
+        function setupListeners() {
+            startBtn.addEventListener('click', () => {
+                if (startBtn.textContent.includes('테스트 시작') || startBtn.textContent.includes('새 게임 시작')) {
+                    // 새 게임 시작
+                    initGame(); // 변수 초기화 및 점수 로드
+                    startNextNote();
+                } else if (startBtn.textContent === '결과 확인') {
+                    // 게임 종료 (마지막 문제 풀이 후)
+                    endGame();
+                } else {
+                    // 다시 듣기 또는 다음 문제 진행
+                    startNextNote();
+                }
+            });
+        }
+
+        // 페이지 로드 시
+        window.onload = () => {
+            initGame();
+            setupListeners();
+        };
+    </script>
+</body>
+</html>

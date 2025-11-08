@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>리듬 키보드 게임</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #222;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 게임 컨테이너 높이와 너비를 고정하여 레인 비율 유지 */
+        .game-container {
+            width: 500px; 
+            height: 600px;
+            background: #333;
+            border: 4px solid #555;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header {
+            width: 500px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: #1e1e1e;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        .stats span {
+            font-size: 1.2rem;
+            margin-left: 20px;
+            color: #ccc;
+        }
+
+        .stats strong {
+            color: #ffcc00;
+        }
+
+        /* 레인 스타일 */
+        .lane-container {
+            display: flex;
+            width: 100%;
+            height: 100%;
+        }
+
+        .lane {
+            flex-grow: 1;
+            height: 100%;
+            border-right: 1px solid #444;
+            position: relative;
+        }
+        .lane:last-child {
+            border-right: none;
+        }
+
+        /* 명확한 히트 존 영역 (노트 크기보다 크게) */
+        .hit-zone {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            /* 노트 높이가 30px이므로, 판정 범위를 포함하여 넉넉하게 설정 */
+            height: 80px; 
+            background: rgba(0, 255, 0, 0.05); 
+            z-index: 10;
+        }
+        
+        /* 노트 바닥이 닿는 명확한 판정선 */
+        .hit-line {
+            position: absolute;
+            top: 0; 
+            width: 100%;
+            height: 4px; /* 더 눈에 잘 띄게 */
+            background-color: #0f0; 
+            box-shadow: 0 0 10px #0f0;
+            z-index: 11;
+        }
+
+        /* 키 입력 버튼 스타일 */
+        .key-button {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 80px; /* hit-zone과 동일 높이 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            background: rgba(0, 0, 0, 0.5);
+            transition: background 0.05s;
+            pointer-events: none;
+        }
+
+        /* 키 입력 시 강조 효과 */
+        .key-button.pressed {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(0.95);
+        }
+
+        /* 노트 스타일: 높이 30px로 설정 */
+        .note {
+            position: absolute;
+            width: 90%;
+            height: 30px; 
+            background: linear-gradient(135deg, #f06, #ff0066);
+            border-radius: 5px;
+            left: 5%;
+            top: 0;
+        }
+
+        /* 판정 효과 */
+        #judgment {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            font-weight: bold;
+            opacity: 0;
+            transition: all 0.1s ease-out;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            z-index: 100;
+        }
+        .perfect { color: #00ff00; }
+        .good { color: #ffeb3b; font-size: 2.5rem; }
+        .soso { color: #00bcd4; font-size: 2.3rem; }
+        .miss { color: #ff0000; font-size: 2rem; }
+
+        /* 시작 화면 */
+        #start-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+        }
+
+        #start-screen button {
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #667eea;
+            color: white;
+            margin-top: 20px;
+            transition: background 0.2s;
+        }
+        #start-screen button:hover {
+            background: #764ba2;
+        }
+        
+        #key-input-field {
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 250px;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .settings-info {
+            margin-top: 15px;
+            font-size: 1rem;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>🎵 Custom Rhythm Game</h2>
+        <div class="stats">
+            <span>남은 시간: <strong id="time-left">03:00</strong></span>
+            <span>SCORE: <strong id="score">0</strong></span>
+            <span>COMBO: <strong id="combo">0</strong></span>
+        </div>
+    </div>
+    
+    <div class="game-container">
+        <div id="start-screen">
+            <h1>Rhythm Keyboard Game</h1>
+            <p>게임을 시작하기 전에, **사용할 5개의 키**를 설정해주세요.</p>
+            <input type="text" id="key-input-field" placeholder="예: A,S,D,F,G (쉼표로 구분)" value="A, S, D, F, G">
+            <p class="settings-info">키는 5개, 한 글자여야 하며 중복될 수 없습니다.</p>
+            <button onclick="configureAndStartGame()">게임 시작</button>
+        </div>
+
+        <div class="lane-container" id="lane-container">
+            </div>
+
+        <div id="judgment"></div>
+    </div>
+
+    <script>
+        // --- 게임 설정 ---
+        let KEYS = []; 
+        let LANE_COUNT = 0;
+        const GAME_DURATION = 180; // 3분 = 180초
+        const NOTE_SPEED = 3; 
+        const NOTE_HEIGHT = 30; // 노트 높이 30px로 통일
+        const NOTE_INTERVAL_MS = 600; 
+        const GAME_CONTAINER_HEIGHT = 600;
+        const HIT_ZONE_HEIGHT = 80;
+
+        // 판정 기준 (px): 노트 바닥과 히트 라인의 거리
+        const PERFECT_WINDOW = 10; // ±10px
+        const GOOD_WINDOW = 20;  // ±20px
+        const SOSO_WINDOW = 30;  // ±30px
+
+        // HIT_LINE의 Y좌표 (바닥에서 80px 위, 즉 520px)
+        const HIT_LINE_Y = GAME_CONTAINER_HEIGHT - HIT_ZONE_HEIGHT;
+
+        // --- 게임 상태 ---
+        let score = 0;
+        let combo = 0;
+        let timeLeft = GAME_DURATION;
+        let gameRunning = false;
+        let animationFrameId = null;
+        let noteGeneratorInterval = null;
+        let timerInterval = null;
+
+        // --- DOM 요소 ---
+        const gameContainer = document.querySelector('.game-container');
+        const laneContainer = document.getElementById('lane-container');
+        const scoreElement = document.getElementById('score');
+        const comboElement = document.getElementById('combo');
+        const timeLeftElement = document.getElementById('time-left');
+        const judgmentElement = document.getElementById('judgment');
+        const startScreen = document.getElementById('start-screen');
+        
+        let noteMap = {}; 
+
+        // --- 초기화 및 설정 ---
+
+        function configureAndStartGame() {
+            const inputField = document.getElementById('key-input-field');
+            const newKeysInput = inputField.value;
+
+            if (!newKeysInput) {
+                alert("사용할 5개의 키를 입력해주세요.");
+                return;
+            }
+
+            const keyArray = newKeysInput.toUpperCase().split(',').map(k => k.trim()).filter(k => k.length === 1);
+            const uniqueKeys = [...new Set(keyArray)];
+
+            if (uniqueKeys.length !== 5) {
+                alert("5개의 고유한 키를 쉼표(,)로 구분하여 정확히 입력해야 합니다. (현재 유효한 키: " + uniqueKeys.length + "개)");
+                return;
+            }
+            
+            KEYS = uniqueKeys;
+            LANE_COUNT = KEYS.length;
+            
+            initGameContainer();
+            startGame();
+        }
+
+        function initGameContainer() {
+            laneContainer.innerHTML = ''; 
+            noteMap = {};
+
+            KEYS.forEach((key) => {
+                const lane = document.createElement('div');
+                lane.classList.add('lane');
+                lane.id = `lane-${key}`;
+                
+                const hitZone = document.createElement('div');
+                hitZone.classList.add('hit-zone');
+                
+                const hitLine = document.createElement('div');
+                hitLine.classList.add('hit-line');
+
+                const keyButton = document.createElement('div');
+                keyButton.classList.add('key-button');
+                keyButton.id = `key-button-${key}`;
+                keyButton.textContent = key;
+                
+                hitZone.appendChild(hitLine); 
+                lane.appendChild(hitZone);
+                lane.appendChild(keyButton);
+                laneContainer.appendChild(lane);
+
+                noteMap[key] = []; 
+            });
+        }
+
+        function startGame() {
+            if (gameRunning) return;
+            score = 0;
+            combo = 0;
+            timeLeft = GAME_DURATION;
+            scoreElement.textContent = 0;
+            comboElement.textContent = 0;
+            
+            startScreen.style.display = 'none'; 
+            gameRunning = true;
+            
+            timerInterval = setInterval(updateTimer, 1000);
+            noteGeneratorInterval = setInterval(generateNote, NOTE_INTERVAL_MS);
+            animationFrameId = requestAnimationFrame(moveNotes);
+
+            document.addEventListener('keydown', handleKeyPress);
+            document.addEventListener('keyup', handleKeyRelease);
+        }
+
+        function updateTimer() {
+            timeLeft--;
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timeLeftElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+            if (timeLeft <= 0) {
+                endGame();
+            }
+        }
+
+        function endGame() {
+            if (!gameRunning) return;
+            gameRunning = false;
+            clearInterval(noteGeneratorInterval);
+            clearInterval(timerInterval);
+            cancelAnimationFrame(animationFrameId);
+
+            document.removeEventListener('keydown', handleKeyPress);
+            document.removeEventListener('keyup', handleKeyRelease);
+            
+            alert(`게임 종료! 최종 점수: ${score}, 최고 콤보: ${combo}`);
+            startScreen.style.display = 'flex';
+        }
+
+        // --- 게임 로직: 노트 생성 및 이동 ---
+
+        function generateNote() {
+            if (!gameRunning || KEYS.length === 0) return;
+            
+            const randomKey = KEYS[Math.floor(Math.random() * LANE_COUNT)];
+            const targetLane = document.getElementById(`lane-${randomKey}`);
+
+            if (!targetLane) return; 
+            
+            const note = document.createElement('div');
+            note.classList.add('note');
+            note.style.top = '0px'; 
+            
+            targetLane.appendChild(note);
+            noteMap[randomKey].push(note);
+        }
+
+        function moveNotes() {
+            if (!gameRunning) {
+                animationFrameId = null;
+                return;
+            }
+
+            KEYS.forEach(key => {
+                const notes = noteMap[key];
+                
+                for (let i = notes.length - 1; i >= 0; i--) {
+                    const note = notes[i];
+                    const currentTop = parseFloat(note.style.top);
+                    const newTop = currentTop + NOTE_SPEED;
+                    
+                    note.style.top = `${newTop}px`;
+
+                    // MISS 판정: 노트 바닥이 SOSO 윈도우를 완전히 지나친 경우
+                    const noteBottomY = currentTop + NOTE_HEIGHT;
+
+                    if (noteBottomY > HIT_LINE_Y + SOSO_WINDOW) {
+                        note.remove();
+                        notes.splice(i, 1);
+                        processMiss(); // 놓친 노트로 인한 MISS
+                    }
+                }
+            });
+
+            animationFrameId = requestAnimationFrame(moveNotes);
+        }
+        
+        // --- 게임 로직: 키 입력 처리 ---
+
+        function handleKeyPress(e) {
+            if (!gameRunning) return;
+            const pressedKey = e.key.toUpperCase();
+            
+            if (KEYS.includes(pressedKey)) {
+                const keyButton = document.getElementById(`key-button-${pressedKey}`);
+                if (keyButton) {
+                    keyButton.classList.add('pressed');
+                }
+                
+                checkHit(pressedKey);
+                
+                e.preventDefault(); 
+            }
+        }
+        
+        function handleKeyRelease(e) {
+            if (!gameRunning) return;
+            const releasedKey = e.key.toUpperCase();
+            
+            if (KEYS.includes(releasedKey)) {
+                const keyButton = document.getElementById(`key-button-${releasedKey}`);
+                if (keyButton) {
+                    keyButton.classList.remove('pressed');
+                }
+            }
+        }
+
+        function checkHit(key) {
+            const notes = noteMap[key];
+            
+            if (notes.length > 0) {
+                const note = notes[0];
+                const noteTopY = parseFloat(note.style.top);
+                const noteBottomY = noteTopY + NOTE_HEIGHT;
+                
+                // 노트의 바닥과 판정선의 거리
+                const distance = Math.abs(HIT_LINE_Y - noteBottomY);
+
+                let judgment = null;
+                let points = 0;
+
+                if (distance <= PERFECT_WINDOW) {
+                    judgment = 'PERFECT';
+                    points = 300;
+                } else if (distance <= GOOD_WINDOW) {
+                    judgment = 'GOOD';
+                    points = 150;
+                } else if (distance <= SOSO_WINDOW) {
+                    judgment = 'SOSO';
+                    points = 50;
+                }
+                
+                if (judgment) {
+                    note.remove();
+                    notes.shift(); 
+                    processHit(points);
+                    displayJudgment(judgment);
+                } else {
+                    // 키를 눌렀지만 유효 범위(SOSO_WINDOW) 밖인 경우 -> Miss 처리
+                    processMiss(); 
+                }
+            } 
+        }
+
+        function processHit(points) {
+            score += points;
+            combo++;
+            scoreElement.textContent = score;
+            comboElement.textContent = combo;
+        }
+        
+        function processMiss() {
+            combo = 0;
+            score -= 100; // 점수 100점 차감 (음수 허용)
+            comboElement.textContent = combo;
+            scoreElement.textContent = score;
+            
+            displayJudgment('MISS');
+        }
+
+        function displayJudgment(judgment) {
+            judgmentElement.textContent = judgment;
+            judgmentElement.className = ''; 
+            judgmentElement.classList.add('judgment', judgment.toLowerCase());
+            judgmentElement.style.opacity = 1;
+            
+            setTimeout(() => {
+                judgmentElement.style.opacity = 0;
+            }, 100);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메모리 게임</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .game-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .game-header h2 {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #e0e0e0, #d0d0d0);
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 24px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f5f5, #e8e8e8);
+            border-radius: 16px;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 4px;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .memory-card {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .memory-card:hover {
+            transform: scale(1.05);
+        }
+
+        .memory-card.flipped {
+            background: white;
+            border: 3px solid #667eea;
+            transform: rotateY(180deg);
+        }
+
+        .memory-card.matched {
+            background: linear-gradient(135deg, #4caf50, #45a049);
+            cursor: default;
+            animation: matchPulse 0.6s ease;
+        }
+
+        @keyframes matchPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <h2>🧠 메모리 게임</h2>
+            <a href="games-index.html" class="btn btn-secondary">홈으로</a>
+        </div>
+        <div class="game-content">
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-label">이동 횟수</div>
+                    <div class="stat-value" id="mem-moves">0</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">최고 점수</div>
+                    <div class="stat-value" id="mem-best">-</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">매치</div>
+                    <div class="stat-value" id="mem-matched">0/8</div>
+                </div>
+            </div>
+            <div class="memory-grid" id="mem-grid"></div>
+        </div>
+    </div>
+
+    <script>
+        const STORAGE_KEY = 'memoryGameHighScore';
+        const emojis = ['🍎', '🍌', '🍇', '🍊', '🍓', '🍒', '🥝', '🍑'];
+        const cards = [...emojis, ...emojis].sort(() => Math.random() - 0.5);
+        let flipped = [];
+        let matched = [];
+        let moves = 0;
+        let startTime = Date.now();
+
+        function loadHighScore() {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) {
+                document.getElementById('mem-best').textContent = saved;
+            }
+        }
+
+        function saveHighScore(score) {
+            const current = localStorage.getItem(STORAGE_KEY);
+            if (!current || parseInt(score) > parseInt(current)) {
+                localStorage.setItem(STORAGE_KEY, score);
+                document.getElementById('mem-best').textContent = score;
+                return true;
+            }
+            return false;
+        }
+
+        const grid = document.getElementById('mem-grid');
+        cards.forEach((emoji, index) => {
+            const card = document.createElement('div');
+            card.className = 'memory-card';
+            card.dataset.index = index;
+            card.dataset.emoji = emoji;
+            card.onclick = () => flipCard(index);
+            grid.appendChild(card);
+        });
+
+        function flipCard(index) {
+            if (flipped.length >= 2 || flipped.includes(index) || matched.includes(index)) return;
+
+            const card = grid.children[index];
+            card.classList.add('flipped');
+            card.textContent = card.dataset.emoji;
+            flipped.push(index);
+
+            if (flipped.length === 2) {
+                moves++;
+                document.getElementById('mem-moves').textContent = moves;
+
+                const [first, second] = flipped;
+                if (cards[first] === cards[second]) {
+                    matched.push(first, second);
+                    grid.children[first].classList.add('matched');
+                    grid.children[second].classList.add('matched');
+                    flipped = [];
+                    document.getElementById('mem-matched').textContent = `${matched.length / 2}/8`;
+
+                    if (matched.length === 16) {
+                        const time = Math.floor((Date.now() - startTime) / 1000);
+                        const score = Math.max(200 - moves * 5 - time, 20);
+                        const isNewRecord = saveHighScore(score);
+                        const recordText = isNewRecord ? ' 🎉 신기록!' : '';
+                        setTimeout(() => {
+                            alert(`🎉 완료! ${moves}번 이동, ${time}초 (${score}점)${recordText}`);
+                        }, 300);
+                    }
+                } else {
+                    setTimeout(() => {
+                        grid.children[first].classList.remove('flipped');
+                        grid.children[second].classList.remove('flipped');
+                        grid.children[first].textContent = '';
+                        grid.children[second].textContent = '';
+                        flipped = [];
+                    }, 1000);
+                }
+            }
+        }
+
+        loadHighScore();
+    </script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>색깔 순서 기억 게임</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .game-container {
+            background: white;
+            border-radius: 12px;
+            padding: 32px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .game-header h2 {
+            font-size: 2rem;
+            color: #333;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-secondary {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background: #d0d0d0;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 24px;
+            padding: 16px;
+            background: #f5f5f5;
+            border-radius: 8px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 4px;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .color-pattern-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            max-width: 300px;
+            margin: 24px auto;
+        }
+
+        .color-pattern-tile {
+            aspect-ratio: 1;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 3px solid transparent;
+        }
+
+        .color-pattern-tile.active {
+            transform: scale(1.1);
+            border-color: white;
+            box-shadow: 0 0 20px rgba(255,255,255,0.8);
+        }
+
+        .game-content {
+            text-align: center;
+        }
+
+        .game-content p {
+            color: #666;
+            margin-bottom: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <h2>🌈 색깔 순서 기억</h2>
+            <a href="games-index.html" class="btn btn-secondary">홈으로</a>
+        </div>
+        <div class="game-content">
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-label">레벨</div>
+                    <div class="stat-value" id="pattern-level">1</div>
+                </div>
+            </div>
+            <p>색깔 패턴을 기억하고 따라하세요!</p>
+            <div class="color-pattern-grid" id="pattern-grid"></div>
+        </div>
+    </div>
+
+    <script>
+        const colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A'];
+        let sequence = [];
+        let playerSequence = [];
+        let level = 1;
+        let isPlaying = false;
+
+        const grid = document.getElementById('pattern-grid');
+        colors.forEach((color, i) => {
+            const tile = document.createElement('div');
+            tile.className = 'color-pattern-tile';
+            tile.style.background = color;
+            tile.onclick = () => clickPatternTile(i);
+            grid.appendChild(tile);
+        });
+
+        function showPattern() {
+            isPlaying = true;
+            playerSequence = [];
+            sequence.push(Math.floor(Math.random() * 4));
+
+            let i = 0;
+            const interval = setInterval(() => {
+                if (i >= sequence.length) {
+                    clearInterval(interval);
+                    isPlaying = false;
+                    return;
+                }
+
+                const tile = document.querySelectorAll('.color-pattern-tile')[sequence[i]];
+                tile.classList.add('active');
+                setTimeout(() => tile.classList.remove('active'), 500);
+                i++;
+            }, 700);
+        }
+
+        function clickPatternTile(index) {
+            if (isPlaying) return;
+
+            playerSequence.push(index);
+            const tile = document.querySelectorAll('.color-pattern-tile')[index];
+            tile.classList.add('active');
+            setTimeout(() => tile.classList.remove('active'), 300);
+
+            const currentIndex = playerSequence.length - 1;
+            if (playerSequence[currentIndex] !== sequence[currentIndex]) {
+                const finalScore = (level - 1) * 25;
+                alert(`게임 오버! 레벨 ${level} (${finalScore}점)`);
+                return;
+            }
+
+            if (playerSequence.length === sequence.length) {
+                level++;
+                document.getElementById('pattern-level').textContent = level;
+                setTimeout(showPattern, 1000);
+            }
+        }
+
+        showPattern();
+    </script>
+</body>
+</html>

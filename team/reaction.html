@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>반응속도 테스트</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .game-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .game-header h2 {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #e0e0e0, #d0d0d0);
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 24px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f5f5, #e8e8e8);
+            border-radius: 16px;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 4px;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .reaction-box {
+            width: 100%;
+            height: 300px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .reaction-box:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <h2>⚡ 반응속도 테스트</h2>
+            <a href="games-index.html" class="btn btn-secondary">홈으로</a>
+        </div>
+        <div class="game-content">
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-label">최고 기록</div>
+                    <div class="stat-value" id="react-best">-</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">평균 반응속도</div>
+                    <div class="stat-value" id="react-avg">-</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">시도 횟수</div>
+                    <div class="stat-value" id="react-attempts">0</div>
+                </div>
+            </div>
+            <div id="react-box" class="reaction-box">
+                클릭하여 시작
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const STORAGE_KEY = 'reactionBestTime';
+        let state = 'waiting';
+        let startTime = 0;
+        let attempts = 0;
+        let bestTime = Infinity;
+        let allTimes = [];
+
+        function loadBestTime() {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) {
+                bestTime = parseInt(saved);
+                document.getElementById('react-best').textContent = `${bestTime}ms`;
+            }
+        }
+
+        function saveBestTime(time) {
+            if (time < bestTime) {
+                bestTime = time;
+                localStorage.setItem(STORAGE_KEY, time);
+                document.getElementById('react-best').textContent = `${bestTime}ms`;
+                return true;
+            }
+            return false;
+        }
+
+        const box = document.getElementById('react-box');
+
+        box.onclick = function() {
+            if (state === 'waiting') {
+                state = 'ready';
+                box.style.background = 'linear-gradient(135deg, #f44336, #e53935)';
+                box.textContent = '잠시만 기다리세요...';
+                const delay = Math.random() * 3000 + 2000;
+                setTimeout(() => {
+                    state = 'go';
+                    startTime = Date.now();
+                    box.style.background = 'linear-gradient(135deg, #4caf50, #45a049)';
+                    box.textContent = '지금 클릭!';
+                    box.style.animation = 'pulse 0.5s ease infinite';
+                }, delay);
+            } else if (state === 'ready') {
+                state = 'waiting';
+                box.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
+                box.style.animation = 'none';
+                box.textContent = '너무 빨라요! 다시 시작';
+            } else if (state === 'go') {
+                const reactionTime = Date.now() - startTime;
+                attempts++;
+                allTimes.push(reactionTime);
+                
+                const isNewRecord = saveBestTime(reactionTime);
+                const recordText = isNewRecord ? ' 🎉 신기록!' : '';
+                
+                const avgTime = Math.round(allTimes.reduce((a, b) => a + b, 0) / allTimes.length);
+                document.getElementById('react-avg').textContent = `${avgTime}ms`;
+                document.getElementById('react-attempts').textContent = attempts;
+                
+                state = 'waiting';
+                box.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
+                box.style.animation = 'none';
+                box.textContent = `${reactionTime}ms${recordText}\n클릭하여 다시 시도`;
+            }
+        };
+
+        loadBestTime();
+    </script>
+</body>
+</html>

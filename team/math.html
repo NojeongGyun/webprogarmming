@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>수학 퀴즈 게임</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .game-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .game-header h2 {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #e0e0e0, #d0d0d0);
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-large {
+            padding: 16px 32px;
+            font-size: 1.2rem;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 24px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f5f5, #e8e8e8);
+            border-radius: 16px;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 4px;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 16px 20px;
+            font-size: 1.2rem;
+            border: 3px solid #e0e0e0;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            transition: all 0.3s;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        }
+
+        #math-question {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 32px 0;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: questionPulse 1s ease;
+        }
+
+        @keyframes questionPulse {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .game-content {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <h2>🔢 수학 퀴즈</h2>
+            <a href="games-index.html" class="btn btn-secondary">홈으로</a>
+        </div>
+        <div class="game-content">
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-label">점수</div>
+                    <div class="stat-value" id="math-score">0/10</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">최고 점수</div>
+                    <div class="stat-value" id="math-best">-</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">문제</div>
+                    <div class="stat-value" id="math-round">0/10</div>
+                </div>
+            </div>
+            <div>
+                <div id="math-question"></div>
+                <input type="number" id="math-input" class="input-field" placeholder="답을 입력하세요">
+                <button class="btn btn-primary btn-large" onclick="checkMath()">확인</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const STORAGE_KEY = 'mathQuizHighScore';
+        let score = 0;
+        let round = 0;
+        const maxRounds = 10;
+        let startTime = Date.now();
+        let currentAnswer = 0;
+
+        function loadHighScore() {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) {
+                document.getElementById('math-best').textContent = saved;
+            }
+        }
+
+        function saveHighScore(finalScore) {
+            const current = localStorage.getItem(STORAGE_KEY);
+            if (!current || parseInt(finalScore) > parseInt(current)) {
+                localStorage.setItem(STORAGE_KEY, finalScore);
+                document.getElementById('math-best').textContent = finalScore;
+                return true;
+            }
+            return false;
+        }
+
+        function nextQuestion() {
+            round++;
+            if (round > maxRounds) {
+                const time = Math.floor((Date.now() - startTime) / 1000);
+                const finalScore = Math.max(score * 10 - time, 0);
+                const isNewRecord = saveHighScore(finalScore);
+                const recordText = isNewRecord ? '\n🎉 신기록!' : '';
+                alert(`게임 종료! ${score}/${maxRounds} 정답 (${finalScore}점)${recordText}`);
+                return;
+            }
+
+            const a = Math.floor(Math.random() * 50) + 1;
+            const b = Math.floor(Math.random() * 50) + 1;
+            const ops = ['+', '-', '*'];
+            const op = ops[Math.floor(Math.random() * ops.length)];
+            
+            switch(op) {
+                case '+': currentAnswer = a + b; break;
+                case '-': currentAnswer = a - b; break;
+                case '*': currentAnswer = a * b; break;
+            }
+
+            document.getElementById('math-question').textContent = `${a} ${op} ${b} = ?`;
+            document.getElementById('math-question').style.animation = 'none';
+            setTimeout(() => {
+                document.getElementById('math-question').style.animation = 'questionPulse 1s ease';
+            }, 10);
+            document.getElementById('math-score').textContent = `${score}/${maxRounds}`;
+            document.getElementById('math-round').textContent = `${round}/${maxRounds}`;
+            document.getElementById('math-input').value = '';
+            document.getElementById('math-input').focus();
+        }
+
+        function checkMath() {
+            const userAnswer = parseInt(document.getElementById('math-input').value);
+            if (userAnswer === currentAnswer) {
+                score++;
+            }
+            nextQuestion();
+        }
+
+        document.getElementById('math-input').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') checkMath();
+        });
+
+        loadHighScore();
+        nextQuestion();
+    </script>
+</body>
+</html>

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>타이핑 속도 게임</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .game-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 700px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .game-header h2 {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #e0e0e0, #d0d0d0);
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-large {
+            padding: 16px 32px;
+            font-size: 1.2rem;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 24px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f5f5, #e8e8e8);
+            border-radius: 16px;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 4px;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .target-text {
+            background: linear-gradient(135deg, #f5f5f5, #e8e8e8);
+            padding: 24px;
+            border-radius: 16px;
+            font-size: 1.5rem;
+            font-family: monospace;
+            margin-bottom: 16px;
+            letter-spacing: 2px;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .target-text .char-correct {
+            color: #4caf50;
+            font-weight: bold;
+        }
+        
+        /* 텍스트 입력 중 커서 위치를 나타내는 효과 추가 */
+        .target-text .char-cursor {
+            border-right: 2px solid #333;
+            animation: blink 0.7s infinite;
+        }
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        .target-text .char-wrong {
+            color: #f44336;
+            font-weight: bold;
+        }
+
+        .target-text .char-pending {
+            color: #999;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 16px 20px;
+            font-size: 1.2rem;
+            border: 3px solid #e0e0e0;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            transition: all 0.3s;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        }
+
+        #start-container {
+            text-align: center;
+            padding: 48px;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <h2>⌨️ 타이핑 속도</h2>
+            <a href="games-index.html" class="btn btn-secondary">홈으로</a>
+        </div>
+        <div class="game-content">
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-label">속도 (WPM)</div>
+                    <div class="stat-value" id="typing-wpm">0</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">최고 WPM</div>
+                    <div class="stat-value" id="typing-best">-</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">남은 시간</div>
+                    <div class="stat-value" id="typing-time">60</div>
+                </div>
+            </div>
+            <div id="start-container">
+                <button class="btn btn-primary btn-large" onclick="startTyping()">게임 시작</button>
+            </div>
+            <div id="typing-target" class="target-text" style="display: none;"></div>
+            <input type="text" id="typing-input" class="input-field" placeholder="여기에 입력하세요. 완료 후 엔터키를 누르세요." 
+                   oninput="handleTypingInput(event)" 
+                   oncompositionstart="handleCompositionStart()"
+                   oncompositionend="handleCompositionEnd(event)" 
+                   onkeyup="handleKeyUp(event)"
+                   style="display: none;">
+        </div>
+    </div>
+
+    <script>
+        const STORAGE_KEY = 'typingHighWPM';
+        const sentences = [
+            '빠른 갈색 여우가 게으른 개를 뛰어넘습니다',
+            '타이핑 속도를 측정하는 재미있는 게임입니다',
+            '프로그래밍은 창의적인 문제 해결입니다',
+            '연습하면 점점 더 빨라질 수 있습니다',
+            '키보드를 보지 않고 타이핑해보세요'
+        ];
+
+        let targetText = '';
+        let inputText = '';
+        let timeLeft = 60;
+        let isPlaying = false;
+        let correctChars = 0;
+        let timer = null;
+        let isComposing = false; 
+
+        function loadHighScore() {
+            const saved = localStorage.localStorage.getItem(STORAGE_KEY);
+            if (saved) {
+                document.getElementById('typing-best').textContent = saved;
+            }
+        }
+
+        function saveHighScore(wpm) {
+            const current = localStorage.localStorage.getItem(STORAGE_KEY);
+            if (!current || parseInt(wpm) > parseInt(current)) {
+                localStorage.localStorage.setItem(STORAGE_KEY, wpm);
+                document.getElementById('typing-best').textContent = wpm;
+                return true;
+            }
+            return false;
+        }
+
+        function startTyping() {
+            isPlaying = true;
+            timeLeft = 60;
+            correctChars = 0;
+            isComposing = false; 
+            targetText = sentences[Math.floor(Math.random() * sentences.length)].trim();
+            inputText = '';
+            
+            document.getElementById('start-container').style.display = 'none';
+            document.getElementById('typing-target').style.display = 'block';
+            document.getElementById('typing-input').style.display = 'block';
+            document.getElementById('typing-input').value = ''; 
+            document.getElementById('typing-input').focus();
+            
+            updateDisplay();
+
+            timer = setInterval(() => {
+                timeLeft--;
+                if (timeLeft <= 0) {
+                    endTyping();
+                }
+                updateDisplay();
+            }, 1000);
+        }
+
+        function endTyping() {
+            if (!isPlaying) return;
+            
+            isPlaying = false;
+            clearInterval(timer);
+            
+            const timeElapsed = 60 - timeLeft;
+            const wpm = timeElapsed > 0 ? Math.round((correctChars / 5) / (timeElapsed / 60)) : 0;
+            
+            const score = Math.min(wpm * 2, 200); 
+            const isNewRecord = saveHighScore(wpm);
+            const recordText = isNewRecord ? '\n🎉 신기록!' : '';
+            
+            document.getElementById('start-container').style.display = 'block';
+            document.getElementById('typing-target').style.display = 'none';
+            document.getElementById('typing-input').style.display = 'none';
+            
+            alert(`게임 종료! ${wpm} WPM (${score}점)${recordText}`);
+        }
+
+        // 문장 상태 변경 및 입력 필드 초기화를 담당하는 핵심 함수
+        function changeSentenceState() {
+             const inputEl = document.getElementById('typing-input');
+             
+             // 1. 상태 업데이트
+             correctChars += targetText.length;
+             targetText = sentences[Math.floor(Math.random() * sentences.length)].trim();
+             inputText = '';
+             updateDisplay();
+             
+             // 2. 중요: 입력 필드 초기화를 담당. 
+             // 즉시 비우기
+             inputEl.value = '';
+
+             // 10ms 지연 후 강제 재-비우기 및 포커스 (IME 잔여 문제를 확실히 해결)
+             setTimeout(() => {
+                 inputEl.value = '';
+                 inputEl.focus();
+             }, 10);
+        }
+
+        function updateDisplay() {
+            const timeElapsed = 60 - timeLeft;
+            const wpm = timeElapsed > 0 ? Math.round((correctChars / 5) / (timeElapsed / 60)) : 0;
+            
+            document.getElementById('typing-wpm').textContent = wpm;
+            document.getElementById('typing-time').textContent = timeLeft;
+
+            let displayText = '';
+            for (let i = 0; i < targetText.length; i++) {
+                const char = targetText[i];
+                let className = '';
+                
+                if (i < inputText.length) {
+                    className = inputText[i] === char ? 'char-correct' : 'char-wrong';
+                } else if (i === inputText.length) {
+                    // 현재 입력 중인 위치에 커서 효과 추가
+                    className = 'char-pending char-cursor';
+                } else {
+                    className = 'char-pending';
+                }
+                
+                // 커서 위치에 있는 글자(char)를 span으로 감싸고 클래스 적용
+                displayText += `<span class="${className}">${char}</span>`;
+            }
+            // 입력 필드가 비어있고, 문장이 남아있을 경우 맨 앞에 커서 표시
+            if (inputText.length === 0 && targetText.length > 0) {
+                 displayText = `<span class="char-pending char-cursor">${targetText[0]}</span>` + displayText.substring(displayText.indexOf('</span>') + 7);
+            }
+            
+            document.getElementById('typing-target').innerHTML = displayText;
+        }
+
+        // IME 입력 시작 시 (한글 조합 시작)
+        function handleCompositionStart() {
+            isComposing = true;
+        }
+
+        // IME 입력 종료 시 (한글 조합 완료)
+        function handleCompositionEnd(e) {
+            isComposing = false;
+            // 조합 종료 시, 자동으로 다음 문제로 넘어가는 로직을 삭제하고 display만 업데이트
+            inputText = e.target.value;
+            updateDisplay();
+        }
+
+        function handleTypingInput(e) {
+            if (!isPlaying) return;
+            inputText = e.target.value;
+            
+            // 자동 완료 로직을 제거하고, 입력 중에는 오직 디스플레이만 업데이트
+            updateDisplay();
+        }
+        
+        // 엔터키 처리 함수 (핵심 수정)
+        function handleKeyUp(e) {
+            const inputEl = e.target;
+            // 엔터키 (keyCode 13 또는 key 'Enter')가 눌렸을 때만 처리
+            if (isPlaying && (e.keyCode === 13 || e.key === 'Enter')) {
+                // IME 입력이 완전히 끝났음을 보장하기 위해 1ms 지연 후 검사
+                 setTimeout(() => {
+                    checkCompletion(inputEl); 
+                 }, 1);
+                
+                // 기본 엔터 동작 방지
+                e.preventDefault(); 
+            }
+        }
+        
+        // 완료 여부를 검사하고 다음 문장으로 넘어가는 공통 함수
+        function checkCompletion(inputEl) {
+            inputText = inputEl.value; 
+            
+            // 엔터키를 눌렀을 때만 일치 여부를 검사
+            if (inputText.trim() === targetText.trim()) {
+                changeSentenceState();
+            } else {
+                // 일치하지 않으면 오타가 있으므로, 에러 메시지 없이 디스플레이만 업데이트
+                updateDisplay(); 
+            }
+        }
+
+        loadHighScore();
+    </script>
+</body>
+</html>

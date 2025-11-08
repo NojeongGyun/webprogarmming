@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>미니게임 센터 - 재미있는 온라인 미니게임 모음</title>
+    <meta name="description" content="숫자 맞추기, 메모리 게임, 반응속도 테스트 등 재미있는 미니게임을 무료로 즐겨보세요!">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            animation: gradientShift 10s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+        }
+
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .game-card {
+            background: white;
+            border-radius: 16px;
+            padding: 28px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.6s ease backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .game-card:hover::before {
+            opacity: 1;
+        }
+
+        .game-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .game-card:nth-child(1) { animation-delay: 0.1s; }
+        .game-card:nth-child(2) { animation-delay: 0.15s; }
+        .game-card:nth-child(3) { animation-delay: 0.2s; }
+        .game-card:nth-child(4) { animation-delay: 0.25s; }
+        .game-card:nth-child(5) { animation-delay: 0.3s; }
+        .game-card:nth-child(6) { animation-delay: 0.35s; }
+        .game-card:nth-child(7) { animation-delay: 0.4s; }
+        .game-card:nth-child(8) { animation-delay: 0.45s; }
+        .game-card:nth-child(9) { animation-delay: 0.5s; }
+        .game-card:nth-child(10) { animation-delay: 0.55s; }
+        .game-card:nth-child(11) { animation-delay: 0.6s; }
+        .game-card:nth-child(12) { animation-delay: 0.65s; }
+
+        .game-icon {
+            font-size: 3.5rem;
+            margin-bottom: 16px;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .game-card:hover .game-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .game-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            color: #333;
+            position: relative;
+        }
+
+        .game-card p {
+            color: #666;
+            font-size: 0.95rem;
+            position: relative;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .game-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎮 미니게임 센터</h1>
+            <p>재미있는 게임을 즐겨보세요!</p>
+        </div>
+
+        <div class="game-grid">
+            <a href="number-guess.html" class="game-card">
+                <div class="game-icon">🎯</div>
+                <h3>숫자 맞추기</h3>
+                <p>1~100 사이 숫자 맞추기</p>
+            </a>
+            
+            <a href="pitch-test.html" class="game-card">
+                <div class="game-icon">👂</div>
+                <h3>절대 음감 테스트</h3>
+                <p>도~시 음계 5문제 맞추기</p>
+            </a>
+            <a href="memory.html" class="game-card">
+                <div class="game-icon">🧠</div>
+                <h3>메모리 게임</h3>
+                <p>같은 카드 찾기</p>
+            </a>
+
+            <a href="reaction.html" class="game-card">
+                <div class="game-icon">⚡</div>
+                <h3>반응속도 테스트</h3>
+                <p>얼마나 빠른지 테스트</p>
+            </a>
+
+            <a href="rhythm-custom.html" class="game-card">
+                <div class="game-icon">🎹</div>
+                <h3>커스텀 리듬 게임</h3>
+                <p>사용자 지정 5키 입력 리듬</p>
+            </a>
+            <a href="typing.html" class="game-card">
+                <div class="game-icon">⌨️</div>
+                <h3>타이핑 속도</h3>
+                <p>타이핑 속도 측정</p>
+            </a>
+
+            <a href="math.html" class="game-card">
+                <div class="game-icon">🔢</div>
+                <h3>수학 퀴즈</h3>
+                <p>빠른 계산 테스트</p>
+            </a>
+            
+            <a href="word.html" class="game-card">
+                <div class="game-icon">📝</div>
+                <h3>단어 맞추기</h3>
+                <p>숨겨진 단어 찾기</p>
+            </a>
+
+            <a href="flip.html" class="game-card">
+                <div class="game-icon">🃏</div>
+                <h3>카드 뒤집기</h3>
+                <p>기억력 테스트</p>
+            </a>
+
+            <a href="sequence.html" class="game-card">
+                <div class="game-icon">🔄</div>
+                <h3>순서 기억하기</h3>
+                <p>패턴 따라하기</p>
+            </a>
+
+            <a href="whack.html" class="game-card">
+                <div class="game-icon">🔨</div>
+                <h3>두더지 잡기</h3>
+                <p>두더지를 빠르게 잡으세요</p>
+            </a>
+
+            <a href="2048.html" class="game-card">
+                <div class="game-icon">🎲</div>
+                <h3>2048</h3>
+                <p>같은 숫자를 합치세요</p>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
