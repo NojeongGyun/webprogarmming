@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>카드 뒤집기 게임</title>
+    <title>순서 기억하기 카드 게임</title>
     <style>
         * {
             margin: 0;
@@ -40,6 +40,18 @@
         .game-header h2 {
             font-size: 2rem;
             color: #333;
+        }
+
+        .score-board {
+            text-align: right;
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        .score-board strong {
+            font-size: 1.5rem;
+            color: #667eea;
+            margin-left: 8px;
         }
 
         .btn {
@@ -82,12 +94,29 @@
             font-size: 2rem;
             color: white;
             transition: all 0.3s;
+            pointer-events: none; /* 초기에는 클릭 불가 */
+        }
+
+        .memory-card.clickable {
+            pointer-events: auto; /* 게임 중일 때만 클릭 가능 */
         }
 
         .memory-card.flipped {
-            background: white;
-            border: 2px solid #667eea;
+            background: #e8eaf6; /* 맞춘 카드는 연한 배경 */
             color: #667eea;
+            cursor: default;
+        }
+
+        .memory-card.wrong {
+            background: #ff4444; /* 틀린 카드는 빨간색 */
+            color: white;
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-5px); }
+            40%, 80% { transform: translateX(5px); }
         }
 
         .game-content {
@@ -99,37 +128,63 @@
             color: #666;
             margin-bottom: 24px;
         }
+        
+        #game-info {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            font-weight: bold;
+            color: #333;
+        }
     </style>
 </head>
 <body>
     <div class="game-container">
         <div class="game-header">
-            <h2>🃏 카드 뒤집기</h2>
+            <h2>🃏 순서 기억하기</h2>
+            <div class="score-board">
+                <span id="flip-current-score">점수: <strong>0</strong></span>
+                |
+                <span id="flip-best-score">최고 기록: <strong>-</strong></span>
+            </div>
             <a href="games-index.html" class="btn btn-secondary">홈으로</a>
         </div>
         <div class="game-content">
-            <p>카드 위치를 기억하고 순서대로 찾으세요!</p>
+            <p id="game-info">카드 위치를 기억하고 1부터 순서대로 찾으세요! (3초 후 시작)</p>
             <div class="memory-grid" id="flip-grid"></div>
         </div>
     </div>
 
     <script>
-        const STORAGE_KEY = 'flipGameHighScore';
-        const cards = Array.from({length: 16}, (_, i) => i + 1);
-        let revealedCards = [];
-        let phase = 'memorize';
-        let attempts = 0;
+        const STORAGE_KEY = 'flipGameHighScore_Sequence';
+        const CARD_COUNT = 16;
+        const MEMORIZE_TIME_MS = 3000;
+
+        let shuffledCards = []; // 카드 값 (1-16)을 무작위로 저장
+        let revealedCards = []; // 맞춘 카드 값 목록
+        let nextExpectedValue = 1; // 다음에 눌러야 할 값 (1부터 시작)
+        let score = 0; // 현재 점수 (맞춘 카드 수)
+        let phase = 'memorize'; // 'memorize' 또는 'guess'
+        let gameActive = false; // 게임 진행 여부
+
+        // Fisher-Yates 셔플 알고리즘
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
 
         function loadHighScore() {
             const saved = localStorage.getItem(STORAGE_KEY);
-            if (saved) document.getElementById('flip-best').textContent = saved;
+            if (saved) document.getElementById('flip-best-score').textContent = saved;
         }
 
-        function saveHighScore(score) {
-            const current = localStorage.getItem(STORAGE_KEY);
-            if (!current || parseInt(score) > parseInt(current)) {
-                localStorage.setItem(STORAGE_KEY, score);
-                document.getElementById('flip-best').textContent = score;
+        function saveHighScore(currentScore) {
+            const currentBest = parseInt(localStorage.getItem(STORAGE_KEY) || 0);
+            if (currentScore > currentBest) {
+                localStorage.setItem(STORAGE_KEY, currentScore);
+                document.getElementById('flip-best-score').textContent = currentScore;
                 return true;
             }
             return false;
@@ -137,49 +192,114 @@
 
         function updateDisplay() {
             const grid = document.getElementById('flip-grid');
-            grid.innerHTML = cards.map((num) => {
-                const isRevealed = revealedCards.includes(num);
-                const cursor = phase === 'guess' ? 'pointer' : 'default';
+            const scoreElement = document.getElementById('flip-current-score').querySelector('strong');
+            const infoElement = document.getElementById('game-info');
+
+            scoreElement.textContent = score;
+
+            if (phase === 'memorize') {
+                 infoElement.textContent = '카드 위치를 기억하세요! (' + (MEMORIZE_TIME_MS / 1000) + '초)';
+            } else if (gameActive) {
+                infoElement.textContent = `${nextExpectedValue}를 찾으세요. (현재 점수: ${score}점)`;
+            } else if (score === CARD_COUNT) {
+                 infoElement.textContent = '게임 성공! 완벽하게 순서를 기억했습니다!';
+            } else {
+                 infoElement.textContent = '게임을 다시 시작하려면 페이지를 새로고침하세요.';
+            }
+
+            grid.innerHTML = shuffledCards.map((value) => {
+                const isRevealed = revealedCards.includes(value);
+                const isClickable = phase === 'guess' && gameActive && !isRevealed;
+
+                let cardClass = '';
+                if (isRevealed) {
+                    cardClass = 'flipped';
+                }
+
                 return `
-                    <div class="memory-card ${isRevealed ? 'flipped' : ''}" 
-                         onclick="flipCardGame(${num})"
-                         style="cursor: ${cursor};">
-                        ${isRevealed ? num : ''}
+                    <div class="memory-card ${cardClass} ${isClickable ? 'clickable' : ''}" 
+                         onclick="flipCardGame(${value})"
+                         data-value="${value}">
+                        ${(isRevealed || phase === 'memorize') ? value : ''}
                     </div>
                 `;
             }).join('');
         }
 
         function revealAll() {
-            revealedCards = [...cards];
-            updateDisplay();
+            phase = 'memorize';
+            updateDisplay(); // 모든 카드를 보여줌 (value를 그대로 사용)
+            
+            // 일정 시간 후 카드 숨기고 게임 시작
             setTimeout(() => {
                 revealedCards = [];
                 phase = 'guess';
+                gameActive = true;
                 updateDisplay();
-            }, 3000);
+            }, MEMORIZE_TIME_MS);
         }
 
-        function flipCardGame(num) {
-            if (phase !== 'guess' || revealedCards.includes(num)) return;
-            
-            attempts++;
-            revealedCards.push(num);
-            updateDisplay();
+        function flipCardGame(clickedValue) {
+            if (phase !== 'guess' || !gameActive || revealedCards.includes(clickedValue)) return;
 
-            if (revealedCards.length === cards.length) {
-                const score = Math.max(150 - attempts * 5, 30);
-                const isNewRecord = saveHighScore(score);
-                const recordText = isNewRecord ? ' 🎉 신기록!' : '';
+            const clickedCard = document.querySelector(`.memory-card[data-value="${clickedValue}"]`);
+
+            if (clickedValue === nextExpectedValue) {
+                // 1. 순서가 맞음: 1점 획득
+                score++;
+                nextExpectedValue++;
+                revealedCards.push(clickedValue);
+                
+                if (score === CARD_COUNT) {
+                    // 게임 클리어
+                    gameActive = false;
+                    const isNewRecord = saveHighScore(score);
+                    const recordText = isNewRecord ? ' 🎉 신기록!' : '';
+                    updateDisplay();
+                    setTimeout(() => {
+                        alert(`게임 성공! ${score}점 획득!${recordText}\n다시 시작하려면 새로고침하세요.`);
+                    }, 300);
+                } else {
+                    updateDisplay();
+                }
+
+            } else {
+                // 2. 순서가 틀림: 게임 종료
+                gameActive = false;
+                
+                // 틀린 카드 표시
+                if (clickedCard) {
+                    clickedCard.classList.add('wrong');
+                    clickedCard.textContent = clickedValue;
+                    clickedCard.style.pointerEvents = 'none'; // 추가 클릭 방지
+                }
+                
                 setTimeout(() => {
-                    alert(`모든 카드 발견! ${attempts}번 시도 (${score}점)${recordText}`);
-                }, 300);
+                    const isNewRecord = saveHighScore(score);
+                    const recordText = isNewRecord ? ' 🎉 신기록!' : '';
+                    alert(`순서가 틀렸습니다! 게임 종료. 최종 점수: ${score}점${recordText}\n다시 시작하려면 새로고침하세요.`);
+                    // 틀린 카드 표시를 유지하고, 게임 오버 상태로 전환
+                    updateDisplay(); 
+                }, 800);
             }
         }
 
-        loadHighScore();
-        updateDisplay();
-        revealAll();
+        function initGame() {
+            // 1-16 카드 생성 및 셔플
+            const tempCards = Array.from({length: CARD_COUNT}, (_, i) => i + 1);
+            shuffledCards = shuffleArray(tempCards);
+            
+            // 게임 상태 초기화
+            score = 0;
+            nextExpectedValue = 1;
+            revealedCards = [];
+            gameActive = false;
+            
+            loadHighScore();
+            revealAll(); // 암기 단계 시작
+        }
+
+        initGame();
     </script>
 </body>
 </html>
