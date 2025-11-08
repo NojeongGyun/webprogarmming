@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talk & Play Myself (Enhanced Animation & Density)</title>
+    <meta name="description" content="진실을 찾아 떠나는 신비로운 미스터리 탐구 웹사이트" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            /* 배경: 밝은 청량한 하늘색 그라데이션 유지 */
+            background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* 중앙 콘텐츠 컨테이너: 배경 요소들 위에서 가독성 확보 */
+        .container {
+            text-align: center;
+            z-index: 100;
+            position: relative;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 1.5rem;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.15);
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #004d40;
+            margin-bottom: 3rem;
+            text-shadow: 0 2px 10px rgba(178, 235, 242, 0.5);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #00838f;
+            margin-top: 3rem;
+            opacity: 1;
+            font-weight: 500;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* 버튼 디자인 (생략된 부분은 원본과 동일) */
+        .mystery-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            width: 10rem;
+            height: 10rem;
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid rgba(0, 151, 167, 0.5);
+            border-radius: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(0, 151, 167, 0.3);
+            z-index: 10;
+        }
+        
+        .mystery-button:hover {
+            border-color: #0097a7;
+            box-shadow: 0 0 30px rgba(0, 151, 167, 0.5), 0 0 50px rgba(0, 151, 167, 0.3);
+            transform: translateY(-5px);
+        }
+        .mystery-button.purple {
+            border: 2px solid rgba(25, 118, 210, 0.5); 
+            box-shadow: 0 0 20px rgba(25, 118, 210, 0.3);
+        }
+        .mystery-button.purple:hover {
+            border-color: #1976d2; 
+            box-shadow: 0 0 30px rgba(25, 118, 210, 0.5), 0 0 50px rgba(25, 118, 210, 0.3);
+            transform: translateY(-5px);
+        }
+        .mystery-button svg {
+            width: 4rem;
+            height: 4rem;
+            color: #0097a7;
+        }
+        .mystery-button.purple svg {
+            color: #1976d2;
+        }
+        .mystery-button span {
+            font-size: 1.125rem;
+            font-weight: bold;
+            color: #004d40;
+        }
+
+        /* 배경 요소 스타일 (기존) */
+        .floating-element {
+            position: absolute;
+            font-size: 2.5rem;
+            opacity: 0.15;
+            user-select: none;
+            pointer-events: none;
+            animation: float 8s ease-in-out infinite;
+            z-index: 5;
+        }
+
+        .floating-element.medium { font-size: 1.8rem; opacity: 0.1; animation: float 7s ease-in-out infinite; }
+        .floating-element.small { font-size: 1.2rem; opacity: 0.07; animation: float 9s ease-in-out infinite; }
+        
+        .floating-element.icon svg {
+            width: 2rem;
+            height: 2rem;
+            color: rgba(0, 151, 167, 0.3); 
+        }
+
+        /* ⭐ 새로 추가된 텍스처 요소 스타일 (밀도 극대화) ⭐ */
+        .floating-element.texture { 
+            font-size: 1rem;
+            opacity: 0.05; /* 매우 은은하게 */
+            color: #00bcd4; /* 밝은 청록색 */
+            animation-duration: 12s;
+        }
+
+        /* ⭐ 새로 추가된 애니메이션: 빛났다 꺼지는 효과 (Pulse) ⭐ */
+        @keyframes pulse {
+            0% { opacity: 0.15; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(1.05); }
+            100% { opacity: 0.15; transform: scale(1); }
+        }
+        .floating-element.pulsing {
+            /* float 애니메이션과 pulse 애니메이션 중첩 */
+            animation: float 8s ease-in-out infinite, pulse 4s ease-in-out infinite alternate;
+            opacity: 0.2; /* pulse 효과가 잘 보이도록 기본 투명도 상향 */
+        }
+
+
+        /* 애니메이션 지연을 다양하게 설정 */
+        .delay-1 { animation-delay: 1s !important; }
+        .delay-2 { animation-delay: 2s !important; }
+        .delay-3 { animation-delay: 3s !important; }
+        .delay-4 { animation-delay: 4s !important; }
+        .delay-5 { animation-delay: 5s !important; }
+        .delay-6 { animation-delay: 6s !important; }
+        .delay-7 { animation-delay: 7s !important; }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(-20px, -25px) rotate(5deg); }
+            50% { transform: translate(-15px, 0) rotate(-5deg); }
+            75% { transform: translate(10px, -35px) rotate(3deg); }
+        }
+
+        /* 토스트 메시지 스타일 유지 */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+        }
+
+        .toast.show {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="floating-element pulsing" style="top: 10%; left: 10%">🔍</div>
+    <div class="floating-element medium delay-3 pulsing" style="top: 20%; right: 15%">💡</div>
+    <div class="floating-element small delay-1" style="bottom: 15%; left: 20%">📘</div>
+    <div class="floating-element delay-4 pulsing" style="bottom: 25%; right: 10%">❓</div>
+    <div class="floating-element medium delay-2" style="top: 50%; left: 5%">🔬</div>
+    <div class="floating-element small delay-5" style="top: 60%; right: 8%">🧭</div>
+    <div class="floating-element small delay-1" style="top: 80%; left: 5%">💭</div>
+    <div class="floating-element medium delay-2" style="bottom: 5%; right: 70%">🗝️</div>
+    <div class="floating-element small delay-5 pulsing" style="top: 40%; left: 35%">❓</div>
+    <div class="floating-element medium delay-3" style="bottom: 50%; right: 25%">🔍</div>
+    <div class="floating-element small delay-6" style="top: 15%; right: 70%;">✒️</div>
+    <div class="floating-element medium delay-7" style="bottom: 10%; left: 5%;">📜</div>
+    
+    <div class="floating-element medium delay-1" style="top: 5%; right: 5%">😊</div>
+    <div class="floating-element small delay-4" style="bottom: 80%; left: 10%">💖</div>
+    <div class="floating-element delay-2" style="top: 30%; left: 90%">💬</div>
+    <div class="floating-element medium delay-5" style="bottom: 60%; right: 5%">🎧</div>
+    <div class="floating-element small delay-3" style="top: 55%; right: 80%">🎭</div>
+    <div class="floating-element delay-6" style="bottom: 30%; left: 5%">😀</div>
+    <div class="floating-element medium delay-7" style="top: 70%; right: 30%">🗣️</div>
+
+    <div class="floating-element small delay-1 pulsing" style="top: 5%; left: 55%;">★</div>
+    <div class="floating-element medium delay-6 pulsing" style="bottom: 50%; left: 55%;">⬢</div>
+    <div class="floating-element small delay-4 pulsing" style="top: 75%; left: 15%;">○</div>
+    <div class="floating-element medium delay-2 pulsing" style="top: 85%; right: 50%">🌟</div>
+
+    <div class="floating-element small delay-2" style="top: 85%; right: 50%">🌱</div>
+    <div class="floating-element medium delay-5" style="bottom: 2%; left: 30%">🌳</div>
+    <div class="floating-element delay-3" style="top: 12%; left: 80%">☀️</div>
+    <div class="floating-element small delay-6" style="bottom: 40%; right: 90%">🌊</div>
+    <div class="floating-element medium delay-1" style="top: 75%; left: 70%">🧘</div>
+    <div class="floating-element small delay-4" style="top: 50%; right: 70%">🌟</div>
+    
+    <div class="floating-element medium delay-4" style="top: 25%; left: 75%">🎨</div>
+    <div class="floating-element small delay-7" style="bottom: 75%; right: 25%">🎶</div>
+    <div class="floating-element delay-1" style="top: 40%; left: 55%">🧩</div>
+    <div class="floating-element medium delay-3" style="bottom: 45%; left: 75%">🔮</div>
+    <div class="floating-element small delay-6" style="top: 8%; left: 25%">🚀</div>
+    <div class="floating-element delay-2" style="bottom: 18%; right: 55%">🎲</div>
+    <div class="floating-element medium delay-5" style="top: 70%; left: 30%">🕹️</div>
+
+
+    <div class="floating-element texture delay-1" style="top: 5%; left: 50%;">.</div>
+    <div class="floating-element texture delay-2" style="top: 15%; left: 60%;">|</div>
+    <div class="floating-element texture delay-3" style="top: 25%; left: 15%;">+</div>
+    <div class="floating-element texture delay-4" style="top: 35%; left: 75%;">.</div>
+    <div class="floating-element texture delay-5" style="top: 45%; left: 10%;">|</div>
+    <div class="floating-element texture delay-6" style="top: 55%; left: 90%;">+</div>
+    <div class="floating-element texture delay-7" style="top: 65%; left: 20%;">.</div>
+    <div class="floating-element texture delay-8" style="top: 75%; left: 85%;">|</div>
+    <div class="floating-element texture delay-9" style="top: 85%; left: 30%;">+</div>
+    <div class="floating-element texture delay-1" style="bottom: 5%; right: 50%;">|</div>
+    <div class="floating-element texture delay-2" style="bottom: 15%; right: 60%;">+</div>
+    <div class="floating-element texture delay-3" style="bottom: 25%; right: 15%;">.</div>
+    <div class="floating-element texture delay-4" style="bottom: 35%; right: 75%;">|</div>
+    <div class="floating-element texture delay-5" style="bottom: 45%; right: 10%;">+</div>
+    <div class="floating-element texture delay-6" style="bottom: 55%; right: 90%;">.</div>
+    <div class="floating-element texture delay-7" style="bottom: 65%; right: 20%;">|</div>
+    <div class="floating-element texture delay-8" style="bottom: 75%; right: 85%;">+</div>
+    <div class="floating-element texture delay-9" style="bottom: 85%; right: 30%;">.</div>
+
+    <div class="floating-element texture delay-1" style="top: 10%; right: 40%;">|</div>
+    <div class="floating-element texture delay-2" style="top: 30%; right: 55%;">+</div>
+    <div class="floating-element texture delay-3" style="top: 50%; right: 25%;">.</div>
+    <div class="floating-element texture delay-4" style="top: 70%; right: 60%;">|</div>
+    <div class="floating-element texture delay-5" style="top: 90%; right: 10%;">+</div>
+
+    <div class="floating-element texture delay-6" style="bottom: 10%; left: 40%;">.</div>
+    <div class="floating-element texture delay-7" style="bottom: 30%; left: 55%;">|</div>
+    <div class="floating-element texture delay-8" style="bottom: 50%; left: 25%;">+</div>
+    <div class="floating-element texture delay-9" style="bottom: 70%; left: 60%;">.</div>
+    <div class="floating-element texture delay-1" style="bottom: 90%; left: 10%;">|</div>
+
+    <div class="floating-element texture delay-1" style="top: 5%; left: 15%;">+</div>
+    <div class="floating-element texture delay-2" style="top: 25%; right: 5%;">.</div>
+    <div class="floating-element texture delay-3" style="bottom: 15%; left: 5%;">|</div>
+    <div class="floating-element texture delay-4" style="bottom: 35%; left: 95%;">+</div>
+    <div class="floating-element texture delay-5" style="top: 45%; right: 95%;">.</div>
+    <div class="floating-element texture delay-6" style="bottom: 5%; left: 90%;">|</div>
+    <div class="floating-element texture delay-7" style="top: 95%; right: 45%;">+</div>
+    <div class="floating-element texture delay-8" style="top: 55%; left: 45%;">.</div>
+    <div class="floating-element texture delay-9" style="bottom: 40%; right: 40%;">|</div>
+    <div class="floating-element texture delay-1" style="top: 60%; left: 80%;">+</div>
+
+    <div class="floating-element icon delay-1" style="top: 5%; left: 40%;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path>
+        </svg>
+    </div>
+    <div class="floating-element icon delay-3" style="bottom: 5%; left: 45%;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
+        </svg>
+    </div>
+    <div class="floating-element icon medium delay-5" style="top: 30%; right: 40%;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+        </svg>
+    </div>
+    <div class="floating-element icon small delay-2" style="bottom: 30%; left: 30%;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path>
+        </svg>
+    </div>
+    <div class="floating-element icon small delay-4" style="top: 75%; right: 40%;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"></path><path d="M12 6v6l4 2"></path>
+        </svg>
+    </div>
+    <div class="floating-element icon medium delay-7" style="bottom: 10%; right: 20%;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle><path d="M8 12s2-2 4-2 4 2 4 2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line>
+        </svg>
+    </div>
+
+    <div class="floating-element icon small delay-3" style="top: 65%; left: 50%;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path></svg>
+    </div>
+    <div class="floating-element icon medium delay-5" style="bottom: 20%; left: 80%;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+    </div>
+    <div class="floating-element icon small delay-1" style="top: 45%; right: 25%;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9l.8 2H20a2 2 0 0 1 2 2z"></path><path d="M12 7v8"></path><path d="M9 10l3-3 3 3"></path></svg>
+    </div>
+    <div class="floating-element icon delay-4" style="bottom: 55%; right: 15%;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+    </div>
+    <div class="floating-element icon medium delay-2" style="top: 5%; left: 20%;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+    </div>
+    <div class="floating-element icon small delay-5" style="bottom: 5%; right: 5%;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12A10 10 0 0 0 12 2v10z"></path><path d="M12 2a10 10 0 0 1 0 20v-10z"></path></svg>
+    </div>
+    
+    <div class="container">
+        <h1>Talk & Play Myself</h1>
+        
+        <div class="button-container">
+            <button class="mystery-button" onclick="window.location.href='http://kaisa12257.github.io/problem-file/team/갈망.html'">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.3-4.3"></path>
+                </svg>
+                <span>미스터리</span>
+            </button>
+
+            <button class="mystery-button purple" onclick="window.location.href='https://si0-source.github.io/webpro/team/index.html'">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"></path>
+                    <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"></path>
+                    <path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"></path>
+                    <path d="M17.599 6.5a3 3 0 0 0 .399-1.375"></path>
+                    <path d="M6.003 5.125A3 3 0 0 0 6.401 6.5"></path>
+                    <path d="M3.477 10.896a4 4 0 0 1 .585-.396"></path>
+                    <path d="M19.938 10.5a4 4 0 0 1 .585.396"></path>
+                    <path d="M6 18a4 4 0 0 1-1.967-.516"></path>
+                    <path d="M19.967 17.484A4 4 0 0 1 18 18"></path>
+                </svg>
+                <span>성격</span>
+            </button>
+
+            <button class="mystery-button" onclick="window.location.href='https://nojeonggyun.github.io/webprogarmming/team/games-index.html'">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="6" x2="10" y1="12" y2="12"></line>
+                    <line x1="8" x2="8" y1="10" y2="14"></line>
+                    <line x1="15" x2="15.01" y1="13" y2="13"></line>
+                    <line x1="18" x2="18.01" y1="11" y2="11"></line>
+                    <rect width="20" height="12" x="2" y="6" rx="2"></rect>
+                </svg>
+                <span>미니게임</span>
+            </button>
+        </div>
+
+        <p class="subtitle">자신의 이야기를 들려주세요</p>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // 이 함수는 이제 버튼에서 사용되지 않습니다.
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
