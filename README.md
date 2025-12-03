@@ -26,4 +26,8 @@ HTML, CSS, JavaScript를 비롯해 프론트엔드 및 백엔드 기초를 학�
 | 5주차 | JavaScript | [5주차 정리](./1001/readme.md)  
 | 6주차 | 코어객체, 배열 | [6주차 정리](./1015/readme.md)
 | 7주차 | HTML Dom, Document  | [7주차 정리](./1029/readme.md)
-  
+| 8주차 | HTML Dom, Document  | [7주차 정리](./1029/readme.md)
+| 9주차 | HTML Dom, Document  | [7주차 정리](./1029/readme.md)
+| 10주차 | HTML Dom, Document  | [7주차 정리](./1029/readme.md)
+| 11주차 | HTML Dom, Document  | [7주차 정리](./1029/readme.md)
+| 12주차 | HTML Dom, Document  | [7주차 정리](./1029/readme.md)
