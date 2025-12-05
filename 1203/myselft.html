@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>경성대 소프트웨어학과 | 개발자 포트폴리오 - 노정균</title>
+    <meta name="description" content="경성대학교 소프트웨어학과 학생 개발자 노정균의 포트폴리오입니다. 새로운 기술을 배우고 성장하는 개발자가 되겠습니다.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --background: #0a0a0b;
+            --foreground: #fafafa;
+            --card: #141417;
+            --card-foreground: #fafafa;
+            --primary: #3b82f6;
+            --primary-foreground: #fafafa;
+            --secondary: #1e1e24;
+            --secondary-foreground: #fafafa;
+            --muted: #27272a;
+            --muted-foreground: #a1a1aa;
+            --accent: #22c55e;
+            --accent-foreground: #fafafa;
+            --border: #27272a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: var(--background);
+            color: var(--foreground);
+            line-height: 1.6;
+        }
+
+        .font-display {
+            font-family: 'Sora', sans-serif;
+        }
+
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+            background: rgba(10, 10, 11, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent);
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--muted-foreground);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--background) 0%, #0d1117 50%, var(--background) 100%);
+        }
+
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        .hero-glow {
+            position: absolute;
+            top: 25%;
+            left: 25%;
+            width: 24rem;
+            height: 24rem;
+            background: rgba(34, 197, 94, 0.2);
+            border-radius: 50%;
+            filter: blur(120px);
+            animation: pulse-glow 4s ease-in-out infinite;
+        }
+
+        .hero-glow-2 {
+            position: absolute;
+            bottom: 25%;
+            right: 25%;
+            width: 18rem;
+            height: 18rem;
+            background: rgba(34, 197, 94, 0.1);
+            border-radius: 50%;
+            filter: blur(100px);
+            animation: pulse-glow 4s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.1); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 0 1.5rem;
+            max-width: 56rem;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 9999px;
+            margin-bottom: 2rem;
+            color: var(--accent);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+        }
+
+        .hero-title {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(2rem, 5vw, 4.5rem);
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, var(--accent) 0%, #4ade80 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-code {
+            display: inline-block;
+            background: rgba(30, 30, 36, 0.5);
+            border: 1px solid rgba(39, 39, 42, 0.3);
+            border-radius: 0.5rem;
+            padding: 1rem 1.5rem;
+            margin-bottom: 2rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+        }
+
+        .code-keyword { color: var(--accent); }
+        .code-string { color: #34d399; }
+        .code-operator { color: var(--muted-foreground); }
+
+        .hero-desc {
+            color: rgba(250, 250, 250, 0.6);
+            font-size: 1.125rem;
+            max-width: 42rem;
+            margin: 0 auto 2rem;
+        }
+
+        .hero-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 9999px;
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: background 0.3s;
+        }
+
+        .hero-btn:hover {
+            background: rgba(34, 197, 94, 0.2);
+        }
+
+        .hero-code-left {
+            position: absolute;
+            left: 2rem;
+            top: 33%;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: rgba(161, 161, 170, 0.3);
+            text-align: left;
+            display: none;
+        }
+
+        @media (min-width: 1024px) {
+            .hero-code-left { display: block; }
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 6rem 1.5rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            color: var(--accent);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+        }
+
+        .section-title {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(1.875rem, 4vw, 2.5rem);
+            font-weight: 600;
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--background);
+        }
+
+        .about-grid {
+            display: grid;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 4rem;
+            }
+        }
+
+        .about-visual {
+            position: relative;
+        }
+
+        .about-visual-box {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--secondary), var(--muted));
+            border-radius: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-visual-code {
+            position: absolute;
+            inset: 0;
+            padding: 2rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            color: rgba(161, 161, 170, 0.4);
+        }
+
+        .about-visual-icon {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-visual-icon-inner {
+            width: 8rem;
+            height: 8rem;
+            background: rgba(34, 197, 94, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 3rem;
+            color: var(--accent);
+        }
+
+        .about-deco-1 {
+            position: absolute;
+            bottom: -1rem;
+            right: -1rem;
+            width: 6rem;
+            height: 6rem;
+            border: 2px solid rgba(34, 197, 94, 0.2);
+            border-radius: 1rem;
+            z-index: -1;
+        }
+
+        .about-text p {
+            color: var(--muted-foreground);
+            margin-bottom: 1rem;
+        }
+
+        .about-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 2rem;
+        }
+
+        .about-info-card {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            background: rgba(30, 30, 36, 0.5);
+            border-radius: 0.75rem;
+            border: 1px solid rgba(39, 39, 42, 0.5);
+        }
+
+        .about-info-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: rgba(34, 197, 94, 0.1);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+        }
+
+        .about-info-label {
+            font-size: 0.75rem;
+            color: var(--muted-foreground);
+        }
+
+        .about-info-value {
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        /* Skills Section */
+        .skills {
+            background: rgba(30, 30, 36, 0.3);
+        }
+
+        .skills-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        /* 미디어 쿼리 수정 (남은 카드에 맞게 템플릿 조정) */
+        @media (min-width: 768px) {
+            .skills-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        /* 그리드 칼럼이 2개로 유지되도록 합니다. */
+
+        .skill-card {
+            background: var(--card);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            border: 1px solid var(--border);
+        }
+
+        .skill-card-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-card-dot {
+            width: 0.5rem;
+            height: 0.5rem;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .skill-item {
+            margin-bottom: 1rem;
+        }
+
+        .skill-item-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-item-name {
+            font-size: 0.875rem;
+        }
+
+        .skill-item-percent {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--muted-foreground);
+        }
+
+        .skill-bar {
+            height: 0.5rem;
+            background: var(--secondary);
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+
+        .skill-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), #4ade80);
+            border-radius: 9999px;
+            transition: width 1s ease-out;
+        }
+
+        .skills-learning {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(34, 197, 94, 0.05);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            border-radius: 1rem;
+        }
+
+        .skills-learning-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .skills-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            padding: 0.375rem 0.75rem;
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--accent);
+            font-size: 0.875rem;
+            border-radius: 0.5rem;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--background);
+        }
+
+        .contact-grid {
+            display: grid;
+            gap: 1rem;
+            max-width: 42rem;
+            margin: 0 auto;
+            /* 1열로 변경 */
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 640px) {
+            /* 2열로 변경 (남은 카드 2개에 맞게) */
+            .contact-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .contact-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.25rem;
+            background: var(--card);
+            border-radius: 0.75rem;
+            border: 1px solid var(--border);
+            text-decoration: none;
+            color: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .contact-card:hover {
+            border-color: rgba(34, 197, 94, 0.3);
+        }
+
+        .contact-icon {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .contact-icon-email { background: rgba(239, 68, 68, 0.1); color: #ef4444; }
+        .contact-icon-github { background: rgba(156, 163, 175, 0.1); color: #9ca3af; }
+        
+        .contact-label {
+            font-size: 0.75rem;
+            color: var(--muted-foreground);
+        }
+
+        .contact-value {
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            border-top: 1px solid var(--border);
+            margin-top: 5rem;
+        }
+
+        .footer p {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            color: var(--muted-foreground);
+        }
+
+        .footer-copyright {
+            font-size: 0.75rem;
+            color: rgba(161, 161, 170, 0.5);
+            margin-top: 0.5rem;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <span>&lt;/&gt;</span>
+                <span>Developer</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-grid"></div>
+        <div class="hero-glow"></div>
+        <div class="hero-glow-2"></div>
+        
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>⌘</span>
+                <span>경성대학교 소프트웨어학과</span>
+            </div>
+            
+            <h1 class="hero-title">
+                안녕하세요,<br>
+                <span class="text-gradient">개발자</span>를 꿈꾸는<br>
+                <span class="text-gradient">노정균</span> 학생입니다
+            </h1>
+            
+            <div class="hero-code">
+                <span class="code-keyword">const</span>
+                dream
+                <span class="code-operator">=</span>
+                <span class="code-string">"세상을 바꾸는 코드"</span>
+                <span class="code-operator">;</span>
+            </div>
+            
+            <p class="hero-desc">
+                새로운 기술을 배우고, 문제를 해결하며,<br>
+                더 나은 세상을 위한 소프트웨어를 만들어갑니다
+            </p>
+            
+            <a href="#about" class="hero-btn">
+                더 알아보기
+                <span class="animate-float">↓</span>
+            </a>
+        </div>
+        
+        <div class="hero-code-left">
+            <p>01 // Author: 노정균</p>
+            <p>02 import Future from 'dreams';</p>
+            <p>03</p>
+            <p>04 const developer = new Student();</p>
+            <p>05 developer.learn();</p>
+        </div>
+    </section>
+
+    <section id="about" class="section about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-visual">
+                    <div class="about-visual-box">
+                        <div class="about-visual-code">
+                            <p>{</p>
+                            <p>&nbsp;&nbsp;"name": "노정균 학생 개발자",</p>
+                            <p>&nbsp;&nbsp;"university": "경성대학교",</p>
+                            <p>&nbsp;&nbsp;"major": "소프트웨어학과",</p>
+                            <p>&nbsp;&nbsp;"passion": "코딩",</p>
+                            <p>&nbsp;&nbsp;"status": "학습중..."</p>
+                            <p>}</p>
+                        </div>
+                        <div class="about-visual-icon">
+                            <div class="about-visual-icon-inner">&lt;/&gt;</div>
+                        </div>
+                    </div>
+                    <div class="about-deco-1"></div>
+                </div>
+                
+                <div>
+                    <span class="section-label">// About Me</span>
+                    <h2 class="section-title">
+                        끊임없이 <span class="text-gradient">성장</span>하는<br>
+                        개발자가 되고 싶습니다
+                    </h2>
+                    
+                    <div class="about-text">
+                        <p>
+                            경성대학교 소프트웨어학과에 재학 중인 노정균 입니다.
+                            프로그래밍을 통해 문제를 해결하는 것에 큰 흥미를 느끼고 있으며,
+                            다양한 프로젝트 경험을 쌓아가고 있습니다.
+                        </p>
+                        <p>
+                            새로운 기술을 배우는 것을 좋아하며, 팀 프로젝트를 통해
+                            협업하는 방법도 익혀가고 있습니다. 언젠가 많은 사람들에게
+                            도움이 되는 서비스를 만드는 것이 꿈입니다.
+                        </p>
+                    </div>
+                    
+                    <div class="about-info">
+                        <div class="about-info-card">
+                            <div class="about-info-icon">🎓</div>
+                            <div>
+                                <p class="about-info-label">학교</p>
+                                <p class="about-info-value">경성대학교</p>
+                            </div>
+                        </div>
+                        <div class="about-info-card">
+                            <div class="about-info-icon">📍</div>
+                            <div>
+                                <p class="about-info-label">전공</p>
+                                <p class="about-info-value">소프트웨어학과</p>
+                            </div>
+                        </div>
+                        <div class="about-info-card">
+                            <div class="about-info-icon">📅</div>
+                            <div>
+                                <p class="about-info-label">상태</p>
+                                <p class="about-info-value">재학중</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section skills">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <span class="section-label">// My Skills</span>
+                <h2 class="section-title">
+                    배우고 있는 <span class="text-gradient">기술 스택</span>
+                </h2>
+            </div>
+            
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3 class="skill-card-title">
+                        <span class="skill-card-dot"></span>
+                        Languages
+                    </h3>
+                    <div class="skill-item">
+                        <div class="skill-item-header">
+                            <span class="skill-item-name">Python</span>
+                            <span class="skill-item-percent">30%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" style="width: 30%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-item-header">
+                            <span class="skill-item-name">JavaScript</span>
+                            <span class="skill-item-percent">40%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" style="width: 40%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-item-header">
+                            <span class="skill-item-name">Java</span>
+                            <span class="skill-item-percent">50%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" style="width: 50%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-item-header">
+                            <span class="skill-item-name">C/C++</span>
+                            <span class="skill-item-percent">20%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" style="width: 20%;"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-card">
+                    <h3 class="skill-card-title">
+                        <span class="skill-card-dot"></span>
+                        Frontend
+                    </h3>
+                    <div class="skill-item">
+                        <div class="skill-item-header">
+                            <span class="skill-item-name">HTML/CSS</span>
+                            <span class="skill-item-percent">50%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" style="width: 50%;"></div>
+                        </div>
+                    </div>
+                
+                </div>
+            
+            
+        </div>
+    </section>
+
+    <section id="contact" class="section contact">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <span class="section-label">// Contact</span>
+                <h2 class="section-title">
+                    <span class="text-gradient">연락</span>해 주세요
+                </h2>
+                <p style="color: var(--muted-foreground); max-width: 32rem; margin: 0 auto;">
+                    프로젝트 협업, 스터디, 또는 그냥 이야기를 나누고 싶으시다면
+                    언제든 연락해 주세요!
+                </p>
+            </div>
+            
+            <div class="contact-grid">
+                <a href="mailto:hong.gildong@kyungsung.ac.kr" class="contact-card">
+                    <div class="contact-icon contact-icon-email">✉️</div>
+                    <div>
+                        <p class="contact-label">Email</p>
+                        <p class="contact-value">shwjdrbs@kyungsung.ac.kr</p>
+                    </div>
+                </a>
+                <a href="https://github.com/HongGilDongDev" target="_blank" class="contact-card">
+                    <div class="contact-icon contact-icon-github">💻</div>
+                    <div>
+                        <p class="contact-label">GitHub</p>
+                        <p class="contact-value">@NojeongGyun</p>
+                    </div>
+                </a>
+                </div>
+            
+            <div class="footer">
+                <p>/* Made with ❤️ by 경성대 소프트웨어학과 학생 노정균/</p>
+                <p class="footer-copyright">© 2025 All rights reserved</p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
